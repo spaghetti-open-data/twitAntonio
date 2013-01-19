@@ -1,0 +1,21 @@
+{
+  "name": "TweetYourMEP",
+  "version": "0.0.1-1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.0rc4",
+    "ejs": "*",
+    "stylus": "*",
+    "mongojs": "*",
+    "mongoose": "*",
+    "request": "*",
+    "phpjs": "*"
+  },
+  "subdomain": "paolomainardi.tweetyourmep",
+  "engines": {
+    "node": "0.8.x"
+  }
+}
