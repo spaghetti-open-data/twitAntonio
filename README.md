@@ -1,11 +1,11 @@
-tweetyourmep
+TwitAntonio
 ============
 
-TweetyourMEP
+TwitAntonio
 
     $ npm install
     $ cp config.js.development config.js
     $ cd import
-    $ node import-meps.js
+    $ node import-deps.js
     $ cd ..
     $ node app
