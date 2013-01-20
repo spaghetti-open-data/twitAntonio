@@ -41,11 +41,14 @@ function mapLinetoObject($data) {
     $dep[$val] = $data[$count];
     $count++;
   }
-  // skip users with NA account
+
+  // sanitize NA
   if (strtolower($dep['mep_twitterUrl']) == 'na') {
     $dep['mep_twitterUrl'] = '';
   }
-  $dep['mep_additionalProperties'] = array('test' => 'test');
+
+  // importer needs this
+  $dep['mep_additionalProperties'] = array();
   $dep['mep_twitterUserName'] = $dep['mep_twitterUrl'];
   $dep['mep_userId'] = '';
   $dep['mep_lastName'] = ucwords(strtolower($dep['mep_lastName']));
