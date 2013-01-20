@@ -81,26 +81,6 @@ db.once('open', function() {
           mep.mep_twitterUserName = username;
         }
       }
-      /* Disabled, we should check the privacy stuff in order to download locally photos 
-         This is an async call, we should find a better method to close the process when download is finished.
-      */
-      /*
-      if (attr == 'mep_epFotoUrl') {
-        // download photo locally
-        var remote_photo = mep[attr];
-        if (remote_photo && validateURL(remote_photo)) {
-          var photo_name = remote_photo.split('/').pop();
-
-          request(remote_photo, function (error, response, body) {
-            console.log('Downloading photo: ' + remote_photo);
-            fs.writeFile('./images/' + photo_name, body);
-          });
-
-          //request(remote_photo).pipe(fs.createWriteStream('./images/' + photo_name));
-          mep.local_image = photo_name;
-        }
-      }
-      */
     }
     
     // create a fullname field to make search operation easy
@@ -147,6 +127,7 @@ db.once('open', function() {
 
     for (var i=0; i<len; ++i) {
       var remote_mep = mepsList[i];
+      
       // skip users without twitter account
       if (remote_mep.mep_twitterUrl) {
         saveUpdate(remote_mep);

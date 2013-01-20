@@ -22,5 +22,8 @@
        effect : "fadeIn",
        threshold : 500
     }); 
+    $("button.btn-reset").click(function() {
+      $(this).closest('form').find("input[type=text], textarea").val("");
+    });
   })
 }(window.jQuery)
