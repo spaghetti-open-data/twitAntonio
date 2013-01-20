@@ -40,9 +40,12 @@ function mapLinetoObject($data) {
     $dep[$val] = $data[$count];
     $count++;
   }
+  // skip users with NA account
   if (strtolower($dep['mep_twitterUrl']) == 'na') {
     $dep['mep_twitterUrl'] = '';
   }
+  $dep['mep_additionalProperties'] = array('test' => 'test');
   $dep['mep_twitterUserName'] = $dep['mep_twitterUrl'];
+  $dep['mep_userId'] = '';
   return $dep;
 }

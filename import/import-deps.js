@@ -126,9 +126,7 @@ db.once('open', function() {
       // new user
       if (!user) {
         MepSchema = new MepModel(remote_mep);
-        if (!MepSchema.mep_twitterUrl !== 'NA') {
-          doSave(MepSchema, 'save');
-        }
+        doSave(MepSchema, 'save');
       }
       // existing user
       else {
@@ -149,7 +147,10 @@ db.once('open', function() {
 
     for (var i=0; i<len; ++i) {
       var remote_mep = mepsList[i];
-      saveUpdate(remote_mep);
+      // skip users without twitter account
+      if (remote_mep.mep_twitterUrl) {
+        saveUpdate(remote_mep);
+      }
     }
     // close connection as described here: https://github.com/LearnBoost/mongoose/issues/330#issuecomment-1061042
     setTimeout( function () {
