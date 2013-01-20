@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
-  db_collection: 'db1',
+  db_collection: 'db5',
   db_debug: 1,
   api_url: 'http://www.spaghettiopendata.org/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
