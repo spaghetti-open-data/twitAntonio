@@ -21,6 +21,6 @@
     $("img.lazy").show().lazyload({
        effect : "fadeIn",
        threshold : 500
-    });  
+    }); 
   })
 }(window.jQuery)
