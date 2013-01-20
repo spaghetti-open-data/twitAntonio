@@ -62,13 +62,10 @@ module.exports = function() {
       });
     },
 
-    aboutAction: function (req, res) {
-      res.render('about', {config: config});
+    mapAction: function (req, res) {
+      res.render('mappa', { config: config, req: req});
     },
 
-    italianoAction: function (req, res) {
-      res.render('italiano', {config: config});
-    },
     importerAction: function (req, res) {
       //res.render('importer', config);
     }
