@@ -30,6 +30,7 @@ module.exports = function() {
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
        faction = (req.query.mep_faction ? req.query.mep_faction : '');
+       
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
        meps = model.findByCriteria(name, localParty, country, faction, options.limit, options.offset, options, function(meps) {
          meps = render.formatAdditional(meps);

@@ -11,7 +11,12 @@
       <link href="<%= config.base_path %>bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
       <link href="<%= config.base_path %>bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
       <link href="<%= config.base_path %>stylesheets/application.css" rel="stylesheet">
-
+      <script type="text/javascript" src="http://konami-js.googlecode.com/svn/trunk/konami.js"></script>
+      <script type="text/javascript">
+        konami = new Konami()
+        konami.load("https://www.youtube.com/watch?v=rSYf7exDuj0&feature=youtube_gdata_player");
+      </script>
+    
       <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
       <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,70 +79,42 @@
         <ul class="nav nav-list">
           <h5>
             <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
-            <a href="https://twitter.com/search?q=%23twpol13" target="_blank">Search #twpol13</a>
+            <a href="https://twitter.com/search?q=%23twpol13" target="_blank">Cerca #twpol13</a>
           </h5>
           <li>
             <form class="form-vertical">
               <fieldset>
                 <div id="legend" class="">
-                  <legend class="">Search your DEP</legend>
+                  <legend class="">Cerca il tuo candidato</legend>
                 </div>
                 <div class="control-group">
                   <!-- Search input-->
-                  <label class="control-label">Name</label>
+                  <label class="control-label">Nome</label>
                   <div class="controls">
-                    <input type="text" name="mep_name" placeholder="MEP Name" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
+                    <input type="text" name="mep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
                     <p class="help-block"></p>
                   </div>
 
                   <!--
                     Search for faction TODO
                   -->
-
+                  
                   <div class="controls">
-                    <label class="control-label">Local Party</label>
-                    <input type="text" name="mep_localParty" placeholder="MEP Local Party" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
+                    <label class="control-label">Coalizione</label>
+                    <input type="text" name="mep_localParty" placeholder="Coalizione" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
                     <p class="help-block"></p>
                   </div>
+                  </div>
+                  
 
-                </div>
-                <div class="control-group">
-                  <!-- Select Basic -->
-                  <label class="control-label">Country</label>
-                  <div class="controls">
-                    <select class="input-medium" name="mep_country" id="mep_country">
-                      <option value=""> - Select country - </option>
-                      <%
-                        var countries = config.countries;
-                        for (var key in countries) { %>
-                          <option value="<%= key %>" <%= (key === req.query.mep_country) ? "selected=\"selected\"" : '' %> > <%= countries[key] %> </option>
-                      <% } %>
-                      <option>Italy</option>
-                      <option>France</option>
-                      <option>Germany</option>
-                    </select>
-                  </div>
-                </div>
-                  <div class="control-group">
-                  <label class="control-label">Faction</label>
-                  <div class="controls">
-                    <select class="input-medium" name="mep_faction" id="mep_faction">
-                     <option value=""> - Select Faction - </option>
-                      <%
-                        var faction = config.factionNames;
-                        for (var key in faction) { %>
-                          <option value="<%= key %>" <%= (key === req.query.mep_faction) ? "selected=\"selected\"" : '' %> > <%= faction[key] %> </option>
-                      <% } %>
-                    </select>
-                  </div>
-                </div>
                
                 <div class="control-group">
                     <label class="control-label"></label>
                     <!-- Button -->
                     <div class="controls">
-                      <button class="btn btn-success">Search</button>
-                      <button class="btn btn-inverse" type="reset">Reset</button>
+                      <button class="btn btn-success">Cerca</button>
+                      <!-- does not work -->
+                      <!-- <button class="btn btn-inverse" type="reset">Reset</button> -->
                     </div>
                   </div>
               </fieldset>
@@ -175,27 +152,26 @@
                           </div>
                         -->
 
-
                         <div class="caption">
                            <h4> <%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %> </h4>
                            <span class="mep-info">
                               <i class="icon-globe"></i>
-                              <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="<%= config.countries[meps[i].mep_country] %>">
+                              <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>">
                                 <%= meps[i].mep_country %>
                               </a>
                             </span>
 
-                            <span class="divider">/</span>
-
+                            <!-- <span class="divider">/</span>-->
+                            <br />
                             <span class="mep-info">
                               <i class="icon-home"></i>
-                              <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=&mep_faction=<%= meps[i].mep_faction %>" rel="tooltip" data-placement="top" title="<%= config.factionNames[meps[i].mep_faction] %>">
-                                <%= meps[i].mep_faction %>
+                              <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
+                                <%= meps[i].mep_localParty %>
                               </a>
                             </span>
 
+                            <!--
                             <span class="divider">/</span>
-
                             <span class="mep-info">
                               <i class="icon-zoom-in"></i>
                               <div class="popover-content" style="display: none;"> 
@@ -203,6 +179,7 @@
                               </div>
                               <a href="javascript:void(0)" rel="popover" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"> More </a>
                             </span>
+                            -->
 
                             <p class="lead">
                              <h5>

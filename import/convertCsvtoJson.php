@@ -17,6 +17,7 @@ if (($handle = fopen("https://docs.google.com/spreadsheet/pub?key=0AvZ1J8kmKfi7d
 }
 
 function mapLinetoObject($data) {
+  // mapping 1-1 to csv (to be refactored)
   $keys = array(
     'mep_lastName',  
     'mep_firstName',
