@@ -48,5 +48,8 @@ function mapLinetoObject($data) {
   $dep['mep_additionalProperties'] = array('test' => 'test');
   $dep['mep_twitterUserName'] = $dep['mep_twitterUrl'];
   $dep['mep_userId'] = '';
+  $dep['mep_lastName'] = ucfirst(strtolower($dep['mep_lastName']));
+  $dep['mep_firstName'] = ucfirst(strtolower($dep['mep_firstName']));
   return $dep;
+
 }
