@@ -5,7 +5,7 @@ var config = {
   db_name: 'twitAntonio',
   db_collection: 'db1',
   db_debug: 1,
-  api_url: 'http://localhost/twinbit/ideas/sod/tweetyourantonio/import/convertCsvtoJson.php',
+  api_url: 'http://apps.spaghettiopendata.org/twitantonio/import/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
   app_description: '',
   app_author:      'https://github.com/spaghetti-open-data/tweetAntonio/graphs/contributors',
