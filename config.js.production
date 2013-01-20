@@ -12,7 +12,7 @@ var config = {
   app_port: 3002,
   app_secret: 'nirfnpv82958vj495vasdHGDASfaf293n9vfv',
   app_debug: true,
-  base_path: '/',
+  base_path: '/twitantonio',
     // Define Mep model
   schema: new mongoose.Schema({
     mep_country : String,
