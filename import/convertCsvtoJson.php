@@ -47,8 +47,16 @@ function mapLinetoObject($data) {
     $dep['mep_twitterUrl'] = '';
   }
 
-  // importer needs this
-  $dep['mep_additionalProperties'] = array();
+  // data mapping with old MEP structure (a big pile of crap)
+
+  // move facebook, personalwebsite to additionalProperties
+  $dep['mep_facebookId'] = 'http://facebook.com/paolomainardi';
+  if ($dep['mep_facebookId']) {
+    $dep['mep_additionalProperties']['facebook'] = $dep['mep_facebookId'];
+  }
+  $dep['mep_additionalProperties'] = '[' . json_encode($dep['mep_additionalProperties']) . ']';
+  
+
   $dep['mep_twitterUserName'] = $dep['mep_twitterUrl'];
   $dep['mep_userId'] = '';
 
@@ -56,5 +64,8 @@ function mapLinetoObject($data) {
   $dep['mep_lastName'] = ucwords(strtolower($dep['mep_lastName']));
   $dep['mep_firstName'] = ucwords(strtolower($dep['mep_firstName']));
   $dep['parlamento'] = ucwords(strtolower($dep['parlamento']));
+
+  //var_dump($dep); die;
+  //var_dump($dep); die;
   return $dep;
 }
