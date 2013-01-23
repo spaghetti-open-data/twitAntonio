@@ -1,24 +1,128 @@
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
+BODY
+{
+	padding-top: 60px;
+	padding-bottom: 40px;
+	/*[ph]0*/
 }
-@media (max-width: 979px) {
-	  body {
-	  padding-top: 0px;
+@media (max-width: 979px)
+{
+	BODY
+	{
+		/*[id]0*/padding-top: 0px;
 	}
 }
-.sidebar-nav {
-  padding: 9px 0;
+.sidebar-nav
+{
+	padding: 9px 0;
 }
-a.twitter {
-  color: #0094C2;
+.lazy
+{
+	display: none;
 }
-.lazy {
-  display: none;
+/*### TOP NAVBAR*/
+.navbar-fixed-top .container-fluid H1
+{
+	margin: 0;
+	line-height: 1;
 }
-
-
-/*img.img-rounded {
-  height: 215px;
+/*### SIDEBAR*/
+#left-sidebar
+{
 }
-*/
+#left-sidebar .sidebar-nav
+{
+	position: fixed;
+	top: 60px;
+	left: 20px;
+	width: 23.4042553191489%;
+	=width: 23.3510638297872%;
+	/*+box-sizing:border-box;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+}
+#left-sidebar .sidebar-nav LEGEND
+{
+	line-height: 1.1;
+	margin: 0.5em 0;
+}
+#left-sidebar .sidebar-nav INPUT
+{
+	width: 80%;
+}
+#left-sidebar .sidebar-nav .form-actions
+{
+	margin: 1em 0;
+	padding: 0.7em 0 0 0.5em;
+}
+#left-sidebar .sidebar-nav .form-actions BUTTON
+{
+	margin: 5px 8px 5px 0px;
+}
+/*### CONTENT*/
+#content .candidate
+{
+	float: left;
+	width: 210px;
+	padding: 10px;
+	margin: 0 10px 20px;
+	/*+box-sizing:border-box;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #E3E3E3;
+}
+#content .candidate IMG.photo
+{
+}
+#content .candidate .caption H2
+{
+	font-size: 1.4em;
+	font-weight: normal;
+	line-height: 1;
+}
+#content .candidate .caption UL
+{
+	padding: 0;
+	margin: 0.5em 0;
+	list-style-type: none;
+	list-style-image: none;
+	font-size: 90%;
+}
+#content .candidate .caption UL LI
+{
+}
+#content .candidate .caption A.twitter
+{
+	color: #0094C2;
+	font-weight: bold;
+	display: block;
+	margin: 1.5em 0 0.7em;
+}
+#content .candidate .caption A.twitter IMG
+{
+	margin-right: 5px;
+}
+@media (min-width: 768px) and (max-width: 979px)
+{
+	#left-sidebar .sidebar-nav
+	{
+		position: static;
+		top: auto;
+		left: auto;
+		width: auto;
+	}
+}
+@media (max-width: 767px)
+{
+	#left-sidebar .sidebar-nav
+	{
+		position: static;
+		top: auto;
+		left: auto;
+		width: auto;
+	}
+}
