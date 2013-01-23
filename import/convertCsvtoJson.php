@@ -48,11 +48,15 @@ function mapLinetoObject($data) {
   }
 
   // data mapping with old MEP structure (a big pile of crap)
-
-  // move facebook, personalwebsite to additionalProperties
-  $dep['mep_facebookId'] = 'http://facebook.com/paolomainardi';
+  // move facebook, personalwebsite and other less relevant informations to additionalProperties
   if ($dep['mep_facebookId']) {
-    $dep['mep_additionalProperties']['facebook'] = $dep['mep_facebookId'];
+    $dep['mep_additionalProperties']['Facebook'] = $dep['mep_facebookId'];
+  }
+  if ($dep['mep_personalWebsite']) {
+    $dep['mep_additionalProperties']['Sito personale'] = $dep['mep_personalWebsite'];
+  }
+  if ($dep['mep_personalWebsite']) {
+    $dep['mep_additionalProperties']['Sito personale'] = $dep['mep_personalWebsite'];
   }
   $dep['mep_additionalProperties'] = '[' . json_encode($dep['mep_additionalProperties']) . ']';
   

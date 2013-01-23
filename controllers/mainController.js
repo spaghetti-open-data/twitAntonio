@@ -62,7 +62,6 @@ module.exports = function() {
 
       if (loggedIn) {
         user = req.user.twit;
-        console.log(user);
       }
 
       internal.filter(req, res, function(meps) {
