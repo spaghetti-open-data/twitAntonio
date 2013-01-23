@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
-  db_name: 'TEST',
+  db_name: 'twitAntonio',
   db_collection: 'DEPS15',
   db_debug: 1,
   api_url: 'http://localhost/twinbit/ideas/sod/tweetyourantonio/import/convertCsvtoJson.php',

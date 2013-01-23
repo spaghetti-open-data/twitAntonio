@@ -57,8 +57,16 @@ module.exports = function() {
 
     // general requests
     indexAction : function (req, res) {
+      var user = false;
+      var loggedIn = req.loggedIn;
+
+      if (loggedIn) {
+        user = req.user.twit;
+        console.log(user);
+      }
+
       internal.filter(req, res, function(meps) {
-        res.render('index', { config: config, meps: meps, req: req});
+        res.render('index', { config: config, meps: meps, req: req, user: user});
       });
     },
 

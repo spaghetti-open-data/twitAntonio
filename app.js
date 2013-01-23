@@ -8,13 +8,18 @@ var express = require('express')
   , user = require('./controllers/user')
   , http = require('http')
   , path = require('path')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , everyauth = require('everyauth')
+  , mongooseAuth = require('mongoose-auth');
 
 // bootstrap the app!
 var app = express();
 var model = require('./models/mep.js');
 var config = require('./config.js');
 
+// Authentication
+var auth = require('./lib/auth.js');
+//User = mongoose.model('User');
 
 app.configure(function(){
   app.set('port', process.env.PORT || config.app_port);
@@ -26,10 +31,13 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser(config.app_secret));
   app.use(express.session());
-  app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+  //app.use(app.router);
+  //app.use(everyauth.middleware());
+  app.use(mongooseAuth.middleware());
+  //app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
 });
+
 
 app.configure('development', function(){
   app.use(express.errorHandler());

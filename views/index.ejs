@@ -20,6 +20,30 @@
 			        <!-- <li><a href="<%= config.base_path %>italiano">Italiano</a></li> -->
               <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
+
+            <ul class="nav pull-right">
+                <% if (req.loggedIn === false) { %>
+                <li>
+                  <a href="<%= config.base_path %>auth/twitter">
+                    <i class="icon-shopping-cart icon-large icon-twitter-sign"></i> Loggati con Twitter 
+                  </a>
+                </li>
+                <% } else { %>
+                <!-- auth users -->
+                 <li id="fat-menu" class="dropdown">
+                   <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="http://a0.twimg.com/profile_images/1244988041/p-ff6a317e7d1b11ddb25f003048343a40-medium-1000_mini.jpg"/> Ciao, <%= user.name %> <b class="caret"></b></a>
+                   <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                     <li><a tabindex="-1" href="<%= config.base_path %>logout">Logout</a></li>
+                     <!--
+                     <li><a tabindex="-1" href="#">Another action</a></li>
+                     <li><a tabindex="-1" href="#">Something else here</a></li>
+                     <li class="divider"></li>
+                     <li><a tabindex="-1" href="#">Separated link</a></li>
+                   -->
+                   </ul>
+                 </li>
+                <% } %>
+              </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
