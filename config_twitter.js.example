@@ -1,0 +1,7 @@
+// twitter secret configuration
+var twitter_conf = {
+  // twitter conf
+  twit_consumer_key: 'YOUR_CONSUMER_KEY',
+  twit_consumer_secret: 'YOUR_CONSUMER_SECRET',
+}
+module.exports = twitter_conf;
