@@ -92,7 +92,7 @@
           <% counter = 0 %>
           <% for (var i = 0; i < meps.length; i++) { %>
             <article class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
-                <img width="210" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
+                <img width="210" height="210" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
                 <noscript>
                     <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">
                 </noscript>
