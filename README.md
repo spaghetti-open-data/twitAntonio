@@ -12,7 +12,7 @@ Software prerequisiti: nodejs, npm, mongodb
 
 Su Ubuntu/Debian, dovrebbe bastare:
 
-`sudo apt-get install nodejs npm mongodb php`
+`sudo apt-get install nodejs npm mongodb php5`
 
 [ nota, su Ubuntu il comando per node.js è "nodejs", non solo "node" ]
 
