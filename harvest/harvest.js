@@ -13,7 +13,7 @@ t.stream(
     { track: ['twitantonio'] },
     function(stream) {
         stream.on('data', function(tweet) {
-            console.log(tweet.text);
+            console.log(tweet);
         });
     }
 );
