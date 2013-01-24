@@ -2,28 +2,51 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <h1><a class="brand" href="<%= config.base_path %>"><%= config.app_title %> </a></h1>
-            <div class="nav-collapse collapse">
-                <!--
-                <p class="navbar-text pull-right">
-                  Logged in as <a href="#" class="navbar-link">Username</a>
-                </p>
-                -->
-                <ul class="nav">
-                    <li class="active">
-                        <a href="<%= config.base_path %>">Home
-                        </a>
-                    </li>
-                    <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
-                    <!-- <li><a href="<%= config.base_path %>italiano">Italiano</a></li> -->
-                    <!-- <li><a href="#contact">Contact</a></li> -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="<%= config.base_path %>"><%= config.app_title %></a>
+          <div class="nav-collapse collapse">
+            <!--
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            -->
+            <ul class="nav">
+              <li class="active"><a href="<%= config.base_path %>">Home</a></li>
+              <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
+			        <!-- <li><a href="<%= config.base_path %>italiano">Italiano</a></li> -->
+              <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+
+            <% if (config.twitter_auth) { %>
+              <ul class="nav pull-right">
+                  <% if (req.loggedIn === false) { %>
+                  <li>
+                    <a href="<%= config.base_path %>auth/twitter">
+                      <i class="icon-shopping-cart icon-large icon-twitter-sign"></i> Loggati con Twitter 
+                    </a>
+                  </li>
+                  <% } else { %>
+                  <!-- auth users -->
+                   <li id="fat-menu" class="dropdown">
+                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="http://a0.twimg.com/profile_images/1244988041/p-ff6a317e7d1b11ddb25f003048343a40-medium-1000_mini.jpg"/> Ciao, <%= user.name %> <b class="caret"></b></a>
+                     <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                       <li><a tabindex="-1" href="<%= config.base_path %>logout">Logout</a></li>
+                       <!--
+                       <li><a tabindex="-1" href="#">Another action</a></li>
+                       <li><a tabindex="-1" href="#">Something else here</a></li>
+                       <li class="divider"></li>
+                       <li><a tabindex="-1" href="#">Separated link</a></li>
+                     -->
+                     </ul>
+                   </li>
+                  <% } %>
                 </ul>
-            </div><!--/.nav-collapse -->
+              <% } %>
+          </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
@@ -120,6 +143,14 @@
                             <i class="icon-home"></i>
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>"><%= meps[i].mep_localParty %>
                             </a>
+                          <span class="divider">/</span>
+                          <span class="mep-info">
+                            <i class="icon-zoom-in"></i>
+                            <div class="popover-content" style="display: none;"> 
+                              <%- meps[i].formatted_properties %>
+                            </div>
+                            <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"> More </a>
+                          </span>
                         </li>
 
                     </ul>

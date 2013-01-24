@@ -13,6 +13,8 @@ var config = {
   app_secret: 'nirfnpv82958vj495vasdHGDASfaf293n9vfv',
   app_debug: true,
   base_path: '/twitantonio/',
+  twitter_auth: false,
+
     // Define Mep model
   schema: new mongoose.Schema({
     mep_country : String,

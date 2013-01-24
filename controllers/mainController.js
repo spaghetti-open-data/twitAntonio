@@ -57,8 +57,16 @@ module.exports = function() {
 
     // general requests
     indexAction : function (req, res) {
+      var user = false;
+      // check if twitter auth is active, if active pass the entire user object (if present)
+      if (config.twitter_auth) {
+        var loggedIn = req.loggedIn;
+        if (loggedIn) {
+          user = req.user.twit;
+        }
+      }
       internal.filter(req, res, function(meps) {
-        res.render('index', { config: config, meps: meps, req: req});
+        res.render('index', { config: config, meps: meps, req: req, user: user});
       });
     },
 
