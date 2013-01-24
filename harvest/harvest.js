@@ -10,7 +10,7 @@ var t = new twitter({
 
 t.stream(
     'statuses/filter',
-    { track: ['awesome', 'cool', 'rad', 'gnarly', 'groovy'] },
+    { track: ['twitantonio'] },
     function(stream) {
         stream.on('data', function(tweet) {
             console.log(tweet.text);
