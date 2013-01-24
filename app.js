@@ -34,6 +34,7 @@ app.configure(function(){
   app.use(express.cookieParser(config.app_secret));
   app.use(express.session());
 
+  // user mongooseAuth middleware if twitter_auth is active
   if (config.twitter_auth) {
     app.use(mongooseAuth.middleware());
   }
