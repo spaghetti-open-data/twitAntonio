@@ -8,7 +8,7 @@ var config = {
   api_url: 'http://localhost/twinbit/ideas/sod/tweetyourantonio/import/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
   app_description: '',
-  app_author:      'https://github.com/spaghetti-open-data/tweetAntonio/graphs/contributors',
+  app_author:      'https://github.com/spaghetti-open-data/twitAntonio/graphs/contributors',
   app_port: 3000,
   app_secret: 'nirfnpv82958vj495vasdHGDASfaf293n9vfv',
   app_debug: true,
