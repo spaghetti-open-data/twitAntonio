@@ -8,12 +8,16 @@ var t = new twitter({
     access_token_secret: credentials.access_token_secret
 });
 
-t.stream(
-    'statuses/filter',
-    { track: ['twitantonio'] },
-    function(stream) {
-        stream.on('data', function(tweet) {
-            console.log(tweet);
-        });
-    }
-);
+// t.stream(
+//     'statuses/filter',
+//     { track: ['twitantonio'] },
+//     function(stream) {
+//         stream.on('data', function(tweet) {
+//             console.log(tweet);
+//         });
+//     }
+// );
+
+t.search('#sod13', {'page':'22'}, function(err, data) {
+  console.dir(data);
+});
