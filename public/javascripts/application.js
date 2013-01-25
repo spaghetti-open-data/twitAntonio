@@ -47,17 +47,18 @@
     });
 
     // autocomplete widgets (static json)
-    $.getJSON('/api/autocomplete/names', function(data) {
+    // needs fixes
+    $.getJSON('api/autocomplete/names', function(data) {
       $('#dep_name').autocomplete({
         source: data
       });
     });  
-    $.getJSON('/api/autocomplete/countries', function(data) {
+    $.getJSON('api/autocomplete/countries', function(data) {
       $('#dep_country').autocomplete({
         source: data
       });
     });  
-    $.getJSON('/api/autocomplete/parties', function(data) {
+    $.getJSON('api/autocomplete/parties', function(data) {
       $('#dep_party').autocomplete({
         source: data
       });

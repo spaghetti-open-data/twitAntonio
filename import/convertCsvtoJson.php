@@ -18,7 +18,7 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
         // NA comes from old csv files, just like a placeholder for empty twitter account
         if ($tw_url && $tw_url !== 'na') {  
           // if we already have this account, just add the new country (circoscrizione)
-          if ($deps[$tw_url]) {
+          if (isset($deps[$tw_url])) {
             $deps[$tw_url]['mep_country'][] = $dep['mep_country'];
             continue;
           }
