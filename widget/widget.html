@@ -15,8 +15,10 @@
 
 <script>
 	$(function() {
+
+		var selected_item;
 		
-		$('#candidato, #regione').autocomplete({
+		$('#candidato, #regione, #lista').autocomplete({
 			source : function(request, response) {
 				$.ajax({
 					url : "http://localhost:3000/api/meps/",
@@ -31,8 +33,9 @@
 						response($.map(data, function(item) {
 							console.debug(item);
 							return {
-								label: item.mep_fullName + '['+item.mep_country+']',
-								value: '@'+item.mep_twitterUserName
+								label: item.mep_fullName + ' ['+item.mep_country+'] ' + item.mep_localParty,
+								value: '@'+item.mep_twitterUserName,
+								candidato: item
 							}
 						}));
 						
@@ -41,14 +44,23 @@
 			},
 			minLength: 3,
 			select : function(event, ui) {
-// 				$(this).html('<strong>UHM</strong>');
 				this.close;
 			},
 			open: function() {
-				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+// 				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
 			},
 			close: function() {
-				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+				$('#candidato').val("VALORE?");
+				// TODO: sistemare qui
+			},
+			change: function(event, ui) {
+				selected_item = ui.item.candidato;
+				console.debug(event)
+				console.debug(ui)
+// 				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+				
+				$('#candidato').val(selected_item.mep_name);
+				this.close;
 			}
 		});
 
