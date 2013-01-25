@@ -2,7 +2,7 @@
 
 // see https://github.com/spaghetti-open-data/twitAntonio/issues/21
 $keys = array();
-$remote_csv = 'https://docs.google.com/spreadsheet/pub?key=0Aq3nVlLNTO8jdEtTVkpIaHNiUE5OWE9iUjA5RFFnbVE&output=csv"';
+$remote_csv = 'https://docs.google.com/spreadsheet/pub?key=0Aq3nVlLNTO8jdEtTVkpIaHNiUE5OWE9iUjA5RFFnbVE&output=csv';
 
 if (($handle = fopen($remote_csv, "r")) !== FALSE) {
     $line = 0;
