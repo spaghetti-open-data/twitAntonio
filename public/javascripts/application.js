@@ -47,7 +47,7 @@
     });
 
     // autocomplete widgets (static json)
-    // needs fixes
+    // @todo needs fixes (base url)
     $.getJSON('api/autocomplete/names', function(data) {
       $('#dep_name').autocomplete({
         source: data
