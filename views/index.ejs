@@ -65,9 +65,10 @@
     <div class="row-fluid">
         <div id="left-sidebar" class="span3">
             <div class="well sidebar-nav">
+
                 <a class="twitsearch" href="https://twitter.com/search?q=%23twpol13" target="_blank">
                     <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
-                    <strong>Cerca #twpol13</strong>
+                        <strong>Cerca #twpol13</strong>
                 </a>
                 <form class="form-vertical">
                     <legend>Cerca il tuo candidato</legend>
@@ -87,7 +88,7 @@
                             <input type="text" name="mep_country" id="dep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
                                 <p class="help-block"></p>
                         </div>
-
+              
                         <!--
                           Search for Colazione
                         -->                
@@ -96,7 +97,21 @@
                             <input type="text" name="mep_localParty" id="dep_party" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
                                 <p class="help-block"></p>
                         </div>
-                    </div><!--/control-group-->
+                    </div>
+                
+                    <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="form-actions">  
+                            <button type="submit" class="btn btn-primary">Cerca</button>  
+                            <button class="btn btn-danger btn-reset">Reset</button> 
+                        </div>  
+                    </div>
+                
+                    <div class="img-wr">
+                        <img src="<%= config.base_path %>images/votantonio.jpg" />
+                    </div>
+
 
                     <div class="control-group">
                         <label class="control-label"></label>
@@ -113,7 +128,7 @@
 
                 </form>
               
-            <!-- privacy policy button -->
+                <!-- privacy policy button -->
                 <a href="http://www.iubenda.com/privacy-policy/324506" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
                 <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>       
             </div>
@@ -124,7 +139,8 @@
           <% counter = 0 %>
           <% for (var i = 0; i < meps.length; i++) { %>
             <article class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
-                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
+                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>
+                </h2>
                 <div class="top">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
                         <img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>
@@ -146,10 +162,14 @@
 
                     <ul>
                         <li class="country">
-                            <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>"><i class="icon-globe"></i> <%= meps[i].mep_country %></a>
+                            <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>">
+                                <i class="icon-globe"></i> <%= meps[i].mep_country %>
+                            </a>
                         </li>
                         <li class="local-party">
-                            <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>"><i class="icon-home"></i> <%= meps[i].mep_localParty %></a>
+                            <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
+                                <i class="icon-home"></i> <%= meps[i].mep_localParty %>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -158,13 +178,17 @@
                         <div class="popover-content" style="display: none;"> 
                             <%- meps[i].formatted_properties %>
                         </div>
-                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"><i class="icon-zoom-in"></i> Altro...</a>                    </div>
+                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>">
+                            <i class="icon-zoom-in"></i> Altro...
+                        </a>                    
+                    </div>
 
                     <div class="tweet-count">
                         <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a>
                     </div>
                     
-                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twpol13, twitantonio" class="btn btn-success">Tweet</a> 
+                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twpol13, twitantonio" class="btn btn-success">Tweet
+                    </a> 
                     <!-- <a href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>" class="btn">Follow</a> -->
                 </div>
             </article>
@@ -175,8 +199,8 @@
 
     <hr>
         
-    <footer>
-        <p>&copy; Spaghetti Open Data </p>
-    </footer>
+        <footer>
+            <p>&copy; Spaghetti Open Data </p>
+        </footer>
 </div><!--/.fluid-container-->
 <% include includes/footer %>
