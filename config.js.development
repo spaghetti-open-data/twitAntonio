@@ -17,7 +17,7 @@ var config = {
 
     // Define Mep model
   schema: new mongoose.Schema({
-    mep_country : String,
+    mep_country : [String],
     mep_emailAddress : String,
     mep_epFotoUrl : String,
     mep_epPageUrl : String,
