@@ -16,20 +16,22 @@
 <script>
 	$(function() {
 		
-		$('#candidato').autocomplete({
+		$('#candidato, #regione').autocomplete({
 			source : function(request, response) {
 				$.ajax({
 					url : "http://localhost:3000/api/meps/",
 					datatype : "json",
 					data : {
-						mep_name : $('#candidato').val()
+						mep_name : $('#candidato').val(),
+						mep_country : $('#regione').val(),
+						mep_localParty : $('#lista').val()
 					},
 					success : function(data) {
 						
 						response($.map(data, function(item) {
 							console.debug(item);
 							return {
-								label: item.mep_fullName,
+								label: item.mep_fullName + '['+item.mep_country+']',
 								value: '@'+item.mep_twitterUserName
 							}
 						}));
@@ -39,12 +41,7 @@
 			},
 			minLength: 3,
 			select : function(event, ui) {
-				// 				 $('#state').value(ui.item.state); 
-				console.debug(event);
-				console.debug(ui);
-				
-				$(this).html('<strong>UHM</strong>');
-				
+// 				$(this).html('<strong>UHM</strong>');
 				this.close;
 			},
 			open: function() {
@@ -56,8 +53,7 @@
 		});
 
 	});
-	
-	
+		
 	
 </script>
 
@@ -79,8 +75,7 @@
               
               	<hr/>
               
-              	<button type="submit" class="btn">Cerca</button>
-              	<button class="btn">Reset</button>
+              	<button type="submit" class="btn">Invia</button>
               
               </fieldset>
               
