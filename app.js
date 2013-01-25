@@ -57,6 +57,7 @@ app.get('/mappa', controllers.mainController().mapAction);
 
 // API
 app.get('/api/meps', controllers.mainController().apiAction.get);
+app.get('/api/autocomplete/:type', controllers.mainController().apiAction.autocomplete);
 
 
 

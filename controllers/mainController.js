@@ -3,7 +3,7 @@ module.exports = function() {
   var config = require('../config.js');
   var model = require('../models/mep.js');
   var render = require("../lib/mepsRenderer.js");
-
+  var fs = require('fs');
 
   // @todo hardcoded number just for test, this needs to be refactored to support pagination
   options = { 
@@ -49,9 +49,20 @@ module.exports = function() {
            res.writeHead(200, {
                  "Content-Type": "application/json",
                  "Access-Control-Allow-Origin": "*"
-               });
+           });
            res.end(JSON.stringify(meps));
         })
+      },
+      autocomplete: function(req, res) {
+        type = req.params.type;
+        fs.readFile('./import/autocomplete/' + type + '.json', 'utf8', function (err, data) {
+          var names = data;
+          res.writeHead(200, {
+                 "Content-Type": "application/json",
+                 "Access-Control-Allow-Origin": "*"
+          });
+          res.end(data);
+        });
       }
     },
 

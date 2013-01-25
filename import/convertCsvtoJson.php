@@ -33,10 +33,32 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
   
     // post processing data (in order to make them compatible with tymep existing data structures)
     $deps = postProcess($deps);
+
+    // static autocomplete
+    createStaticJson($deps);
     header('Content-type: application/json');
     print json_encode($deps);
     fclose($handle);
     exit;
+}
+
+/**
+ * Create static JSON for autocomplete
+ */
+function createStaticJson($deps) {
+  foreach ($deps as $dep) {
+    $names[] = $dep['mep_firstName'] . ' ' . $dep['mep_lastName'];
+    $party[$dep['mep_localParty']] = $dep['mep_localParty'];
+    foreach ($dep['mep_country'] as $country) {
+      $countries[] = trim($country);
+    }
+  }
+  
+  $party = array_values($party);
+  $countries = array_values(array_unique($countries));
+  file_put_contents('autocomplete/names.json', json_encode($names));
+  file_put_contents('autocomplete/parties.json', json_encode($party));
+  file_put_contents('autocomplete/countries.json', json_encode($countries));
 }
 
 function postProcess($deps) {

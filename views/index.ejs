@@ -66,7 +66,7 @@
                     <!-- Search input-->
                     <label class="control-label">Nome</label>
                     <div class="controls">
-                        <input type="text" name="mep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
+                        <input type="text" name="mep_name" id="dep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
                             <p class="help-block"></p>
                     </div>
 
@@ -75,7 +75,7 @@
                     -->
                     <div class="controls">
                         <label class="control-label">Circoscrizione</label>
-                        <input type="text" name="mep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
+                        <input type="text" name="mep_country" id="dep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
                             <p class="help-block"></p>
                     </div>
               
@@ -84,7 +84,7 @@
                     -->                
                     <div class="controls">
                         <label class="control-label">Lista</label>
-                        <input type="text" name="mep_localParty" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
+                        <input type="text" name="mep_localParty" id="dep_party" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
                             <p class="help-block"></p>
                     </div>
                 </div>

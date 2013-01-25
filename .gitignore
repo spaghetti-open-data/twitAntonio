@@ -18,3 +18,4 @@ import/cache/*
 import/cache
 config.js
 config_twitter.js
+import/autocomplete/*.json
