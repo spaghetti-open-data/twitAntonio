@@ -2,111 +2,120 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="<%= config.base_path %>"><%= config.app_title %></a>
-          <div class="nav-collapse collapse">
-            <!--
-            <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
-            </p>
-            -->
-            <ul class="nav">
-              <li class="active"><a href="<%= config.base_path %>">Home</a></li>
-              <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
-			        <!-- <li><a href="<%= config.base_path %>italiano">Italiano</a></li> -->
-              <!-- <li><a href="#contact">Contact</a></li> -->
-            </ul>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="<%= config.base_path %>"><%= config.app_title %>
+            </a>
+            <div class="nav-collapse collapse">
+                <!--
+                <p class="navbar-text pull-right">
+                  Logged in as <a href="#" class="navbar-link">Username</a>
+                </p>
+                -->
+                <ul class="nav">
+                    <li class="active">
+                        <a href="<%= config.base_path %>">Home
+                        </a>
+                    </li>
+                    <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
+                    <!-- <li><a href="<%= config.base_path %>italiano">Italiano</a></li> -->
+                    <!-- <li><a href="#contact">Contact</a></li> -->
+                </ul>
 
             <% if (config.twitter_auth) { %>
-              <ul class="nav pull-right">
+                <ul class="nav pull-right">
                   <% if (req.loggedIn === false) { %>
-                  <li>
-                    <a href="<%= config.base_path %>auth/twitter">
-                      <i class="icon-shopping-cart icon-large icon-twitter-sign"></i> Loggati con Twitter 
-                    </a>
-                  </li>
+                    <li>
+                        <a href="<%= config.base_path %>auth/twitter">
+                            <i class="icon-shopping-cart icon-large icon-twitter-sign"></i> Loggati con Twitter 
+                        </a>
+                    </li>
                   <% } else { %>
-                  <!-- auth users -->
-                   <li id="fat-menu" class="dropdown">
-                     <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> <img src="http://a0.twimg.com/profile_images/1244988041/p-ff6a317e7d1b11ddb25f003048343a40-medium-1000_mini.jpg"/> Ciao, <%= user.name %> <b class="caret"></b></a>
-                     <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                       <li><a tabindex="-1" href="<%= config.base_path %>logout">Logout</a></li>
-                       <!--
-                       <li><a tabindex="-1" href="#">Another action</a></li>
-                       <li><a tabindex="-1" href="#">Something else here</a></li>
-                       <li class="divider"></li>
-                       <li><a tabindex="-1" href="#">Separated link</a></li>
-                     -->
-                     </ul>
-                   </li>
+                    <!-- auth users -->
+                    <li id="fat-menu" class="dropdown">
+                        <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"> 
+                            <img src="http://a0.twimg.com/profile_images/1244988041/p-ff6a317e7d1b11ddb25f003048343a40-medium-1000_mini.jpg"/> Ciao, <%= user.name %> 
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                            <li>
+                                <a tabindex="-1" href="<%= config.base_path %>logout">Logout
+                                </a>
+                            </li>
+                            <!--
+                              <li><a tabindex="-1" href="#">Another action</a></li>
+                              <li><a tabindex="-1" href="#">Something else here</a></li>
+                              <li class="divider"></li>
+                              <li><a tabindex="-1" href="#">Separated link</a></li>
+                            -->
+                        </ul>
+                    </li>
                   <% } %>
                 </ul>
               <% } %>
-          </div><!--/.nav-collapse -->
+            </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
 
 <div class="container-fluid">
     <div class="row-fluid">
-
         <div id="left-sidebar" class="span3">
             <div class="well sidebar-nav">
-            <a class="twitsearch" href="https://twitter.com/search?q=%23twpol13" target="_blank">
-                <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
-                <strong>Cerca #twpol13</strong>
-            </a>
-            <form class="form-vertical">
-                <legend>Cerca il tuo candidato</legend>
-                <div class="control-group">
-                    <!-- Search input-->
-                    <label class="control-label">Nome</label>
-                    <div class="controls">
-                        <input type="text" name="mep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
-                            <p class="help-block"></p>
+                <a class="twitsearch" href="https://twitter.com/search?q=%23twpol13" target="_blank">
+                    <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
+                    <strong>Cerca #twpol13</strong>
+                </a>
+                <form class="form-vertical">
+                    <legend>Cerca il tuo candidato</legend>
+                    <div class="control-group">
+                        <!-- Search input-->
+                        <label class="control-label">Nome</label>
+                        <div class="controls">
+                            <input type="text" name="mep_name" id="dep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
+                                <p class="help-block"></p>
+                        </div>
+
+                        <!--
+                          Search for Circoscrizione
+                        -->
+                        <div class="controls">
+                            <label class="control-label">Circoscrizione</label>
+                            <input type="text" name="mep_country" id="dep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
+                                <p class="help-block"></p>
+                        </div>
+
+                        <!--
+                          Search for Colazione
+                        -->                
+                        <div class="controls">
+                            <label class="control-label">Lista</label>
+                            <input type="text" name="mep_localParty" id="dep_party" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
+                                <p class="help-block"></p>
+                        </div>
+                    </div><!--/control-group-->
+
+                    <div class="control-group">
+                        <label class="control-label"></label>
+                        <!-- Button -->
+                        <div class="form-actions">  
+                            <button type="submit" class="btn btn-primary">Cerca</button>  
+                            <button class="btn btn-danger btn-reset">Reset</button> 
+                        </div>  
+                    </div><!--/control-group-->
+
+                    <div class="img-wr">
+                        <img src="<%= config.base_path %>images/votantonio.jpg" />
                     </div>
 
-                    <!--
-                      Search for Circoscrizione
-                    -->
-                    <div class="controls">
-                        <label class="control-label">Circoscrizione</label>
-                        <input type="text" name="mep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
-                            <p class="help-block"></p>
-                    </div>
+                </form>
               
-                    <!--
-                      Search for Colazione
-                    -->                
-                    <div class="controls">
-                        <label class="control-label">Lista</label>
-                        <input type="text" name="mep_localParty" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
-                            <p class="help-block"></p>
-                    </div>
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label"></label>
-                    <!-- Button -->
-                    <div class="form-actions">  
-                        <button type="submit" class="btn btn-primary">Cerca</button>  
-                        <button class="btn btn-danger btn-reset">Reset</button> 
-                    </div>  
-                </div>
-                
-                <div class="img-wr">
-                    <img src="<%= config.base_path %>images/votantonio.jpg" />
-                </div>
-
-            </form>
-
             <!-- privacy policy button -->
-            <a href="http://www.iubenda.com/privacy-policy/324506" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
-            <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>       
+                <a href="http://www.iubenda.com/privacy-policy/324506" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+                <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>       
             </div>
         </div> <!--/sidebar -->
 
@@ -115,64 +124,47 @@
           <% counter = 0 %>
           <% for (var i = 0; i < meps.length; i++) { %>
             <article class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
-                <img width="210" height="210" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
-                <noscript>
-                    <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">
-                </noscript>
-
-                <!--
-                 <div style="float:left; width:90px; max-height:215px;"
-                    <dl>
-                      <dt>Country:</dt> <dd><%= meps[i].mep_country %></dd>
-                      <dt>Faction:</dt> <dd><%= meps[i].mep_faction %></dd>
-                      <dt>Local Party:</dt> <dd><%= meps[i].mep_localParty %></dd>
-                    </dl>
-                  </div>
-                -->
-
-                <div class="caption">
-                    <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>
-                    </h2>
-                    <ul>
-                        <li class="mep-info">
-                            <i class="icon-globe"></i>
-                            <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>"><%= meps[i].mep_country %>
-                            </a>
-                        </li>
-                        <li class="mep-info">
-                            <i class="icon-home"></i>
-                            <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>"><%= meps[i].mep_localParty %>
-                            </a>
-                          <span class="divider">/</span>
-                          <span class="mep-info">
-                            <i class="icon-zoom-in"></i>
-                            <div class="popover-content" style="display: none;"> 
-                              <%- meps[i].formatted_properties %>
-                            </div>
-                            <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"> More </a>
-                          </span>
-                        </li>
-
-                    </ul>
-                    <!--
-                    <span class="divider">/</span>
-                    <span class="mep-info">
-                      <i class="icon-zoom-in"></i>
-                      <div class="popover-content" style="display: none;"> 
-                        <%- meps[i].formatted_properties %>
-                      </div>
-                      <a href="javascript:void(0)" rel="popover" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"> More </a>
-                    </span>
-                    -->
-                    
+                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
+                <div class="top">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
-                        <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>
+                        <img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>
                     </a>
-                    
+                    <a class="counter reply" href="javascript:void(0)" rel="tooltip" data-placement="top" title="5 risposte ricevute">
+                        <span></span>5
+                    </a>
+                    <a class="counter retweet" href="javascript:void(0)" rel="tooltip" data-placement="top" title="3 retweet ricevuti">
+                        <span></span>3
+                    </a>
                 </div>
-                <div class="pagination-centered">
-                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twpol13, twitantonio" class="btn btn-success">Tweet
-                    </a> 
+                <div class="middle">
+                    <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
+                        <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
+                    </a>
+                    <noscript>
+                        <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">
+                    </noscript>
+
+                    <ul>
+                        <li class="country">
+                            <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>"><i class="icon-globe"></i> <%= meps[i].mep_country %></a>
+                        </li>
+                        <li class="local-party">
+                            <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>"><i class="icon-home"></i> <%= meps[i].mep_localParty %></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bottom pagination-right">
+                    <div class="more">
+                        <div class="popover-content" style="display: none;"> 
+                            <%- meps[i].formatted_properties %>
+                        </div>
+                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>"><i class="icon-zoom-in"></i> Altro...</a>                    </div>
+
+                    <div class="tweet-count">
+                        <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a>
+                    </div>
+                    
+                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twpol13, twitantonio" class="btn btn-success">Tweet</a> 
                     <!-- <a href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>" class="btn">Follow</a> -->
                 </div>
             </article>
@@ -182,8 +174,9 @@
     </div><!--/row-->
 
     <hr>
-        <footer>
-            <p>&copy; Spaghetti Open Data </p>
-        </footer>
+        
+    <footer>
+        <p>&copy; Spaghetti Open Data </p>
+    </footer>
 </div><!--/.fluid-container-->
 <% include includes/footer %>

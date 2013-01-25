@@ -31,6 +31,7 @@
     });
     
     // Mansory init
+    /*
     $('#content').masonry({
         // options
         itemSelector: '.candidate',
@@ -45,6 +46,24 @@
     $window.bind('scrollstop', function () {
         $('#content').masonry();
     });
-    
+    */
+
+    // autocomplete widgets (static json)
+    // @todo needs fixes (base url)
+    $.getJSON('api/autocomplete/names', function(data) {
+      $('#dep_name').autocomplete({
+        source: data
+      });
+    });  
+    $.getJSON('api/autocomplete/countries', function(data) {
+      $('#dep_country').autocomplete({
+        source: data
+      });
+    });  
+    $.getJSON('api/autocomplete/parties', function(data) {
+      $('#dep_party').autocomplete({
+        source: data
+      });
+    });  
   })
 }(window.jQuery)
