@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Twittantonio widget</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+<link href="http://localhost:3000/bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
+<link href="http://localhost:3000/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="http://localhost:3000/stylesheets/application.css" rel="stylesheet">
+
+
+<script>
+	$(function() {
+		
+		$('#candidato').autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					url : "http://localhost:3000/api/meps/",
+					datatype : "json",
+					data : {
+						mep_name : $('#candidato').val()
+					},
+					success : function(data) {
+						
+						response($.map(data, function(item) {
+							console.debug(item);
+							return {
+								label: item.mep_fullName,
+								value: '@'+item.mep_twitterUserName
+							}
+						}));
+						
+					}
+				})
+			},
+			minLength: 3,
+			select : function(event, ui) {
+				// 				 $('#state').value(ui.item.state); 
+				console.debug(event);
+				console.debug(ui);
+				
+				$(this).html('<strong>UHM</strong>');
+				
+				this.close;
+			},
+			open: function() {
+				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+			},
+			close: function() {
+				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+			}
+		});
+
+	});
+	
+	
+	
+</script>
+
+</head>
+<body>
+
+	
+<div id="widget-sidebar" class="well span3">
+
+         
+          <form id="widget-01" class="ui-widget form-vertical control-group">
+              
+              <fieldset class="controls">
+              	<legend>twittantonio</legend>
+              	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
+              	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
+              	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
+              	<input type="text" id="hashtag" name="hashtag" placeholder="#campagna" class="input-medium search-query" value="" />
+              
+              	<hr/>
+              
+              	<button type="submit" class="btn">Cerca</button>
+              	<button class="btn">Reset</button>
+              
+              </fieldset>
+              
+          </form>
+
+</div>
+		
+	
+	
+	
+</body>
+</html>
