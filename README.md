@@ -23,5 +23,6 @@ Successivamente, i seguenti comandi:
     $ cd import
     $ php -f convertCsvtoJson.php > ./data.json
     $ node import-deps.js data.json
+    $ node import-avatars.js (opzionale)
     $ cd ..
     $ node app
