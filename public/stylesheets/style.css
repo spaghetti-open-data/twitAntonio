@@ -11,3 +11,6 @@ a.twitter {
 .lazy {
   display: none;
 }
+
+td {border-spacing: 20px;
+	}
