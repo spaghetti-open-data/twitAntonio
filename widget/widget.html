@@ -10,27 +10,61 @@
 
 <link href="http://localhost:3000/bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
 <link href="http://localhost:3000/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="http://localhost:3000/stylesheets/application.css" rel="stylesheet">
+<!-- <link href="http://localhost:3000/stylesheets/application.css" rel="stylesheet"> -->
 
+
+<style type="text/css">
+/* TODO STILI */
+
+form[id='widget_sod'] fieldset legend {
+	font-variant:small-caps; font-size: 1.2em; line-height: 1em;
+	text-align: left;
+}
+form * {
+	margin: 4px 0px;
+}
+.selected_deps {
+	font-variant:small-caps; font-size: 0.7em; line-height: 1em;
+}
+</style>
 
 <script>
 	$(function() {
+
+		var selected_items = new Array();
 		
-		$('#candidato').autocomplete({
+		function fillForm(item){
+			$('#candidato').val(item.mep_fullName);
+			$('#regione').val(item.mep_country);
+			$('#lista').val(item.mep_localParty);
+		}
+		
+		$('#candidato, #regione, #lista').autocomplete({
+			
 			source : function(request, response) {
+				
+				var self = $(this);
+				console.debug("----------------------");
+				console.debug(self);
+				console.debug(this);
+				console.debug("----------------------");
+				
 				$.ajax({
 					url : "http://localhost:3000/api/meps/",
 					datatype : "json",
 					data : {
-						mep_name : $('#candidato').val()
+						mep_fullName : $('#candidato').val(),
+						mep_country : $('#regione').val(),
+						mep_localParty : $('#lista').val()
 					},
 					success : function(data) {
 						
 						response($.map(data, function(item) {
 							console.debug(item);
 							return {
-								label: item.mep_fullName,
-								value: '@'+item.mep_twitterUserName
+								label: item.mep_fullName + ' ['+item.mep_country+'] ' + item.mep_localParty,
+								value: fillForm(item),
+// 								candidato: item
 							}
 						}));
 						
@@ -39,25 +73,22 @@
 			},
 			minLength: 3,
 			select : function(event, ui) {
-				// 				 $('#state').value(ui.item.state); 
-				console.debug(event);
-				console.debug(ui);
-				
-				$(this).html('<strong>UHM</strong>');
-				
-				this.close;
+				console.debug("SELECT");
+// 				this.close;
 			},
-			open: function() {
-				$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+			open: function(data) {
+				console.debug("OPEN");
 			},
-			close: function() {
-				$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+			close: function(data) {
+				console.debug("CLOSE");
+			},
+			change: function(event, ui) {
+				console.debug("CHANGE");
 			}
 		});
 
 	});
-	
-	
+		
 	
 </script>
 
@@ -68,27 +99,31 @@
 <div id="widget-sidebar" class="well span3">
 
          
-          <form id="widget-01" class="ui-widget form-vertical control-group">
-              
-              <fieldset class="controls">
-              	<legend>twittantonio</legend>
-              	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
-              	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
-              	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
-              	<input type="text" id="hashtag" name="hashtag" placeholder="#campagna" class="input-medium search-query" value="" />
-              
-              	<hr/>
-              
-              	<button type="submit" class="btn">Cerca</button>
-              	<button class="btn">Reset</button>
-              
-              </fieldset>
-              
-          </form>
+	<form id="widget_sod" class="ui-widget form-vertical control-group">
+	    
+	    <fieldset class="controls">
+	    	<legend>twittantonio</legend>
+	    	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
+	    	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
+	    	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
+	    
+	    	<input type="text" id="hashtag" name="hashtag" placeholder="#twittantonio" class="input-medium search-query" value="" />
+<!-- 	    	<a href="http://twitter.com/intent/tweet/?text=@SoniaAlfano&amp;hashtags=tweetyourmep" class="btn btn-primary" target="_blank">Tweet</a> -->
+			<a href="http://twitter.com/intent/tweet/?text=&hashtags=tweetyourmep" class="btn btn-primary" target="_blank">Tweet</a>
+	
+	    </fieldset>
+	    
+	    <!-- Esempio da valutare... -->
+	    <!-- <div>
+	    	<a id="deps_01" class="selected_deps" href="#remove">[x] @user</a>
+	    </div> -->
+	    
+	    
+	</form>
 
 </div>
-		
-	
+
+<!-- https://twitter.com/intent/tweet/?text=@seralf&hashtags=tweetyourmep,prova&original_referer=http://apps.spaghettiopendata.org/tweetyourmep	 -->
 	
 	
 </body>
