@@ -18,13 +18,17 @@ if (!fs.existsSync('imgs/users/')) {
 }
 
 function saveurl(url,user){
-    var localurl = "imgs/users/"+user._id+".jpeg";
-    request(url,function(err,response,body){
-        if(!err && response.statusCode == 200 ){
-            fs.writeFile(localurl,body);
-            console.log("wrote in "+localurl);
-        }
-    });
+    var localurl = "imgs/users/"+user._id+".asdasd";//".jpeg";
+    //request(url, function(error,response,body){
+    //    if(!error && response.statusCode == 200 ){
+    //        console.log("ok");
+    //        user.mep_epFotoUrl = config.base_path + localurl;
+    //        user.save();
+    //    }
+    //} ).pipe( fs.createWriteStream(localurl) );
+    request(url ).pipe( fs.createWriteStream(localurl) );
+    user.mep_epFotoUrl = config.base_path + localurl;
+    user.save();
     return localurl;
 }
 
