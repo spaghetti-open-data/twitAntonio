@@ -90,7 +90,8 @@ var mepModel = function() {
     var op = {
 	    mep_fullName:  { $regex: name, $options: 'i' },
       mep_localParty: { $regex: localParty, $options: 'i' },
-      mep_country:  { $regex: country, $options: 'i' }, // NOTA: per ora lasciamo l'uso di regex così da contemplare il caso di no-country... poi va trovata una soluzione più elegante
+      // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
+      mep_country: { $elemMatch :  { $regex : country, $options : 'i' } },
       mep_localParty: { $regex: localParty, $options: 'i' },
 	    mep_twitterUrl: {$ne : ""}
     };

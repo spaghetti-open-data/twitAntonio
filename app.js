@@ -15,7 +15,14 @@ var app = express();
 var model = require('./models/mep.js');
 var config = require('./config.js');
 
+// Authentication
+if (config.twitter_auth) {
+  var everyauth = require('everyauth')
+  var mongooseAuth = require('mongoose-auth');
+  var auth = require('./lib/auth.js');
+}
 
+// App configuration
 app.configure(function(){
   app.set('port', process.env.PORT || config.app_port);
   app.set('views', __dirname + '/views');
@@ -26,10 +33,19 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser(config.app_secret));
   app.use(express.session());
-  app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+
+  // user mongooseAuth middleware if twitter_auth is active
+  if (config.twitter_auth) {
+    app.use(mongooseAuth.middleware());
+  }
+  else {
+    app.use(app.router);
+  }
+
+  //app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
 });
+
 
 app.configure('development', function(){
   app.use(express.errorHandler());
@@ -41,6 +57,7 @@ app.get('/mappa', controllers.mainController().mapAction);
 
 // API
 app.get('/api/meps', controllers.mainController().apiAction.get);
+app.get('/api/autocomplete/:type', controllers.mainController().apiAction.autocomplete);
 
 
 

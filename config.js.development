@@ -2,20 +2,22 @@
 var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
-  db_name: 'TEST',
+  db_name: 'twitAntonio',
   db_collection: 'DEPS15',
   db_debug: 1,
   api_url: 'http://localhost/twinbit/ideas/sod/tweetyourantonio/import/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
   app_description: '',
-  app_author:      'https://github.com/spaghetti-open-data/tweetAntonio/graphs/contributors',
+  app_author:      'https://github.com/spaghetti-open-data/twitAntonio/graphs/contributors',
   app_port: 3000,
   app_secret: 'nirfnpv82958vj495vasdHGDASfaf293n9vfv',
   app_debug: true,
   base_path: '/',
+  twitter_auth: false,
+
     // Define Mep model
   schema: new mongoose.Schema({
-    mep_country : String,
+    mep_country : [String],
     mep_emailAddress : String,
     mep_epFotoUrl : String,
     mep_epPageUrl : String,

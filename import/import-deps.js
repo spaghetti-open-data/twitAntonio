@@ -18,6 +18,7 @@ var mongoose = require('mongoose');
 //var php = require('phpjs');
 var fs = require('fs')
 
+
 mongoose.set('debug', config.db_debug)
 var mepCounter = 0;
 
@@ -60,12 +61,22 @@ db.once('open', function() {
     fs.mkdirSync('./cache');
   }
 
-  // get the stream and make a cache file, in order to be used by application (offline mode)
-  request(url_api, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      dispatch(JSON.parse(body))
-    }
-  }).pipe(fs.createWriteStream('./cache/mep-cache-dump-' + new Date().getTime()));
+  if( process.argv.length == 3 && fs.existsSync(process.argv[2]) ){
+      fs.readFile(process.argv[2], function (error, data) {
+        if (!error) {
+          var a = JSON.parse(data);
+          dispatch(a);
+          fs.writeFile('./cache/mep-cache-dump-' + new Date().getTime(), a );
+        }
+      });
+  } else {
+      // get the stream and make a cache file, in order to be used by application (offline mode)
+      request(url_api, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          dispatch(JSON.parse(body))
+        }
+      }).pipe(fs.createWriteStream('./cache/mep-cache-dump-' + new Date().getTime()));
+  }
   
   function validateURL(value) {
     return /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(value);
@@ -84,8 +95,7 @@ db.once('open', function() {
     }
     
     // create a fullname field to make search operation easy
-    mep.mep_fullName = mep.mep_firstName + ' ' + mep.mep_lastName;
-
+    mep.mep_fullName = mep.mep_firstName + ' ' + mep.mep_lastName;    
     mep.save(function(err, type) {
       if (err) {
         console.error('Saving user problem.');
