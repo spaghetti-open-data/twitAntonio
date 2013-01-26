@@ -111,21 +111,6 @@
                     <div class="img-wr">
                         <img src="<%= config.base_path %>images/votantonio.jpg" />
                     </div>
-
-
-                    <div class="control-group">
-                        <label class="control-label"></label>
-                        <!-- Button -->
-                        <div class="form-actions">  
-                            <button type="submit" class="btn btn-primary">Cerca</button>  
-                            <button class="btn btn-danger btn-reset">Reset</button> 
-                        </div>  
-                    </div><!--/control-group-->
-
-                    <div class="img-wr">
-                        <img src="<%= config.base_path %>images/votantonio.jpg" />
-                    </div>
-
                 </form>
               
                 <!-- privacy policy button -->
@@ -161,11 +146,13 @@
                     </noscript>
 
                     <ul>
+                      <!--
                         <li class="country">
                             <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>">
                                 <i class="icon-globe"></i> <%= meps[i].mep_country %>
                             </a>
                         </li>
+                      -->
                         <li class="local-party">
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
                                 <i class="icon-home"></i> <%= meps[i].mep_localParty %>
