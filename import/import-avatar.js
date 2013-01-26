@@ -12,27 +12,25 @@ mongoose.set('debug', config.db_debug)
 console.log("opening connection with " + config.db_name + "@" + config.db_host );
 var db = mongoose.createConnection(config.db_host, config.db_name);
 
-if (!fs.existsSync('imgs/users/')) {
-    fs.mkdirSync("imgs");
-    fs.mkdirSync("imgs/users/");
+DIRNAME="avatars";
+if (!fs.existsSync("../public/"+DIRNAME)) {
+    fs.mkdirSync("../public/"+DIRNAME);
 }
 
-function saveurl(url,user){
-    var localurl = "imgs/users/"+user._id+".asdasd";//".jpeg";
-    //request(url, function(error,response,body){
-    //    if(!error && response.statusCode == 200 ){
-    //        console.log("ok");
-    //        user.mep_epFotoUrl = config.base_path + localurl;
-    //        user.save();
-    //    }
-    //} ).pipe( fs.createWriteStream(localurl) );
-    request(url ).pipe( fs.createWriteStream(localurl) );
-    user.mep_epFotoUrl = config.base_path + localurl;
-    user.save();
-    return localurl;
-}
 
 db.once('open', function() {
+
+    function saveurl(url,usr){
+        // nome generico
+        var localurl = DIRNAME + "/"+usr._id+ ".photo";//.jpeg";
+        request(url, function(error,response,body){
+            if(!error && response.statusCode == 200 ){
+                usr.mep_epFotoUrl = config.base_path + localurl;
+                usr.save();
+            }
+        } ).pipe( fs.createWriteStream("../public/"+localurl) );
+        return localurl;
+    }
 
     var mepSchema = config.schema
     var MepModel = db.model(config.db_collection, mepSchema);
@@ -46,8 +44,8 @@ db.once('open', function() {
     });
 
 
-    // very end:
+    // very end, need to give enough time to finish all async stuff.
     setTimeout( function () {
      mongoose.disconnect();
-    }, 1000);
+    }, 10000);
 });
