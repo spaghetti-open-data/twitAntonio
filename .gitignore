@@ -17,6 +17,7 @@ cache/*
 import/cache/*
 import/cache
 public/avatars/*
+import/data.json
 config.js
 config_twitter.js
 import/autocomplete/*.json

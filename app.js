@@ -53,7 +53,8 @@ app.configure('development', function(){
 
 app.get('/', controllers.mainController().indexAction);
 app.get('/mappa', controllers.mainController().mapAction);
-//app.get('/italiano', controllers.mainController().italianoAction);
+app.get('/cos_e', controllers.mainController().cos_eAction);
+app.get('/credits', controllers.mainController().creditsAction);
 
 // API
 app.get('/api/meps', controllers.mainController().apiAction.get);
