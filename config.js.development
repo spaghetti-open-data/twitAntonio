@@ -4,6 +4,8 @@ var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
   db_collection: 'DEPS15',
+  db_collection_users: 'users',
+  db_collection_twitter: 'tweets',
   db_debug: 1,
   api_url: 'http://www.spaghettiopendata.org/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
@@ -14,6 +16,7 @@ var config = {
   app_debug: true,
   base_path: '/',
   twitter_auth: false,
+  twitter_harvest_search: '#twitantonio',
 
     // Define Mep model
   schema: new mongoose.Schema({

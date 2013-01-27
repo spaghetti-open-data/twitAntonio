@@ -1,0 +1,14 @@
+{
+  "name": "TwitAntonio_Twitter_Harvesting",
+  "version": "0.0.1-1",
+  "private": true,
+  "dependencies": {
+    "mongoose": "*",
+    "request": "*",
+    "ntwitter": "*"
+  },
+  "subdomain": "paolomainardi.tweetyourmep",
+  "engines": {
+    "node": "0.8.x"
+  }
+}
