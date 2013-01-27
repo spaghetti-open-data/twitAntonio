@@ -50,19 +50,16 @@
 
         // autocomplete widgets (static json)
         // @todo needs fixes (base url)
-        $.getJSON('api/autocomplete/names', function(data) {
+        $.getJSON('api/autocomplete', function(data) {
+            console.log(data.names);
             $('#dep_name').autocomplete({
-                source: data
+                source: data.names
             });
-        });  
-        $.getJSON('api/autocomplete/countries', function(data) {
             $('#dep_country').autocomplete({
-                source: data
+                source: data.countries
             });
-        });  
-        $.getJSON('api/autocomplete/parties', function(data) {
             $('#dep_party').autocomplete({
-                source: data
+                source: data.party
             });
         });  
     })

@@ -1,9 +1,14 @@
 <?php
 
+// thanks DRUPAL
+include_once('unicode/unicode.inc');
+
 // see https://github.com/spaghetti-open-data/twitAntonio/issues/21
 $keys = array();
 $remote_csv = 'https://docs.google.com/spreadsheet/pub?key=0Aq3nVlLNTO8jdEtTVkpIaHNiUE5OWE9iUjA5RFFnbVE&output=csv';
+mb_internal_encoding('UTF-8');
 
+/* Set internal character encoding to UTF-8 */
 if (($handle = fopen($remote_csv, "r")) !== FALSE) {
     $line = 0;
     $deps = array();
@@ -13,7 +18,7 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
       }
       else {
         $dep = array_combine($header, $data);
-        $tw_url = strtolower($dep['mep_twitterUrl']);
+        $tw_url = utf8_strtolower($dep['mep_twitterUrl']);
 
         // NA comes from old csv files, just like a placeholder for empty twitter account
         if ($tw_url && $tw_url !== 'na') {  
@@ -30,13 +35,20 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
       }
       $line++;
     }
-  
     // post processing data (in order to make them compatible with tymep existing data structures)
     $deps = postProcess($deps);
 
-    // static autocomplete
-    createStaticJson($deps);
-    header('Content-type: application/json');
+    // return static autocomplete structures (utf8)
+    header('Content-type: application/json;');
+
+    // get autocomplete json files
+    if ($argv[1] == 'autocomplete') {
+      $autocomplete = createAutocompleteStaticJson($deps);
+      $json = json_encode($autocomplete);
+      print $json;
+      exit;
+    }
+
     print json_encode($deps);
     fclose($handle);
     exit;
@@ -45,22 +57,27 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
 /**
  * Create static JSON for autocomplete
  */
-function createStaticJson($deps) {
+function createAutocompleteStaticJson($deps) {
   foreach ($deps as $dep) {
-    $names[] = $dep['mep_firstName'] . ' ' . $dep['mep_lastName'];
+    $name = utf8_ucwords_lower_trim($dep['mep_firstName']) . ' ' . utf8_ucwords_lower_trim($dep['mep_lastName']);
+    if ($name) {
+      $names[] = $name;
+    }   
     $party[$dep['mep_localParty']] = $dep['mep_localParty'];
     foreach ($dep['mep_country'] as $country) {
       $countries[] = trim($country);
     }
   }
-  
+
+  //$names = array_values(array_unique($names));
   $party = array_values($party);
   $countries = array_values(array_unique($countries));
-  file_put_contents('autocomplete/names.json', json_encode($names));
-  file_put_contents('autocomplete/parties.json', json_encode($party));
-  file_put_contents('autocomplete/countries.json', json_encode($countries));
+  return array('party' => $party, 'countries' => $countries, 'names' => $names);
 }
 
+/**
+ * Preprocess deps (this is specific just for this kind of application, needs to be adapted)
+ */
 function postProcess($deps) {
   $processed = array();
   foreach ($deps as $dep) {
@@ -82,9 +99,9 @@ function postProcess($deps) {
     $dep['mep_userId'] = '';
 
     // sanitize data
-    $dep['mep_lastName'] = ucwords(strtolower($dep['mep_lastName']));
-    $dep['mep_firstName'] = ucwords(strtolower($dep['mep_firstName']));
-    $dep['parlamento'] = ucwords(strtolower($dep['parlamento']));
+    $dep['mep_lastName'] = utf8_ucwords_lower_trim($dep['mep_lastName']);
+    $dep['mep_firstName'] = utf8_ucwords_lower_trim($dep['mep_firstName']);
+    $dep['parlamento'] = utf8_strtolower($dep['parlamento']);
     $processed[] = $dep;
   }
   return $processed;

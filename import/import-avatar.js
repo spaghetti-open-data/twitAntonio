@@ -13,13 +13,12 @@ console.log("opening connection with " + config.db_name + "@" + config.db_host )
 var db = mongoose.createConnection(config.db_host, config.db_name);
 
 DIRNAME="avatars";
-if (!fs.existsSync("../public/"+DIRNAME)) {
-    fs.mkdirSync("../public/"+DIRNAME);
+if (!fs.existsSync("./public/"+DIRNAME)) {
+    fs.mkdirSync("./public/"+DIRNAME);
 }
 
 
 db.once('open', function() {
-
     function saveurl(url,usr){
         // nome generico
         var localurl = DIRNAME + "/"+usr._id+ ".photo";//.jpeg";
@@ -28,7 +27,7 @@ db.once('open', function() {
                 usr.mep_epFotoUrl = config.base_path + localurl;
                 usr.save();
             }
-        } ).pipe( fs.createWriteStream("../public/"+localurl) );
+        } ).pipe( fs.createWriteStream("./public/"+localurl) );
         return localurl;
     }
 

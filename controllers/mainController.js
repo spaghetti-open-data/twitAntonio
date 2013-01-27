@@ -55,7 +55,7 @@ module.exports = function() {
       },
       autocomplete: function(req, res) {
         type = req.params.type;
-        fs.readFile('./import/autocomplete/' + type + '.json', 'utf8', function (err, data) {
+        fs.readFile('./import/autocomplete/autocomplete.json', 'utf8', function (err, data) {
           var names = data;
           res.writeHead(200, {
                  "Content-Type": "application/json",
