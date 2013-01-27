@@ -52,7 +52,7 @@
         // @todo needs fixes (base url)
         base = '';
         if (location.pathname !== '/') {
-          base = path + '/';
+          base = location.pathname + '/';
         }
         $.getJSON(base + 'api/autocomplete', function(data) {
             $('#dep_name').autocomplete({
