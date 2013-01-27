@@ -50,8 +50,11 @@
 
         // autocomplete widgets (static json)
         // @todo needs fixes (base url)
-        var root = location.protocol + "//" + location.host;
-        $.getJSON(location.pathname + 'api/autocomplete', function(data) {
+        base = '';
+        if (location.pathname !== '/') {
+          base = path + '/';
+        }
+        $.getJSON(base + 'api/autocomplete', function(data) {
             $('#dep_name').autocomplete({
                 source: data.names
             });
