@@ -19,6 +19,6 @@ var t = new twitter({
     access_token_secret: credentials.access_token_secret
 });
 
-t.search('#sod13', {'page':'22'}, function(err, data) {
+t.search('#sod13', {'since:': '2011-05-09'}, function(err, data) {
   console.dir(data);
 });

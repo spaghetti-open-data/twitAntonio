@@ -42,7 +42,7 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
     header('Content-type: application/json;');
 
     // get autocomplete json files
-    if ($argv[1] == 'autocomplete') {
+    if ((isset($argv[1]) && ($argv[1] == 'autocomplete')) {
       $autocomplete = createAutocompleteStaticJson($deps);
       $json = json_encode($autocomplete);
       print $json;
