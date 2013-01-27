@@ -1,6 +1,6 @@
 var twitter = require('ntwitter');
 var mongoose = require('mongoose');
-var credentials = require('./credentials.js');
+var credentials = require('../config_twitter.js');
 
 var twschema = new mongoose.Schema({
     tw_id : String,
