@@ -74,9 +74,8 @@ db.once('open', function() {
 
 
     // very end, need to give enough time to finish all async stuff.
-    /*
+    
     setTimeout( function () {
      mongoose.disconnect();
     }, 30000);
-*/
 });

@@ -101,7 +101,7 @@ function postProcess($deps) {
     // sanitize data
     $dep['mep_lastName'] = utf8_ucwords_lower_trim($dep['mep_lastName']);
     $dep['mep_firstName'] = utf8_ucwords_lower_trim($dep['mep_firstName']);
-    $dep['mep_faction'] = utf8_strtolower($dep['mep_faction']);
+    $dep['mep_faction'] = utf8_strtolower(trim($dep['mep_faction']));
 
     // remove strange chars (now just parenthesis)
     $dep['mep_firstName'] = str_replace(array('(', ')'), array(''), $dep['mep_firstName']);

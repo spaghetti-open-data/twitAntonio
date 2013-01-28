@@ -29,7 +29,7 @@ module.exports = function() {
        name = (req.query.mep_name ? req.query.mep_name : '');
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
-       faction = (req.query.mep_faction ? req.query.mep_faction : '');
+       //faction = (req.query.mep_faction ? req.query.mep_faction : '');
 
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
@@ -38,7 +38,6 @@ module.exports = function() {
        var search = {'name': name, 
                      'localParty': localParty, 
                      'country': country, 
-                     'faction': faction, 
                      'parlamento': parlamento
                      };
        
@@ -96,11 +95,11 @@ module.exports = function() {
       res.render('mappa', { config: config, req: req});
     },
 
-	cos_eAction: function (req, res) {
+	  cos_eAction: function (req, res) {
       res.render('cos_e', { config: config, req: req});
     },
 
-	creditsAction: function (req, res) {
+	  creditsAction: function (req, res) {
       res.render('credits', { config: config, req: req});
     },
 
