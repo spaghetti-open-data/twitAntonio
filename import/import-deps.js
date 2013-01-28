@@ -101,7 +101,7 @@ db.once('open', function() {
         console.error('Saving user problem.');
         process.exit(0);
       }
-      console.log('User "' + mep.mep_firstName + ' ' + mep.mep_lastName  + '" ' + type);
+      //console.log('User "' + mep.mep_firstName + ' ' + mep.mep_lastName  + '" ' + type);
     });
   }
 

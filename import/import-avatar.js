@@ -2,6 +2,7 @@ var config = require('../config.js');
 var request = require('request');
 var mongoose = require('mongoose');
 var fs = require('fs')
+var async = require('async');
 
 // hack per fs
 fs.exists = fs.exists || require('path').exists;
@@ -19,21 +20,48 @@ if (!fs.existsSync("./public/"+DIRNAME)) {
 
 
 db.once('open', function() {
-    function saveurl(url,usr){
+    function saveurl(url, usr){
         // nome generico
         var localurl = DIRNAME + "/"+usr._id+ ".photo";//.jpeg";
-        request(url, function(error,response,body){
+        request(url, function(error, response, body){
             if(!error && response.statusCode == 200 ){
                 usr.mep_epFotoUrl = config.base_path + localurl;
                 usr.save();
-            }
-        } ).pipe( fs.createWriteStream("./public/"+localurl) );
-        return localurl;
+            };
+            //id = fs.writeFile("./public/" + localurl, response.body);
+            //fs.close(id);
+        }).pipe(fs.createWriteStream("./public/" + localurl));
     }
 
     var mepSchema = config.schema
     var MepModel = db.model(config.db_collection, mepSchema);
 
+    // limits 
+    async.series([
+        function() { 
+          MepModel.find( function(err,mep){
+              mep.forEach( function(i){
+                  var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ i.mep_twitterUrl + "&size=bigger";
+                  console.log("now handle: "+url);
+                  saveurl(url,i);
+              });
+          });
+        },
+        function() {
+           console.log('Avatars imported');
+           mongoose.disconnect();
+           process.exit(0);
+        }
+    ], function(e) {});
+    
+   /*
+    MepModel.find(function(err, mep) {
+        async.forEach(mep, function(i) {
+            var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ i.mep_twitterUrl + "&size=bigger";
+            console.log("now handle: " + url);
+            saveurl(url, i);
+        });
+    });
     MepModel.find( function(err,mep){
         mep.forEach( function(i){
             var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ i.mep_twitterUrl + "&size=bigger";
@@ -42,9 +70,13 @@ db.once('open', function() {
         });
     });
 
+    */
+
 
     // very end, need to give enough time to finish all async stuff.
+    /*
     setTimeout( function () {
      mongoose.disconnect();
-    }, 10000);
+    }, 30000);
+*/
 });

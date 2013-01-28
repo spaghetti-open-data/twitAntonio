@@ -36,6 +36,7 @@
         if (location.pathname !== '/') {
           base = location.pathname + '/';
         }
+        /*
         $.getJSON(base + 'api/autocomplete', function(data) {
             $('#dep_name').autocomplete({
                 source: data.names
@@ -47,7 +48,7 @@
                 source: data.party
             });
         });     
-
+        */
         function twantonio_clickEventToAnalytics(intent_event) {
           console.log(intent_event);
         }
