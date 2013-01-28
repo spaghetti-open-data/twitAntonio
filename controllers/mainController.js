@@ -104,8 +104,8 @@ module.exports = function() {
       res.render('credits', { config: config, req: req});
     },
 
-    importerAction: function (req, res) {
-      //res.render('importer', config);
+    helpAction: function (req, res) {
+      res.render('help', { config: config, req: req});
     }
   };
   return self;
