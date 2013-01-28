@@ -1,7 +1,7 @@
 @media (min-width: 1400px) 
 {
     /* MEDIA QUERY DEBUG */
-    body::after{ content: "Tablet media query (> 1400px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+    /* body::after{ content: "Tablet media query (> 1400px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
     #content .candidate
     {
         width: 23%;
@@ -12,7 +12,7 @@
 @media (min-width: 980px) and (max-width: 1399px) 
 {
     /* MEDIA QUERY DEBUG */
-    body::after{ content: "Tablet media query (980px <> 1399px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+    /* body::after{ content: "Tablet media query (980px <> 1399px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
         
 }
 
@@ -20,7 +20,7 @@
 @media (max-width: 979px)
 {
     /* MEDIA QUERY DEBUG */
-    body::after{ content: "Media query (< 768) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+    /* body::after{ content: "Media query (< 768) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
     body {
         padding-top: 0;
     }
@@ -47,7 +47,7 @@
 @media (min-width: 768px) and (max-width: 979px)
 {
     /* MEDIA QUERY DEBUG */
-    body::after{ content: "Tablet media query (768px <> 979px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+    /* body::after{ content: "Tablet media query (768px <> 979px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
     #left-sidebar .sidebar-nav
     {
         position: static;
@@ -59,7 +59,7 @@
 
 @media (max-width: 480px) {
     /* MEDIA QUERY DEBUG */
-    body::after{ content: "Media query (< 480) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; }
+    /* body::after{ content: "Media query (< 480) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
     #content .candidate
     {
         width: 100%;

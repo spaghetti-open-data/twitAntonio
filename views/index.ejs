@@ -66,9 +66,9 @@
         <div id="left-sidebar" class="span3">
             <div class="well sidebar-nav">
 
-                <a class="twitsearch" href="https://twitter.com/search?q=%23twpol13" target="_blank">
+                <a class="twitsearch" href="https://twitter.com/search?q=%23twitantonio" target="_blank">
                     <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
-                        <strong>Cerca #twpol13</strong>
+                        <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
                     <legend>Cerca il tuo candidato</legend>
@@ -121,23 +121,22 @@
 
         <section id="content" class="span9">  
             <!-- loop through meps -->
-          <% counter = 0 %>
           <% for (var i = 0; i < meps.length; i++) { %>
-            <article class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
+            <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
                 <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>
                 </h2>
-                <div class="top">
+                <div class="top-content">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
                         <img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>
                     </a>
-                    <a class="counter reply" href="javascript:void(0)" rel="tooltip" data-placement="top" title="5 risposte ricevute">
-                        <span></span>5
-                    </a>
-                    <a class="counter retweet" href="javascript:void(0)" rel="tooltip" data-placement="top" title="3 retweet ricevuti">
-                        <span></span>3
-                    </a>
+                    <!--
+                    <a class="counter reply" href="javascript:void(0)" rel="tooltip" data-placement="top" title="5 risposte ricevute"><span></span>5</a>
+                    -->
+                    <!--
+                    <a class="counter retweet" href="javascript:void(0)" rel="tooltip" data-placement="top" title="3 retweet ricevuti"><span></span>3</a>
+                    -->
                 </div>
-                <div class="middle">
+                <div class="middle-content">
                     <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
                         <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
                     </a>
@@ -160,26 +159,22 @@
                         </li>
                     </ul>
                 </div>
-                <div class="bottom pagination-right">
+                <div class="bottom-content pagination-right">
                     <div class="more">
-                        <div class="popover-content" style="display: none;"> 
-                            <%- meps[i].formatted_properties %>
-                        </div>
-                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="bottom" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>">
+                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="right" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>">
                             <i class="icon-zoom-in"></i> Altro...
                         </a>                    
                     </div>
 
-                    <div class="tweet-count">
-                        <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a>
-                    </div>
+                    <!--
+                    <div class="tweet-count"><a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a></div> 
+                    -->
                     
-                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twpol13, twitantonio" class="btn btn-success">Tweet
+                    <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twitantonio" class="btn btn-success">Tweet
                     </a> 
                     <!-- <a href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>" class="btn">Follow</a> -->
                 </div>
             </article>
-            <% counter++; %>
           <% } %> 
         </section><!--/span-->
     </div><!--/row-->
@@ -190,4 +185,11 @@
             <p>&copy; Spaghetti Open Data </p>
         </footer>
 </div><!--/.fluid-container-->
+<div  class="popovers-content" style="display: none">
+<% for (var i = 0; i < meps.length; i++) { %>
+   <div id="popover-<%= i %>"> 
+      <%- meps[i].formatted_properties %>
+   </div>
+<% } %> 
+</div>
 <% include includes/footer %>

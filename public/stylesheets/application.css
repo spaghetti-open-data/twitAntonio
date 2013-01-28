@@ -1,5 +1,5 @@
 /*+clearfix {*/
-#content .candidate .top:after, #content .candidate .middle:after
+#content .candidate .top-content:after, #content .candidate .middle-content:after
 {
 	content: ".";
 	display: block;
@@ -8,11 +8,11 @@
 	visibility: hidden;
 	font-size: 0;
 }
-#content .candidate .top, #content .candidate .middle
+#content .candidate .top-content, #content .candidate .middle-content
 {
 	display: inline-block;
 }
-#content .candidate .top, #content .candidate .middle
+#content .candidate .top-content, #content .candidate .middle-content
 {
 /*\*/
 	display: block;
@@ -99,6 +99,7 @@ BODY
 #content .candidate > DIV
 {
 	padding: 0 10px;
+	z-index: 1;
 }
 /*
 #content .candidate:hover
@@ -122,15 +123,20 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	font-size: 1.2em;
 	font-weight: normal;
 	line-height: 1;
+	/*+border-radius:4px 4px 0 0;*/
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	-khtml-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
 }
-/*[clearfix]*/#content .candidate .top
+/*[clearfix]*/#content .candidate .top-content
 {
 	clear: both;
 	line-height: 1.4em;
 	height: 20px;
 	margin: 0.5em 0 1em;
 }
-#content .candidate .top .twitter
+#content .candidate .top-content .twitter
 {
 	float: left;
 	color: #00ACEE;
@@ -140,11 +146,11 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	font-weight: bold;
 	letter-spacing: 0.05em;
 }
-#content .candidate .top .twitter IMG
+#content .candidate .top-content .twitter IMG
 {
 	margin-right: 4px;
 }
-#content .candidate .top .counter
+#content .candidate .top-content .counter
 {
 	float: right;
 	display: block;
@@ -153,7 +159,7 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	cursor: help;
 	text-decoration: none;
 }
-#content .candidate .top .counter SPAN
+#content .candidate .top-content .counter SPAN
 {
 	background: transparent url(../images/everything-spritev2.png) no-repeat -17px 0px;
 	width: 16px;
@@ -161,23 +167,23 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	display: block;
 	float: left;
 }
-#content .candidate .top .counter.retweet SPAN
+#content .candidate .top-content .counter.retweet SPAN
 {
 	background-position: -96px 0px;
 }
-/*[clearfix]*/#content .candidate .middle
+/*[clearfix]*/#content .candidate .middle-content
 {
 	clear: both;
 	margin: 1em 0;
 }
-#content .candidate .middle IMG.photo
+#content .candidate .middle-content IMG.photo
 {
 	width: 73px;
 	height: 73px;
 	float: left;
 	margin-right: 5px;
 }
-#content .candidate .middle UL
+#content .candidate .middle-content UL
 {
 	padding: 0;
 	margin: 0;
@@ -185,54 +191,70 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	list-style-image: none;
 	font-size: 0.9em;
 }
-#content .candidate .middle UL LI
+#content .candidate .middle-content UL LI
 {
 	line-height: 1em;
 	margin: 0.8em 0 0;
 }
-#content .candidate .middle UL LI A
+#content .candidate .middle-content UL LI A
 {
 	margin-left: 0;
 	text-decoration: none;
 }
-#content .candidate .middle UL LI A I
+#content .candidate .middle-content UL LI A I
 {
 	float: left;
 	margin-right: 3px;
 }
-#content .candidate .bottom
+#content .candidate .bottom-content
 {
 	position: absolute;
 	bottom: 7px;
 	right: 0;
 	left: 0;
 }
-#content .candidate .bottom .more
+#content .candidate .bottom-content .more
 {
 	position: absolute;
 	top: 7px;
 	left: 10px;
 }
-#content .candidate .bottom .more > A
+#content .candidate .bottom-content .more > A
 {
 	color: inherit;
 	cursor: copy;
 	text-decoration: none;
 }
-#content .candidate .bottom .tweet-count
+#content .candidate .bottom-content .tweet-count
 {
 	position: absolute;
 	top: 7px;
 	right: 85px;
 	font-weight: bold;
 }
-#content .candidate .bottom .tweet-count A
+#content .candidate .bottom-content .tweet-count A
 {
 	color: inherit;
-	cursor: copy;
+	cursor: help;
 	text-decoration: none;
 }
 /*# popover (more)*/
 #content .candidate .popover
+{
+	box-sizing: border-box;
+	z-index: 10000;
+}
+#content .candidate .popover DIV
+{
+	z-index: 10000;
+}
+#content .candidate .popover .popover-inner
+{
+}
+#content .candidate .popover .popover-inner .popover-title
+{
+	display: none;
+}
+#content .candidate .popover .popover-inner .popover-content
 {
 }

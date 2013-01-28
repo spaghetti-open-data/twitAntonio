@@ -13,7 +13,8 @@
         // Bootstrap popover behaviour
         $('a[rel=popover]').popover({
             content: function() { 
-                return $(this).prev('div.popover-content').html(); 
+                var idx = $(this).parents('article').index();
+                return $('#popover-' + idx).html(); 
             }
         }).click(function(e) {
             e.preventDefault();
