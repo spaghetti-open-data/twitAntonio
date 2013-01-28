@@ -99,6 +99,21 @@
                         </div>
 
                         <!--
+                          Search for Schieramento
+                        -->                
+                        <div class="controls">
+                            <label class="control-label">Schieramento</label>
+                            <select class="input-medium" name="faction" id="schieramento">
+                              <option value="">- Seleziona -</option>      
+                                <%
+                                var factionNames = config.factionNames;
+                                for (var key in factionNames) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.faction) ? "selected=\"selected\"" : '' %> > <%= factionNames[key] %> </option>
+                              <% } %>
+                            </select>
+                        </div>
+
+                        <!--
                           Search for Parlamento (specific for #twitantonio)
                         -->                
                         <div class="controls">
