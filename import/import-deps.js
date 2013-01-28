@@ -16,10 +16,10 @@ var config = require('../config.js');
 var request = require('request');
 var mongoose = require('mongoose');
 //var php = require('phpjs');
-var fs = require('fs')
+var fs = require('fs');
 
 
-mongoose.set('debug', config.db_debug)
+mongoose.set('debug', config.db_debug);
 var mepCounter = 0;
 
 
@@ -50,7 +50,7 @@ db.once('open', function() {
   console.log("open connection on\n%s\n", url_api)
 
   // creiamo lo schema
-  var mepSchema = config.schema
+  var mepSchema = config.schema;
     
   // creiamo il modello dati
   var MepModel = db.model(config.db_collection, mepSchema);
@@ -134,6 +134,8 @@ db.once('open', function() {
   function dispatch(mepsList){
     mepCounter = mepsList.length;
     var len = mepsList.length;
+
+    //Here begins a for cycle. Maybe replace this with async? TODO
 
     for (var i=0; i<len; ++i) {
       var remote_mep = mepsList[i];
