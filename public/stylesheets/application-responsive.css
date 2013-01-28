@@ -1,4 +1,17 @@
-@media (min-width: 1400px) 
+@media (min-width: 1900px) 
+{
+    /* MEDIA QUERY DEBUG */
+    /* body::after{ content: "Tablet media query (> 1400px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
+    #content .candidate
+    {
+        width: 19%;
+        margin-right: 0.5%;
+        margin-left: 0.5%;
+    }
+
+}
+
+@media (min-width: 1400px) and (max-width: 1899px)
 {
     /* MEDIA QUERY DEBUG */
     /* body::after{ content: "Tablet media query (> 1400px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */

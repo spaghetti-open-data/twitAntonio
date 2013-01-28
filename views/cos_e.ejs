@@ -1,52 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-      <title>Cos'è - <%= config.app_title %></title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="<%= config.app_description %>">
-
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons 
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    -->
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35090580-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  </head>
-
-  <body>
-
+<% include includes/header %>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -64,9 +16,9 @@
             -->
             <ul class="nav">
               <li><a href="<%= config.base_path %>">Home</a></li>
-			        <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
+			  <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
               <li class="active"><a href="<%= config.base_path %>cos_e">Info</a></li>
-			        <li><a href="<%= config.base_path %>credits">Applausi</a></li>
+			  <li><a href="<%= config.base_path %>credits">Applausi</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -79,7 +31,7 @@
         <div class="span12">
           <div class="hero-unit">
             <h1>Twitantonio</h1>
-<p> </p>
+            <br />
             <p> <strong> Fai sentire la tua voce nella campagna elettorale più veloce di sempre – 140 caratteri alla volta</strong> </p>
             <p>Nelle democrazie pre-digitali, i cittadini che desideravano influenzare i candidati alle elezioni scrivevano loro lettere di carta: più recentemente si sono usate le e-mail. I social network su Internet portano questo esercizio a un livello successivo, perché i candidati (come gli eletti) li usano per interagire con l'elettorato <em>in pubblico</em>. Se mandi un tweet al tuo candidato tutti possono vedere se lui o lei ti risponde, e cosa.</p>
 <p>Quindi, non essere timid@: mano alla tastiera. Aiuterai i candidati a mantenersi vicini ai cittadini visti come individui, non solo come corpo elettorale. Qualche volta bastano 140 caratteri per irrobustire una democrazia.</p>
@@ -111,12 +63,4 @@ Accedendo all'indirizzo <a href = "http://apps.spaghettiopendata.org/twitantonio
       </footer>
 
     </div><!--/.fluid-container-->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   <script src="http://code.jquery.com/jquery-latest.js"></script>
-   <script src="bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
-</html>
+<% include includes/footer %>

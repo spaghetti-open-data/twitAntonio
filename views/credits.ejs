@@ -1,52 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-      <title>Applausi - <%= config.app_title %></title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="<%= config.app_description %>">
-
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons 
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    -->
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35090580-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  </head>
-
-  <body>
-
+<% include includes/header %>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -64,9 +16,9 @@
             -->
             <ul class="nav">
               <li><a href="<%= config.base_path %>">Home</a></li>
-        <li><a href="<%= config.base_path %>mappa">Mappa</a></li>
+              <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
               <li><a href="<%= config.base_path %>cos_e">Info</a></li>
-        <li class="active"><a href="<%= config.base_path %>credits">Applausi</a></li>
+              <li class="active"><a href="<%= config.base_path %>credits">Applausi</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -79,118 +31,117 @@
         <div class="span12">
           <div class="hero-unit">
             <h1>Rispetto e gratitudine per:</h1>
-<p> </p>
-
-        <table border = "0", width = "1200">
-          <tr>
-            <td width = "300"></td><td width = "300"><td width = "300"></td><td width = "300">
-          <tr>
-            <td><strong>Chi è</strong></td>
-            <td><strong>Cosa ha fatto</strong></td>
-            <td><strong>Chi è</strong></td>
-            <td><strong>Cosa ha fatto</strong></td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/tagnoloni">Tommaso Agnoloni</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/bertalanivan">Ivan Bertalan</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/dottorblaster">Alessio Biancalana</a></td>
-            <td>Sviluppo app</td>
-            <td><a href = "https://twitter.com/ogdabaum">Marco Boscolo</a></td>
-            <td>Sviluppo app</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/mbrandizi">Marco Brandizi</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/foebu">Francesco Emanuele Bucci</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/KodeSolutions">Marco Calderisi</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/jenkin27">Alessio Cimarelli</a></td>
-            <td>Sviluppo app</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/cinquepalmi">Mara Cinquepalmi</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/chiaracio">Chiara Ciociola</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/lucacorsato">Luca Corsato</a></td>
-            <td>Raccolta dati, debug, video, logo</td>
-            <td><a href = "https://twitter.com/simonecortesi">Simone Cortesi</a></td>
-            <td>Raccolta dati (pochissimi)</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/alberto_cottica">Alberto Cottica</a></td>
-            <td>Pagine statiche</td>
-            <td><a href = "https://twitter.com/MicheledAlena">Michele d'Alena'</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/vincenzoerrante">Vincenzo Errante</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/karloff">Carlo Fava</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/giacomogamba">Giacomo Gamba</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/gaspariniandrea">Andrea Gasparini</a></td>
-            <td>Sviluppo app</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/paolomainardi">Paolo Mainardi</a></td>
-            <td>Sviluppo app</td>
-            <td><a href = "https://twitter.com/nelsonmau">Andrea Nelson Mauro</a></td>
-            <td>Starter, dataset building</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/lucamenini">Luca Menini</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/eccolimoro">Franco Morelli</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/andypanix">Andrea Panisson</a></td>
-            <td>Sviluppo app</td>
-            <td><a href = "https://twitter.com/perugini">Luca Perugini</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/martapieroni">Marta Pieroni</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/sigmaseisas">Paolo Polverosi</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/morenaragone">Morena Ragone</a></td>
-            <td>Disclaimer</td>
-            <td><a href = "https://twitter.com/seralf">Alfredo Serafini</a></td>
-            <td>Sviluppo app</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/elisabetta_tola">Elisabetta Tola</a></td>
-            <td>Raccolta dati</td>
-            <td><a href = "https://twitter.com/capitanachab">Luca Zanelli</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td><a href = "https://twitter.com/AubreyMcFato">Andrea Zanni</a></td>
-            <td>Raccolta dati (pochi)</td>
-            <td><a href = "https://twitter.com/andria_tzedda">Andrea Zedda</a></td>
-            <td>Raccolta dati</td>
-          </tr>
-          <tr>
-            <td>Fabiana Zeppieri</td>
-            <td>Raccolta dati</td>
-          </tr>
-        </table>
+            <br />
+            <table border = "0", width = "1200">
+              <tr>
+                <td width = "300"></td><td width = "300"><td width = "300"></td><td width = "300">
+              <tr>
+                <td><strong>Chi è</strong></td>
+                <td><strong>Cosa ha fatto</strong></td>
+                <td><strong>Chi è</strong></td>
+                <td><strong>Cosa ha fatto</strong></td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/tagnoloni">Tommaso Agnoloni</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/bertalanivan">Ivan Bertalan</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/dottorblaster">Alessio Biancalana</a></td>
+                <td>Sviluppo app</td>
+                <td><a href = "https://twitter.com/ogdabaum">Marco Boscolo</a></td>
+                <td>Sviluppo app</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/mbrandizi">Marco Brandizi</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/foebu">Francesco Emanuele Bucci</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/KodeSolutions">Marco Calderisi</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/jenkin27">Alessio Cimarelli</a></td>
+                <td>Sviluppo app</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/cinquepalmi">Mara Cinquepalmi</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/chiaracio">Chiara Ciociola</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/lucacorsato">Luca Corsato</a></td>
+                <td>Raccolta dati, debug, video, logo</td>
+                <td><a href = "https://twitter.com/simonecortesi">Simone Cortesi</a></td>
+                <td>Raccolta dati (pochissimi)</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/alberto_cottica">Alberto Cottica</a></td>
+                <td>Pagine statiche</td>
+                <td><a href = "https://twitter.com/MicheledAlena">Michele d'Alena'</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/vincenzoerrante">Vincenzo Errante</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/karloff">Carlo Fava</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/giacomogamba">Giacomo Gamba</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/gaspariniandrea">Andrea Gasparini</a></td>
+                <td>Sviluppo app</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/paolomainardi">Paolo Mainardi</a></td>
+                <td>Sviluppo app</td>
+                <td><a href = "https://twitter.com/nelsonmau">Andrea Nelson Mauro</a></td>
+                <td>Starter, dataset building</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/lucamenini">Luca Menini</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/eccolimoro">Franco Morelli</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/andypanix">Andrea Panisson</a></td>
+                <td>Sviluppo app</td>
+                <td><a href = "https://twitter.com/perugini">Luca Perugini</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/martapieroni">Marta Pieroni</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/sigmaseisas">Paolo Polverosi</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/morenaragone">Morena Ragone</a></td>
+                <td>Disclaimer</td>
+                <td><a href = "https://twitter.com/seralf">Alfredo Serafini</a></td>
+                <td>Sviluppo app</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/elisabetta_tola">Elisabetta Tola</a></td>
+                <td>Raccolta dati</td>
+                <td><a href = "https://twitter.com/capitanachab">Luca Zanelli</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td><a href = "https://twitter.com/AubreyMcFato">Andrea Zanni</a></td>
+                <td>Raccolta dati (pochi)</td>
+                <td><a href = "https://twitter.com/andria_tzedda">Andrea Zedda</a></td>
+                <td>Raccolta dati</td>
+              </tr>
+              <tr>
+                <td>Fabiana Zeppieri</td>
+                <td>Raccolta dati</td>
+              </tr>
+            </table>
 
             <!-- <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
           </div>
@@ -206,12 +157,4 @@
       </footer>
 
     </div><!--/.fluid-container-->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   <script src="http://code.jquery.com/jquery-latest.js"></script>
-   <script src="bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
-</html>
+<% include includes/footer %>
