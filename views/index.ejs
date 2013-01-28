@@ -97,6 +97,21 @@
                             <input type="text" name="mep_localParty" id="dep_party" placeholder="Lista" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
                                 <p class="help-block"></p>
                         </div>
+
+                        <!--
+                          Search for Parlamento (specific for #twitantonio)
+                        -->                
+                        <div class="controls">
+                            <label class="control-label">Parlamento</label>
+                            <select class="input-medium" name="parlamento" id="parlamento">
+                              <option value="">- Seleziona -</option>      
+                             <%
+                                var parlamento = config.parlamento;
+                                for (var key in parlamento) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.parlamento) ? "selected=\"selected\"" : '' %> > <%= parlamento[key] %> </option>
+                              <% } %>
+                            </select>
+                        </div>
                     </div>
                 
                     <div class="control-group">
@@ -156,6 +171,11 @@
                         <li class="local-party">
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
                                 <i class="icon-home"></i> <%= meps[i].mep_localParty %>
+                            </a>
+                        </li>
+                        <li class="local-position" style="text-transform: capitalize;">                            
+                            <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=&parlamento=<%= meps[i].parlamento %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
+                                <i class="icon-home"></i> <%= meps[i].parlamento %> 
                             </a>
                         </li>
                     </ul>

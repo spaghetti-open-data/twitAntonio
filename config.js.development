@@ -77,5 +77,7 @@ var config = {
           NA: "Non-attached Members",
           SD: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
   },
+  parlamento: {"camera": "Camera", 
+               "senato": "Senato"},
 }
 module.exports = config;
