@@ -177,6 +177,11 @@
                                 <i class="icon-home"></i> <%= meps[i].parlamento %> 
                             </a>
                         </li>
+                         <li class="local-faction" style="text-transform: capitalize;">                            
+                            <a href="<%= config.base_path %>?&mep_faction=<%= meps[i].mep_faction %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_faction %>">
+                                <i class="icon-home"></i> <%= config.factionNames[meps[i].mep_faction] %> 
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="bottom-content pagination-right">

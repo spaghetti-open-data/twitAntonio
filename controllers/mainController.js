@@ -96,11 +96,11 @@ module.exports = function() {
       res.render('mappa', { config: config, req: req});
     },
 
-	cos_eAction: function (req, res) {
+	  cos_eAction: function (req, res) {
       res.render('cos_e', { config: config, req: req});
     },
 
-	creditsAction: function (req, res) {
+	  creditsAction: function (req, res) {
       res.render('credits', { config: config, req: req});
     },
 

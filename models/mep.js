@@ -89,7 +89,7 @@ var mepModel = function() {
   this.findByCriteria = function(search, limit, offset, options, callback) {
     var op = {
 	    mep_fullName:  { $regex: search.name, $options: 'i' },
-      mep_localParty: { $regex: search.localParty, $options: 'i' },
+      //mep_faction: { $e: search.faction },
 
       // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
       mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
