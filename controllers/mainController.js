@@ -38,7 +38,6 @@ module.exports = function() {
        var search = {'name': name, 
                      'localParty': localParty, 
                      'country': country, 
-                     'faction': faction, 
                      'parlamento': parlamento
                      };
        
