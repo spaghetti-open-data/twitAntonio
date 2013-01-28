@@ -45,11 +45,6 @@ BODY
 }
 #left-sidebar .sidebar-nav
 {
-	position: fixed;
-	top: 60px;
-	left: 20px;
-	width: 23.4042553191489%;
-	=width: 23.3510638297872%;
 	/*+box-sizing:border-box;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
