@@ -97,7 +97,6 @@ var mepModel = function() {
       parlamento:  { $regex: search.parlamento, $options: 'i' },
 	    mep_twitterUrl: {$ne : ""}
     };
-    console.log(op);
     this.search(op, options, callback);
   };
 }
