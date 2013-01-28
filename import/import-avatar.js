@@ -3,7 +3,6 @@ var request = require('request');
 var mongoose = require('mongoose');
 var fs = require('fs')
 var async = require('async');
-var http = require('http');
 
 // hack per fs
 fs.exists = fs.exists || require('path').exists;
@@ -19,6 +18,7 @@ if (!fs.existsSync("./public/"+DIRNAME)) {
     fs.mkdirSync("./public/"+DIRNAME);
 }
 
+// if you have problems here change ulimit "ulimit -n [how-much-you-want]"
 process.setMaxListeners(0);
 db.once('open', function() {
     function saveurl(url, usr, callback){
