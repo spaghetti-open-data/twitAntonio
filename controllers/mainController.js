@@ -30,9 +30,20 @@ module.exports = function() {
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
        faction = (req.query.mep_faction ? req.query.mep_faction : '');
+
+       // specific for #twitantonio
+       parlamento = (req.query.parlamento ? req.query.parlamento : '');
+
+       // search object
+       var search = {'name': name, 
+                     'localParty': localParty, 
+                     'country': country, 
+                     'faction': faction, 
+                     'parlamento': parlamento
+                     };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       meps = model.findByCriteria(name, localParty, country, faction, options.limit, options.offset, options, function(meps) {
+       meps = model.findByCriteria(search, options.limit, options.offset, options, function(meps) {
          meps = render.formatAdditional(meps);
          callback(meps);
        });

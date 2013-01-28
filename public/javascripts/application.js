@@ -30,27 +30,8 @@
         $("button.btn-reset").click(function() {
             $(this).closest('form').find("input[type=text], textarea").val("");
         });
-    
-        // Mansory init
-        /*
-        $('#content').masonry({
-            // options
-            itemSelector: '.candidate',
-            columnWidth: 230
-            // RESPONSIVE: set columnWidth a fraction of the container width
-            // columnWidth: function( containerWidth ) {
-              //return containerWidth / 4;
-            // }
-        });
-
-        // Reinitialize mansory after a scrollstop event
-        $window.bind('scrollstop', function () {
-            $('#content').masonry();
-        });
-        */
 
         // autocomplete widgets (static json)
-        // @todo needs fixes (base url)
         base = '';
         if (location.pathname !== '/') {
           base = location.pathname + '/';
@@ -65,6 +46,18 @@
             $('#dep_party').autocomplete({
                 source: data.party
             });
-        });  
+        });     
+
+        function twantonio_clickEventToAnalytics(intent_event) {
+          console.log(intent_event);
+        }
+
+        // tw web intents api (https://dev.twitter.com/docs/intents/events)
+        twttr.ready(function (twttr) {
+          // Now bind our custom intent events
+          // not yet implemented, seems that "tweet" event does not return anything about the tweet itself (muble, muble)
+          //twttr.events.bind('click', twantonio_clickEventToAnalytics);
+          //twttr.events.bind('tweet', twantonio_clickEventToAnalytics);
+        });
     })
 }(window.jQuery)
