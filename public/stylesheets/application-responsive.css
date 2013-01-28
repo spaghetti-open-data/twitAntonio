@@ -37,12 +37,8 @@
     body {
         padding-top: 0;
     }
-    #left-sidebar .sidebar-nav
-    {
-        position: static;
-        top: auto;
-        left: auto;
-        width: auto;
+    #fork-me {
+        display: none;
     }
     #content .candidate
     {
@@ -61,13 +57,7 @@
 {
     /* MEDIA QUERY DEBUG */
     /* body::after{ content: "Tablet media query (768px <> 979px) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
-    #left-sidebar .sidebar-nav
-    {
-        position: static;
-        top: auto;
-        left: auto;
-        width: auto;
-    }
+
 }
 
 @media (max-width: 480px) {
