@@ -29,7 +29,7 @@ module.exports = function() {
        name = (req.query.mep_name ? req.query.mep_name : '');
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
-       faction = (req.query.mep_faction ? req.query.mep_faction : '');
+       //faction = (req.query.mep_faction ? req.query.mep_faction : '');
 
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
