@@ -94,11 +94,12 @@ BODY
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	background-color: #FFF;
+	/*[disabled]z-index:1;*/
 }
 #content .candidate > DIV
 {
 	padding: 0 10px;
-	z-index: 1;
+	/*[disabled]z-index:1;*/
 }
 /*
 #content .candidate:hover
@@ -220,9 +221,6 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 }
 #content .candidate .bottom-content .more > A
 {
-	color: inherit;
-	cursor: copy;
-	text-decoration: none;
 }
 #content .candidate .bottom-content .tweet-count
 {
@@ -244,10 +242,6 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 }
 #content .candidate .popover .popover-inner
 {
-}
-#content .candidate .popover .popover-inner .popover-title
-{
-	display: none;
 }
 #content .candidate .popover .popover-inner .popover-content
 {

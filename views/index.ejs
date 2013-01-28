@@ -169,7 +169,7 @@
                       -->
                         <li class="local-party">
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
-                                <i class="icon-home"></i> <%= meps[i].mep_localParty %>
+                                <i class="icon-flag"></i> <%= meps[i].mep_localParty %>
                             </a>
                         </li>
                         <li class="local-position" style="text-transform: capitalize;">                            
@@ -181,7 +181,7 @@
                 </div>
                 <div class="bottom-content pagination-right">
                     <div class="more">
-                        <a href="javascript:void(0)" rel="popover" data-html="true" data-placement="right" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>">
+                        <a class="btn btn-mini btn-info" href="javascript:void(0)" rel="popover" data-html="true" data-placement="right" data-original-title="<%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>">
                             <i class="icon-zoom-in"></i> Altro...
                         </a>                    
                     </div>
