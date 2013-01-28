@@ -29,7 +29,7 @@ module.exports = function() {
        name = (req.query.mep_name ? req.query.mep_name : '');
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
-       //faction = (req.query.mep_faction ? req.query.mep_faction : '');
+       faction = (req.query.faction ? req.query.faction : '');
 
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
@@ -38,7 +38,8 @@ module.exports = function() {
        var search = {'name': name, 
                      'localParty': localParty, 
                      'country': country, 
-                     'parlamento': parlamento
+                     'parlamento': parlamento,
+                     'faction': faction
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
