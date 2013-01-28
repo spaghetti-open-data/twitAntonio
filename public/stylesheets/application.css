@@ -94,7 +94,6 @@ BODY
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	background-color: #FFF;
-	z-index: 1;
 }
 #content .candidate > DIV
 {
@@ -241,12 +240,7 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 /*# popover (more)*/
 #content .candidate .popover
 {
-	box-sizing: border-box;
-	z-index: 10000;
-}
-#content .candidate .popover DIV
-{
-	z-index: 10000;
+	width: 180px;
 }
 #content .candidate .popover .popover-inner
 {
