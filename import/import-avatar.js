@@ -1,7 +1,8 @@
 var config = require('../config.js');
 var request = require('request');
 var mongoose = require('mongoose');
-var fs = require('fs')
+var async = require('async');
+var fs = require('fs');
 
 // hack per fs
 fs.exists = fs.exists || require('path').exists;
@@ -35,11 +36,26 @@ db.once('open', function() {
     var mepSchema = config.schema;
     var MepModel = db.model(config.db_collection, mepSchema);
 
+    // MepModel.find( function(err,mep){
+    //     mep.forEach( function(i){
+    //         var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ i.mep_twitterUrl + "&size=bigger";
+    //         console.log("now handle: "+url);
+    //         saveurl(url,i);
+    //     });
+    // });
+
     MepModel.find( function(err,mep){
-        mep.forEach( function(i){
-            var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ i.mep_twitterUrl + "&size=bigger";
-            console.log("now handle: "+url);
-            saveurl(url,i);
+        async.forEach(mep, function(id, callback){
+            var url = "http://api.twitter.com/1/users/profile_image?screen_name="+ id.mep_twitterUrl + "&size=bigger";
+            console.log("handling: " +url);
+            saveurl(url,id);
+        }, function(err){
+            if(err){
+                // we should handle errors here
+            }
+            else{
+                console.log("succesfully done :)")
+            }
         });
     });
 
