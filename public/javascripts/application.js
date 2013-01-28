@@ -52,7 +52,7 @@
         }
 
         // tw web intents api (https://dev.twitter.com/docs/intents/events)
-        twttr.ready(function (twttr) {ù
+        twttr.ready(function (twttr) {
           // Now bind our custom intent events
           // not yet implemented, seems that "tweet" event does not return anything about the tweet itself (muble, muble)
           //twttr.events.bind('click', twantonio_clickEventToAnalytics);
