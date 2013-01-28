@@ -7,7 +7,7 @@ var fs = require('fs')
 fs.exists = fs.exists || require('path').exists;
 fs.existsSync = fs.existsSync || require('path').existsSync;
 
-mongoose.set('debug', config.db_debug)
+mongoose.set('debug', config.db_debug);
 
 console.log("opening connection with " + config.db_name + "@" + config.db_host );
 var db = mongoose.createConnection(config.db_host, config.db_name);
@@ -32,7 +32,7 @@ db.once('open', function() {
         return localurl;
     }
 
-    var mepSchema = config.schema
+    var mepSchema = config.schema;
     var MepModel = db.model(config.db_collection, mepSchema);
 
     MepModel.find( function(err,mep){
