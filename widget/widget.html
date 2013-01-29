@@ -8,10 +8,8 @@
 <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 
-<link href="http://localhost:3000/bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
-<link href="http://localhost:3000/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-<!-- <link href="http://localhost:3000/stylesheets/application.css" rel="stylesheet"> -->
-
+<link href="http://localhost:3000/bootstrap/css/bootstrap-cerulean.min.css" rel="stylesheet">
+<link href="http://localhost:3000/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 
 <style type="text/css">
 /* TODO STILI */
@@ -26,17 +24,45 @@ form * {
 .selected_deps {
 	font-variant:small-caps; font-size: 0.7em; line-height: 1em;
 }
+
+.ui-autocomplete {
+	position: absolute; cursor: default; z-index:30 !important;
+}
+		
 </style>
 
 <script>
 	$(function() {
 
+		$('#reset').click(fillForm({
+			mep_fullName: '',
+			mep_country: '',
+			mep_localParty: '',
+			mepTwitterUserName: '',
+			campagna: ''
+		}));
+		
 		var selected_items = new Array();
+		
+		$('#twitAntonio-send').click(function(){
+			var href = $(this).attr('href');
+			var href_new = href.substr(0, href.indexOf('?'));
+			var candidato = $('#candidato_twitter').val();
+			var campagna = $('#campagna').val();
+			
+			href_new = href_new + '?';			
+			if(candidato != undefined && candidato != "") href_new = href_new + '&text=@' + candidato;
+			href_new = href_new + '&hashtags=twitantonio';
+			if(campagna !== undefined && campagna != "") href_new = href_new + ', ' + campagna;
+			
+			$('#twitAntonio-send').attr('href', href_new);
+		});
 		
 		function fillForm(item){
 			$('#candidato').val(item.mep_fullName);
 			$('#regione').val(item.mep_country);
 			$('#lista').val(item.mep_localParty);
+			$('#candidato_twitter').val(item.mep_twitterUserName);
 		}
 		
 		$('#candidato, #regione, #lista').autocomplete({
@@ -44,10 +70,6 @@ form * {
 			source : function(request, response) {
 				
 				var self = $(this);
-				console.debug("----------------------");
-				console.debug(self);
-				console.debug(this);
-				console.debug("----------------------");
 				
 				$.ajax({
 					url : "http://localhost:3000/api/meps/",
@@ -55,7 +77,8 @@ form * {
 					data : {
 						mep_fullName : $('#candidato').val(),
 						mep_country : $('#regione').val(),
-						mep_localParty : $('#lista').val()
+						mep_localParty : $('#lista').val(),
+						campagna : $('#campagna').val()
 					},
 					success : function(data) {
 						
@@ -63,8 +86,7 @@ form * {
 							console.debug(item);
 							return {
 								label: item.mep_fullName + ' ['+item.mep_country+'] ' + item.mep_localParty,
-								value: fillForm(item),
-// 								candidato: item
+								value: fillForm(item)
 							}
 						}));
 						
@@ -73,17 +95,16 @@ form * {
 			},
 			minLength: 3,
 			select : function(event, ui) {
-				console.debug("SELECT");
-// 				this.close;
+				// TODO this.close;
 			},
 			open: function(data) {
-				console.debug("OPEN");
+				// TODO this.close;
 			},
 			close: function(data) {
-				console.debug("CLOSE");
+				// TODO this.close;
 			},
 			change: function(event, ui) {
-				console.debug("CHANGE");
+				// TODO this.close;
 			}
 		});
 
@@ -103,21 +124,18 @@ form * {
 	    
 	    <fieldset class="controls">
 	    	<legend>twittantonio</legend>
+	    	<input type="hidden" id="candidato_twitter" name="candidato_twitter" />
 	    	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
 	    	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
 	    	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
-	    
-	    	<input type="text" id="hashtag" name="hashtag" placeholder="#twittantonio" class="input-medium search-query" value="" />
-<!-- 	    	<a href="http://twitter.com/intent/tweet/?text=@SoniaAlfano&amp;hashtags=tweetyourmep" class="btn btn-primary" target="_blank">Tweet</a> -->
-			<a href="http://twitter.com/intent/tweet/?text=&hashtags=tweetyourmep" class="btn btn-primary" target="_blank">Tweet</a>
+	    	
+	    	<input type="text" id="hashtag" name="hashtag" placeholder="#twittantonio" disabled="disabled" class="input-medium search-query" value="" />
+	    	<input type="text" id="campagna" name="campagna" placeholder="#campagna" class="input-medium search-query" value="" />
+			<a id="twitAntonio-send" href="http://twitter.com/intent/tweet/?text=&hashtags=twitantonio" class="btn btn-primary" target="_blank">tweet</a>
+	
+			<button id="reset" class="btn btn-inverse">reset</button>
 	
 	    </fieldset>
-	    
-	    <!-- Esempio da valutare... -->
-	    <!-- <div>
-	    	<a id="deps_01" class="selected_deps" href="#remove">[x] @user</a>
-	    </div> -->
-	    
 	    
 	</form>
 
