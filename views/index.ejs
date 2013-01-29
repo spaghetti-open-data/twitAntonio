@@ -152,7 +152,7 @@
             </div>
         </div> <!--/sidebar -->
 
-        <section id="content" class="span9">  
+        <section id="content" class="span6">  
             <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
             <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
@@ -220,6 +220,53 @@
             </article>
           <% } %> 
         </section><!--/span-->
+
+    <div class="span3">
+        <div class="well sidebar-nav">
+
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 100%;"></div>
+        </div>
+
+              <h3> Tweet flow </h3>
+              <small> 
+                <p>
+                 <a href="https://twitter.com/search?q=%23twitantonio">#twitantonio</a> 
+                 <a href="https://twitter.com/search?q=%23twpol13">#twpol13</a> 
+                </p>
+              </small>
+              <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+              <script>
+              new TWTR.Widget({
+                version: 2,
+                type: 'search',
+                search: '#twitantonio OR #twpol13',
+                interval: 30000,
+                title: '',
+                subject: '',
+                width: 'auto',
+                height: 800,
+                theme: {
+                  shell: {
+                    background: '#ffffff',
+                    color: '800'
+                  },
+                  tweets: {
+                    background: 'f7f7f7',
+                    color: '247',
+                    links: '247'
+                  }
+                },
+                features: {
+                  scrollbar: true,
+                  loop: false,
+                  live: true,
+                  behavior: 'all'
+                }
+              }).render().start();
+            </script>
+            </div>
+        </div>
     </div><!--/row-->
 
     <hr>
