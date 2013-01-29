@@ -24,7 +24,9 @@ if (($handle = fopen($remote_csv, "r")) !== FALSE) {
         if ($tw_url && $tw_url !== 'na') {  
           // if we already have this account, just add the new country (circoscrizione)
           if (isset($deps[$tw_url])) {
-            $deps[$tw_url]['mep_country'][] = $dep['mep_country'];
+            if (!in_array($dep['mep_country'], $deps[$tw_url]['mep_country'])) {
+              $deps[$tw_url]['mep_country'][] = $dep['mep_country'];
+            }
             continue;
           }
           else {
