@@ -2,29 +2,9 @@ var twitter = require('ntwitter');
 var mongoose = require('mongoose');
 var credentials = require('../config_twitter.js');
 var config = require('../config.js');
-var Schema = mongoose.Schema
 
 // mapped 1-1 to Twitter object
-var twschema = new Schema({
-  created_at: Date,
-  from_user: String,
-  from_user_id: Number,
-  from_user_id_str: String,
-  from_user_name: String,
-  geo: String,
-  id: Number,
-  id_str: String,
-  iso_language_code: String,
-  metadata: [String],
-  profile_image_url: String,
-  profile_image_url_https: String,
-  source: String,
-  text: String,
-  to_user: String,
-  to_user_id: Number,
-  to_user_id_str: String,
-  to_user_name: String 
-});
+var twschema = new mongoose.Schema(config.tw_harvest_schema, {autoindex: true});
 
 var t = new twitter({
     consumer_key: credentials.consumer_key,
@@ -79,6 +59,12 @@ TwitStore.getLastTweet(function(item) {
   if (item) {
     query.since_id = item.id_str;
   }
+
+  // https://dev.twitter.com/docs/api/1/get/search
+  // maximum number
+  query.rpp = 100; 
+  query.show_user = true;
+  query.include_entities = true;
 
   t.search(config.twitter_harvest_search, query, function(err, data) {
     if (data.results.length) {

@@ -101,7 +101,7 @@ db.once('open', function() {
         console.error('Saving user problem.');
         process.exit(0);
       }
-      console.log('User "' + mep.mep_firstName + ' ' + mep.mep_lastName  + '" ' + type);
+      //console.log('User "' + mep.mep_firstName + ' ' + mep.mep_lastName  + '" ' + type);
     });
   }
 
@@ -146,7 +146,7 @@ db.once('open', function() {
     // close connection as described here: https://github.com/LearnBoost/mongoose/issues/330#issuecomment-1061042
     setTimeout( function () {
      mongoose.disconnect();
-    }, 1000);
+    }, 10000);
   }
 
 });

@@ -3,5 +3,7 @@ var twitter_conf = {
   // twitter conf
   twit_consumer_key: 'YOUR_CONSUMER_KEY',
   twit_consumer_secret: 'YOUR_CONSUMER_SECRET',
+  twit_access_token: '',
+  twit_token_secret: ''
 }
 module.exports = twitter_conf;
