@@ -6,24 +6,22 @@ module.exports = function() {
   var fs = require('fs');
 
   // @todo hardcoded number just for test, this needs to be refactored to support pagination
-  options = { 
-      'limit': 800,
-      'offset': 0,
-      'sort_attrib': 'mep_lastName',
-      'sort_type': 'asc'
-  };
 
   // internal request handler
   var internal = {
     filter: function(req, res, callback) {
-       var limit = (req.query.limit) ? config.limit : 800;
-       var offset = (req.query.offset) ? config.offset : 0;  
-
        if (config.app_debug){
          console.log("-------------------------------------------------------")
          console.log(req.query)
          console.log("-------------------------------------------------------")          
        } 
+
+      options = { 
+         'limit': (req.query.limit ? req.query.limit : 2000),
+         'offset': (req.query.offset ? req.query.offset : 0),
+         'sort_attrib': 'mep_lastName',
+         'sort_type': 'asc'
+       };
         
        // get request parameters
        name = (req.query.mep_name ? req.query.mep_name : '');
@@ -43,7 +41,7 @@ module.exports = function() {
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       meps = model.findByCriteria(search, options.limit, options.offset, options, function(meps) {
+       meps = model.findByCriteria(search, options, function(meps) {
          meps = render.formatAdditional(meps);
          callback(meps);
        });
