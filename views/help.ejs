@@ -1,0 +1,56 @@
+<% include includes/header %>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="<%= config.base_path %>">#<%= config.app_title %></a>
+          <div class="nav-collapse collapse">
+            <!--
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link">Username</a>
+            </p>
+            -->
+            <ul class="nav">
+              <li><a href="<%= config.base_path %>">Home</a></li>
+              <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
+              <li><a href="<%= config.base_path %>cos_e">Info</a></li>
+              <li><a href="<%= config.base_path %>credits">Applausi</a></li>
+              <li class="active"><a href="<%= config.base_path %>help">Sei candidato? Aggiungi il tuo nome!</a></li>
+
+              <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="hero-unit">
+            <h1>Sei candidato? Aggiungi il tuo nome!</h1>
+            <div>
+              <p>Aggiungi il tuo account Twitter se sei un candidato alle Elezioni Politiche 2013 per la Camera dei Deputati o per il Senato della Repubblica. Usa il form in basso: verificheremo le tue credenziali e ti aggiungeremo su #TwitAntonio!
+              </p>
+              <iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dGtXQmRzNTZlSnpINnQxYlJlU1NvdkE6MQ" width="760" height="710" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>            
+          </div>
+
+            <!-- <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
+          </div>
+        </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+      <footer>
+
+        <a href="http://www.iubenda.com/privacy-policy/324506" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+
+      </footer>
+
+    </div><!--/.fluid-container-->
+<% include includes/footer %>

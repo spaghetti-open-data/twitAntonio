@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
-  db_collection: 'db5',
+  db_collection: 'db13',
   db_collection_users: 'users',
   db_collection_twitter: 'tweets',
   db_debug: 0,
@@ -14,7 +14,7 @@ var config = {
   app_port: 3002,
   app_secret: 'nirfnpv82958vj495vasdHGDASfaf293n9vfv',
   app_debug: true,
-  base_path: '/twitantonio/',
+  base_path: '/',
   twitter_auth: false,
   twitter_harvest_search: '#twitantonio',
 
@@ -41,17 +41,55 @@ var config = {
   }, {
     autoIndex : true
   }),
-  // not more valid
-  countries: {"AT":"Austria","BE":"Belgium","BG":"Bulgaria","CY":"Cyprus","CZ":"Czech Republic","DK":"Denmark","EE":"Estonia","FI":"Finland","FR":"France","DE":"Germany","GR":"Greece","HU":"Hungary","IE":"Ireland","IT":"Italy","LV":"Latvia","LT":"Lithuania","LU":"Luxembourg","MT":"Malta","NL":"Netherlands","PL":"Poland","PT":"Portugal","RO":"Romania","SK":"Slovakia","SI":"Slovenia","ES":"Spain","SE":"Sweden","GB":"United Kingdom"},
-  factionNames: {
-          LD: "Group of the Alliance of Liberals and Democrats for Europe",
-          CR: "European Conservatives and Reformists Group",
-          FD: "Europe of Freedom and Democracy Group",
-          PP: "Group of the European People's Party (Christian Democrats)",
-          UL: "Confederal Group of the European United Left - Nordic Green Left",
-          GF: "Group of the Greens/European Free Alliance",
-          NA: "Non-attached Members",
-          SD: "Group of the Progressive Alliance of Socialists and Democrats in the European Parliament"
+
+  // Twitter Harvester Schema
+  tw_harvest_schema: {
+    created_at: Date,
+    entities: mongoose.Schema.Types.Mixed,
+    from_user: String,
+    from_user_id: Number,
+    from_user_id_str: String,
+    from_user_name: String,
+    geo: String,
+    id: Number,
+    id_str: String,
+    iso_language_code: String,
+    metadata: [String],
+    profile_image_url: String,
+    profile_image_url_https: String,
+    source: String,
+    text: String,
+    to_user: String,
+    to_user_id: Number,
+    to_user_id_str: String,
+    to_user_name: String 
   },
+  
+  factionNames: {
+          'c': "Centro",
+          'cs': "Centro Sinistra",
+          'cd': "Centro Destra",
+          's': "Sinistra",
+          '5s': "M5S",
+          'fare': "FARE"
+  },
+  
+  parlamento: {"camera": "Camera", 
+               "senato": "Senato"},
+               
+  partiti: {"sel": "SEL",
+            "partito democratico": "PD",
+            "movimento 5 stelle": "Movimento 5 Stelle",
+            "Lista Monti": "Lista Monti",
+            "Partito Democratico": "Partito Democratico",
+            "Rivoluzione Civile": "Rivoluzione Civile",
+            "udc": "UDC",
+            "Fermare Il Declino": "Fare Per Fermare Il Declino",
+            "pdl": "PDL",
+            "Fratelli D'italia": "Fratelli D'italia",
+            "Lega Nord": "Lega Nord",
+            "fli": "FLI",
+            "Centro Democratico": "Centro Democratico",
+          }
 }
 module.exports = config;

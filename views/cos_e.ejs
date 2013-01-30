@@ -1,52 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-      <title>Cos'è - <%= config.app_title %></title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="<%= config.app_description %>">
-
-    <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap_united.min.css" rel="stylesheet">
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le fav and touch icons 
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    -->
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35090580-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  </head>
-
-  <body>
-
+<% include includes/header %>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -55,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="<%= config.base_path %>"><%= config.app_title %></a>
+          <a class="brand" href="<%= config.base_path %>">#<%= config.app_title %></a>
           <div class="nav-collapse collapse">
             <!--
             <p class="navbar-text pull-right">
@@ -64,9 +16,10 @@
             -->
             <ul class="nav">
               <li><a href="<%= config.base_path %>">Home</a></li>
-			        <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
+			  <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
               <li class="active"><a href="<%= config.base_path %>cos_e">Info</a></li>
 			        <li><a href="<%= config.base_path %>credits">Applausi</a></li>
+              <li><a href="<%= config.base_path %>help">Sei candidato? Aggiunti il tuo nome!</a></li>
               <!-- <li><a href="#contact">Contact</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -79,19 +32,20 @@
         <div class="span12">
           <div class="hero-unit">
             <h1>Twitantonio</h1>
-<p> </p>
+            <br />
             <p> <strong> Fai sentire la tua voce nella campagna elettorale più veloce di sempre – 140 caratteri alla volta</strong> </p>
             <p>Nelle democrazie pre-digitali, i cittadini che desideravano influenzare i candidati alle elezioni scrivevano loro lettere di carta: più recentemente si sono usate le e-mail. I social network su Internet portano questo esercizio a un livello successivo, perché i candidati (come gli eletti) li usano per interagire con l'elettorato <em>in pubblico</em>. Se mandi un tweet al tuo candidato tutti possono vedere se lui o lei ti risponde, e cosa.</p>
 <p>Quindi, non essere timid@: mano alla tastiera. Aiuterai i candidati a mantenersi vicini ai cittadini visti come individui, non solo come corpo elettorale. Qualche volta bastano 140 caratteri per irrobustire una democrazia.</p>
 <p>Usa il form di ricerca per trovare il tuo candidato su Twitter. Usa l'hashtag #twitantonio (omaggio sincero al <a href = "http://youtu.be/54bY9OUo5tY">principe De Curtis</a>) per aiutare altri cittadini a trovare questo nostro strumento.</p>
             <!-- <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p> -->
+	    <p style="float:right;">Questo è un progetto di <a href="http://www.spaghettiopendata.org" target="_blank"><strong>Spaghetti Open Data</strong></a></p>
           </div>
         </div><!--/span-->
 <p><strong>Termini di servizio</strong></p>
-<p>La comunità di <strong>Spaghetti Open Data (SOD)</strong> – un gruppo informale di cittadini (soprattutto italiani) che hanno a cuore i dati aperti e l'informazione libera – ha realizzato l'applicazione Twitantonio allo scopo di fornire, all'indirizzo <a href = "http://apps.spaghettiopendata.org/twitantonio/">http://apps.spaghettiopendata.org/twitantonio/</a>  un servizio semplice ed immediato per l'invio di tweet ai candidati alle prossime elezioni politiche.</p>
+<p>La comunità di <strong>Spaghetti Open Data (SOD)</strong> – un gruppo informale di cittadini (soprattutto italiani) che hanno a cuore i dati aperti e l'informazione libera – ha realizzato l'applicazione Twitantonio allo scopo di fornire, all'indirizzo <a href = "http://www.twitantonio.it/">http://www.twitantonio.it/</a>  un servizio semplice ed immediato per l'invio di tweet ai candidati alle prossime elezioni politiche.</p>
 <p>Il servizio, descritto qui di seguito, è soggetto ai seguenti termini di servizio, modificabili a discrezione di SOD in qualsiasi momento e senza preavviso. Le modifiche verranno segnalate tramite apposito disclaimer; l'uso dello stesso dopo tali modifiche costituisce l'accettazione dei nuovi Termini di servizio.</p>
 <p><strong>Il servizio</strong></p>
-Accedendo all'indirizzo <a href = "http://apps.spaghettiopendata.org/twitantonio/">http://apps.spaghettiopendata.org/twitantonio/</a>  l'utente può selezionare il candidato alle elezioni politiche (tramite i campi 'nome', 'circoscrizione', 'lista') cui inviare un tweet: l'applicazione si collega direttamente al servizio fornito da Twitter Inc. e consente all'utente di autenticarsi per utilizzarlo. L'applicazione non gestisce in alcun modo i profili degli utenti, nè accede alle informazioni degli stessi; i soli dati presenti sono importati da Twitter e soggetti ai relativi termini di servizio, come previsti all'indirizzo <a href = "https://twitter.com/tos">https://twitter.com/tos</a>. L'applicazione non effettua alcun monitoraggio dei contenuti degli account dei singoli utenti, siano essi utenti, o candidati. Essa potrebbe effettuare il solo monitoraggio dell'utilizzo dell'hashtag #twitantonio; su tali contenuti, pertanto, potranno essere applicati strumenti di business analytics.</p>
+Accedendo all'indirizzo <a href = "http://www.twitantonio.it/">http://www.twitantonio.it/</a>  l'utente può selezionare il candidato alle elezioni politiche (tramite i campi 'nome', 'circoscrizione', 'lista') cui inviare un tweet: l'applicazione si collega direttamente al servizio fornito da Twitter Inc. e consente all'utente di autenticarsi per utilizzarlo. L'applicazione non gestisce in alcun modo i profili degli utenti, nè accede alle informazioni degli stessi; i soli dati presenti sono importati da Twitter e soggetti ai relativi termini di servizio, come previsti all'indirizzo <a href = "https://twitter.com/tos">https://twitter.com/tos</a>. L'applicazione non effettua alcun monitoraggio dei contenuti degli account dei singoli utenti, siano essi utenti, o candidati. Essa potrebbe effettuare il solo monitoraggio dell'utilizzo dell'hashtag #twitantonio; su tali contenuti, pertanto, potranno essere applicati strumenti di business analytics.</p>
 <p><strong>L'utente</strong></p> 
 <p>L'utente è l'unico ed esclusivo responsabile di ogni attività compiuta tramite l'utilizzo dell'applicazione ed i tweet postati, per il cui contenuto si rinvia espressamente ai termini di servizio di Twitter all'indirizzo <a href = "https://twitter.com/tos">https://twitter.com/tos</a>. L'utente si impegna a non utilizzare il Servizio in alcun modo che possa essere lesivo di diritti di terzi, per violazione della proprietà intellettuale o altri diritti di proprietà, a postare materiale contenente virus o malware, a creare rischi per la sicurezza o la privacy di qualsiasi persona, a diffondere pubblicità non richiesta o non autorizzata o a compiere qualsiasi altra attività dannosa, violenta o illecita.</p>
 <p><strong>Diritti sull'applicazione</strong></p>
@@ -111,12 +65,4 @@ Accedendo all'indirizzo <a href = "http://apps.spaghettiopendata.org/twitantonio
       </footer>
 
     </div><!--/.fluid-container-->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   <script src="http://code.jquery.com/jquery-latest.js"></script>
-   <script src="bootstrap/js/bootstrap.min.js"></script>
-
-  </body>
-</html>
+<% include includes/footer %>

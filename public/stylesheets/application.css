@@ -1,5 +1,5 @@
 /*+clearfix {*/
-#content .candidate .top:after, #content .candidate .middle:after
+#content .candidate .top-content:after, #content .candidate .middle-content:after
 {
 	content: ".";
 	display: block;
@@ -8,11 +8,11 @@
 	visibility: hidden;
 	font-size: 0;
 }
-#content .candidate .top, #content .candidate .middle
+#content .candidate .top-content, #content .candidate .middle-content
 {
 	display: inline-block;
 }
-#content .candidate .top, #content .candidate .middle
+#content .candidate .top-content, #content .candidate .middle-content
 {
 /*\*/
 	display: block;
@@ -33,6 +33,11 @@ BODY
 {
 	display: none;
 }
+/*## NO MEDIA QUERY SUPPORT*/
+.no-mediaqueries .container-fluid
+{
+	min-width: 980px;
+}
 /*### TOP NAVBAR*/
 .navbar-fixed-top .container-fluid H1
 {
@@ -45,11 +50,6 @@ BODY
 }
 #left-sidebar .sidebar-nav
 {
-	position: fixed;
-	top: 60px;
-	left: 20px;
-	width: 23.4042553191489%;
-	=width: 23.3510638297872%;
 	/*+box-sizing:border-box;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -75,6 +75,37 @@ BODY
 {
 	margin: 5px 8px 5px 0px;
 }
+/*### TWEET FLOW*/
+#tweet-flow
+{
+	margin-bottom: 1em;
+}
+#tweet-flow > H3
+{
+	font-family: Telex, sans-serif;
+	font-weight: normal;
+	font-size: 1.4em;
+	line-height: 1.2;
+	margin: 1em 0 0;
+	color: inherit;
+}
+/*twitter wall widget */
+#twtr-widget-1 .twtr-bd .twtr-timeline
+{
+	height: 400px;
+}
+#twtr-widget-1 .twtr-tweet-wrap .twtr-avatar
+{
+	float: left;
+	height: auto;
+	width: auto;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+#twtr-widget-1 .twtr-tweet-wrap .twtr-tweet-text
+{
+	margin-left: 0;
+}
 /*### CONTENT*/
 #content .candidate
 {
@@ -94,11 +125,12 @@ BODY
 	-o-transition: all 0.3s ease;
 	transition: all 0.3s ease;
 	background-color: #FFF;
-	z-index: 1;
+	/*[disabled]z-index:1;*/
 }
 #content .candidate > DIV
 {
 	padding: 0 10px;
+	/*[disabled]z-index:1;*/
 }
 /*
 #content .candidate:hover
@@ -122,15 +154,20 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	font-size: 1.2em;
 	font-weight: normal;
 	line-height: 1;
+	/*+border-radius:4px 4px 0 0;*/
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	-khtml-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
 }
-/*[clearfix]*/#content .candidate .top
+/*[clearfix]*/#content .candidate .top-content
 {
 	clear: both;
 	line-height: 1.4em;
 	height: 20px;
 	margin: 0.5em 0 1em;
 }
-#content .candidate .top .twitter
+#content .candidate .top-content .twitter
 {
 	float: left;
 	color: #00ACEE;
@@ -140,11 +177,11 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	font-weight: bold;
 	letter-spacing: 0.05em;
 }
-#content .candidate .top .twitter IMG
+#content .candidate .top-content .twitter IMG
 {
 	margin-right: 4px;
 }
-#content .candidate .top .counter
+#content .candidate .top-content .counter
 {
 	float: right;
 	display: block;
@@ -153,7 +190,7 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	cursor: help;
 	text-decoration: none;
 }
-#content .candidate .top .counter SPAN
+#content .candidate .top-content .counter SPAN
 {
 	background: transparent url(../images/everything-spritev2.png) no-repeat -17px 0px;
 	width: 16px;
@@ -161,23 +198,23 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	display: block;
 	float: left;
 }
-#content .candidate .top .counter.retweet SPAN
+#content .candidate .top-content .counter.retweet SPAN
 {
 	background-position: -96px 0px;
 }
-/*[clearfix]*/#content .candidate .middle
+/*[clearfix]*/#content .candidate .middle-content
 {
 	clear: both;
 	margin: 1em 0;
 }
-#content .candidate .middle IMG.photo
+#content .candidate .middle-content IMG.photo
 {
 	width: 73px;
 	height: 73px;
 	float: left;
 	margin-right: 5px;
 }
-#content .candidate .middle UL
+#content .candidate .middle-content UL
 {
 	padding: 0;
 	margin: 0;
@@ -185,54 +222,63 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	list-style-image: none;
 	font-size: 0.9em;
 }
-#content .candidate .middle UL LI
+#content .candidate .middle-content UL LI
 {
 	line-height: 1em;
 	margin: 0.8em 0 0;
 }
-#content .candidate .middle UL LI A
+#content .candidate .middle-content UL LI A
 {
 	margin-left: 0;
 	text-decoration: none;
 }
-#content .candidate .middle UL LI A I
+#content .candidate .middle-content UL LI A I
 {
 	float: left;
 	margin-right: 3px;
 }
-#content .candidate .bottom
+#content .candidate .bottom-content
 {
 	position: absolute;
 	bottom: 7px;
 	right: 0;
 	left: 0;
 }
-#content .candidate .bottom .more
+#content .candidate .bottom-content .more
 {
 	position: absolute;
 	top: 7px;
 	left: 10px;
 }
-#content .candidate .bottom .more > A
+#content .candidate .bottom-content .more > A
 {
-	color: inherit;
-	cursor: copy;
-	text-decoration: none;
 }
-#content .candidate .bottom .tweet-count
+#content .candidate .bottom-content .tweet-count
 {
 	position: absolute;
 	top: 7px;
 	right: 85px;
 	font-weight: bold;
 }
-#content .candidate .bottom .tweet-count A
+#content .candidate .bottom-content .tweet-count A
 {
 	color: inherit;
-	cursor: copy;
+	cursor: help;
 	text-decoration: none;
 }
 /*# popover (more)*/
 #content .candidate .popover
 {
+	width: 180px;
+}
+#content .candidate .popover .popover-inner
+{
+}
+#content .candidate .popover .popover-inner .popover-content
+{
+}
+/*### FOOTER*/
+FOOTER
+{
+	text-align: center;
 }
