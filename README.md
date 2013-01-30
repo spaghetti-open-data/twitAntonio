@@ -20,9 +20,5 @@ Successivamente, i seguenti comandi:
 
     $ npm install
     $ cp config.js.development config.js
-    $ cd import
-    $ php -f convertCsvtoJson.php > ./data.json
-    $ node import-deps.js data.json
-    $ node import-avatars.js (opzionale)
-    $ cd ..
+    $ ./import.sh
     $ node app
