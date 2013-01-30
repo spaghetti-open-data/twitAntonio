@@ -8,8 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="<%= config.base_path %>">#<%= config.app_title %>
-            </a>
+            <a class="brand" href="<%= config.base_path %>">#<%= config.app_title %></a>
             <div class="nav-collapse collapse">
                 <!--
                 <p class="navbar-text pull-right">
@@ -24,7 +23,7 @@
                     <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
 					<li><a href="<%= config.base_path %>cos_e">Info</a></li>
 					<li><a href="<%= config.base_path %>credits">Applausi</a></li>
-                    <li><a href="<%= config.base_path %>help">Sei candidato? Aggiunti il tuo nome!</a></li>
+                    <li><a href="<%= config.base_path %>help">Sei candidato? Aggiungi il tuo nome!</a></li>
                 </ul>
 
             <% if (config.twitter_auth) { %>
@@ -70,33 +69,33 @@
 
                 <a class="twitsearch" href="https://twitter.com/search?q=%23twitantonio" target="_blank">
                     <img src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_16.png">
-                        <strong>Cerca #twitantonio</strong>
+                    <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
-                    <div>In questo momento sono presenti <strong style="color: #7bb33d;"><%= meps.length %> candidati </strong> </div>
+                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= meps.length %> </strong> candidati su <strong style="color: #FF0000;"> 2841 </strong> verificati</div>
                     <legend>Cerca il tuo candidato</legend>
                     <div class="control-group">
                         <!-- Search input-->
-                        <label class="control-label">Nome</label>
+                        <label for="dep_name" class="control-label">Nome</label>
                         <div class="controls">
                             <input type="text" name="mep_name" id="dep_name" placeholder="Nome" class="input-medium search-query" value="<%= (req.query.mep_name ? req.query.mep_name : '') %>">
-                                <p class="help-block"></p>
+                            <p class="help-block"></p>
                         </div>
 
                         <!--
                           Search for Circoscrizione
                         -->
                         <div class="controls">
-                            <label class="control-label">Circoscrizione</label>
+                            <label for="dep_country" class="control-label">Circoscrizione</label>
                             <input type="text" name="mep_country" id="dep_country" placeholder="(es: Abruzzo)" class="input-medium search-query" value="<%= (req.query.mep_country ? req.query.mep_country : '') %>">
-                                <p class="help-block"></p>
+                            <p class="help-block"></p>
                         </div>
               
                         <!--
                           Search for Colazione
                         -->                
                         <div class="controls">
-                            <label class="control-label">Partito</label>
+                            <label for="dep_party" class="control-label">Partito</label>
                             <!--
                             <select class="input-medium" name="mep_localParty" id="dep_party">
                               <option value="">- Seleziona -</option>      
@@ -114,7 +113,7 @@
                           Search for Schieramento
                         -->                
                         <div class="controls">
-                            <label class="control-label">Schieramento</label>
+                            <label for="schieramento" class="control-label">Schieramento</label>
                             <select class="input-medium" name="faction" id="schieramento">
                               <option value="">- Seleziona -</option>      
                                 <%
@@ -129,7 +128,7 @@
                           Search for Parlamento (specific for #twitantonio)
                         -->                
                         <div class="controls">
-                            <label class="control-label">Parlamento</label>
+                            <label for="parlamento" class="control-label">Parlamento</label>
                             <select class="input-medium" name="parlamento" id="parlamento">
                               <option value="">- Seleziona -</option>      
                              <%
@@ -149,24 +148,63 @@
                             <button class="btn btn-danger btn-reset">Reset</button> 
                         </div>  
                     </div>
-                
-                    <div class="img-wr">
-                        <img src="<%= config.base_path %>images/votantonio.jpg" />
-                    </div>
                 </form>
-              
-                <!-- privacy policy button -->
-                  <a href="http://www.iubenda.com/privacy-policy/434217" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+
+                <div class="img-wr">
+                    <img src="<%= config.base_path %>images/votantonio.jpg" />
+                </div>
+                
+                <div id="tweet-flow">
+                    <h3>Tweet flow</h3>
+                    <small>
+                      <p>
+                       <a href="https://twitter.com/search?q=%23twitantonio">#twitantonio</a>
+                       <a href="https://twitter.com/search?q=%23twpol13">#elezioni2013</a>
+                      </p>
+                    </small>
+                    <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+                    <script>
+                    new TWTR.Widget({
+                      version: 2,
+                      type: 'search',
+                      search: '#twitantonio OR #elezioni2013',
+                      interval: 30000,
+                      title: '',
+                      subject: '',
+                      width: 'auto',
+                      height: 'auto',
+                      theme: {
+                        shell: {
+                          background: '#ffffff',
+                          color: '800'
+                        },
+                        tweets: {
+                          background: 'f7f7f7',
+                          color: '247',
+                          links: '247'
+                        }
+                      },
+                      features: {
+                        scrollbar: true,
+                        loop: false,
+                        live: true,
+                        behavior: 'all'
+                      }
+                    }).render().start();
+                    </script>
+                </div>
+
+                    <!-- privacy policy button -->
+                <a href="http://www.iubenda.com/privacy-policy/434217" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
   
             </div>
         </div> <!--/sidebar -->
 
         <section id="content" class="span9">  
-            <!-- loop through meps -->
+          <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
             <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
-                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %>
-                </h2>
+                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
                 <div class="top-content">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
                         <img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>

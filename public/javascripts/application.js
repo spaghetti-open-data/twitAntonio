@@ -47,10 +47,10 @@
             $('#dep_party').autocomplete({
                 source: data.party
             });
-        });     
+        });
         
         function twantonio_clickEventToAnalytics(intent_event) {
-          console.log(intent_event);
+          // console.log(intent_event);
         }
 
         // tw web intents api (https://dev.twitter.com/docs/intents/events)

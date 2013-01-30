@@ -78,7 +78,6 @@ var mepModel = function() {
     if (search.faction) {
        op['mep_faction'] = search.faction;
     }
-    console.log(options);
     this.search(op, options, callback);
   };
 }
