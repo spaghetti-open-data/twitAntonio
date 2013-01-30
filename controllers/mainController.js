@@ -39,10 +39,14 @@ module.exports = function() {
                      'parlamento': parlamento,
                      'faction': faction
                      };
+        // we want random elements by default...
+        var sort = false;
+        // ...unless search terms are not-empy.
+        Object.keys(search).forEach( function(k) { if ( search[k] != "" ) sort = true; } );
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
        meps = model.findByCriteria(search, options, function(meps) {
-         meps = render.formatAdditional(meps);
+         meps = render.formatAdditional(meps,sort);
          callback(meps);
        });
     }
