@@ -70,7 +70,8 @@ var mepModel = function() {
     var op = {
 	    mep_fullName:  { $regex: search.name, $options: 'i' },
       // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
-      mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
+//      mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
+      mep_country: { $elemMatch :  { "indexTokens": {$regex : search.country, $options : 'i'} } },
       mep_localParty: { $regex: search.localParty, $options: 'i' },
       parlamento:  { $regex: search.parlamento, $options: 'i' },
 	    mep_twitterUrl: { $ne : ""},
