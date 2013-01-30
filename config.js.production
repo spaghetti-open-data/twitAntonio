@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
-  db_collection: 'db10',
+  db_collection: 'db12',
   db_collection_users: 'users',
   db_collection_twitter: 'tweets',
   db_debug: 0,
