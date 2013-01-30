@@ -70,7 +70,8 @@ var config = {
           'cs': "Centro Sinistra",
           'cd': "Centro Destra",
           's': "Sinistra",
-          '5s': "Movimento 5 Stelle",
+          '5s': "M5S",
+          'fare': "FARE"
   },
 
   parlamento: {"camera": "Camera", 

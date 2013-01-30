@@ -5,7 +5,7 @@ include_once('unicode/unicode.inc');
 
 // see https://github.com/spaghetti-open-data/twitAntonio/issues/21
 $keys = array();
-$remote_csv = 'https://docs.google.com/spreadsheet/pub?key=0Ajp5_Nr0sKLIdFlpRkl2QzNORlZidnBFdklHWjlLTkE&output=csv';
+$remote_csv = 'https://docs.google.com/spreadsheet/pub?key=0Ajp5_Nr0sKLIdERKZ0lLRC1KUkRhNXItWHNTX2J0c1E&output=csv';
 mb_internal_encoding('UTF-8');
 
 /* Set internal character encoding to UTF-8 */
@@ -103,6 +103,7 @@ function postProcess($deps) {
     // sanitize data
     $dep['mep_lastName'] = utf8_ucwords_lower_trim($dep['mep_lastName']);
     $dep['mep_firstName'] = utf8_ucwords_lower_trim($dep['mep_firstName']);
+    $dep['mep_localParty'] = utf8_ucwords_lower_trim($dep['mep_localParty']);
     $dep['mep_faction'] = utf8_strtolower(trim($dep['mep_faction']));
 
     // remove strange chars (now just parenthesis)
