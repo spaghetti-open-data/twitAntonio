@@ -32,36 +32,16 @@ var mepModel = function() {
     return mepModel;
   }
 
-  // fetch mep records
-  // @todo Join this function using the global search method 
-  this.getMeps = function(options, callback) {
-	  
-    var Mongo = this.getModel();
-
-    // sort (http://stackoverflow.com/questions/11043026/variable-as-the-property-name-in-a-javascript-object-literal)
-    var sort = {};
-    sort[options.sort_attrib] = options.sort_type;
-
-    var q = Mongo.find({mep_twitterUrl: {$ne : ""}})
-            .limit(options.limit)
-            .sort(sort);
-    q.execFind(function(err, mep) {
-      if (err) {
-        //@todo we urgently need a robust error handlers
-        console.err('Fatal error, try again.').
-        process.exit(0);
-      }
-      callback(mep);
-    });
-  }
 
   /* Execute search */
   this.search = function(op, options, callback) {
     var sort = {};
     sort[options.sort_attrib] = options.sort_type;
-
     var Mongo = this.getModel();
-    var q = Mongo.find(op).sort(sort);
+    var q = Mongo.find(op)
+                 .skip(options.offset)
+                 .limit(options.limit)
+                 .sort(sort);
     
     q.execFind(function(err, mep) {
       if (err) {
@@ -86,18 +66,19 @@ var mepModel = function() {
   /* ricerca in base a criteri multipli .
    * TODO: sostituire i parametri con un oggetto options modificato solo nei campi interessati...
    */
-  this.findByCriteria = function(search, limit, offset, options, callback) {
+  this.findByCriteria = function(search, options, callback) {
     var op = {
 	    mep_fullName:  { $regex: search.name, $options: 'i' },
       // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
       mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
       mep_localParty: { $regex: search.localParty, $options: 'i' },
       parlamento:  { $regex: search.parlamento, $options: 'i' },
-	    mep_twitterUrl: { $ne : ""}
+	    mep_twitterUrl: { $ne : ""},
     };
     if (search.faction) {
        op['mep_faction'] = search.faction;
     }
+    console.log(options);
     this.search(op, options, callback);
   };
 }

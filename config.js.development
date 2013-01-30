@@ -70,10 +70,26 @@ var config = {
           'cs': "Centro Sinistra",
           'cd': "Centro Destra",
           's': "Sinistra",
-          '5s': "Movimento 5 Stelle",
+          '5s': "M5S",
+          'fare': "FARE"
   },
 
   parlamento: {"camera": "Camera", 
                "senato": "Senato"},
+
+  partiti: {"sel": "SEL",
+            "partito democratico": "PD",
+            "movimento 5 stelle": "Movimento 5 Stelle",
+            "Lista Monti": "Lista Monti",
+            "Partito Democratico": "Partito Democratico",
+            "Rivoluzione Civile": "Rivoluzione Civile",
+            "udc": "UDC",
+            "Fermare Il Declino": "Fare Per Fermare Il Declino",
+            "pdl": "PDL",
+            "Fratelli D'italia": "Fratelli D'italia",
+            "Lega Nord": "Lega Nord",
+            "fli": "FLI",
+            "Centro Democratico": "Centro Democratico",
+          }
 }
 module.exports = config;
