@@ -103,6 +103,8 @@ function postProcess($deps) {
     // sanitize data
     $dep['mep_lastName'] = utf8_ucwords_lower_trim($dep['mep_lastName']);
     $dep['mep_firstName'] = utf8_ucwords_lower_trim($dep['mep_firstName']);
+
+    // fix nomi partiti
     $dep['mep_localParty'] = utf8_ucwords_lower_trim($dep['mep_localParty']);
     $dep['mep_faction'] = utf8_strtolower(trim($dep['mep_faction']));
 

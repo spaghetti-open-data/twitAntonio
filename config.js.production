@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
-  db_collection: 'db12',
+  db_collection: 'db13',
   db_collection_users: 'users',
   db_collection_twitter: 'tweets',
   db_debug: 0,
@@ -76,5 +76,20 @@ var config = {
   
   parlamento: {"camera": "Camera", 
                "senato": "Senato"},
+               
+  partiti: {"sel": "SEL",
+            "partito democratico": "PD",
+            "movimento 5 stelle": "Movimento 5 Stelle",
+            "Lista Monti": "Lista Monti",
+            "Partito Democratico": "Partito Democratico",
+            "Rivoluzione Civile": "Rivoluzione Civile",
+            "udc": "UDC",
+            "Fermare Il Declino": "Fare Per Fermare Il Declino",
+            "pdl": "PDL",
+            "Fratelli D'italia": "Fratelli D'italia",
+            "Lega Nord": "Lega Nord",
+            "fli": "FLI",
+            "Centro Democratico": "Centro Democratico",
+          }
 }
 module.exports = config;

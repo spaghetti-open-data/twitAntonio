@@ -73,7 +73,7 @@
                         <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
-                    <div><small>In questo momento sono presenti <b><%= meps.length %></b> Candidati</small></div>
+                    <div>In questo momento sono presenti <strong style="color: #7bb33d;"><%= meps.length %> candidati </strong> </div>
                     <legend>Cerca il tuo candidato</legend>
                     <div class="control-group">
                         <!-- Search input-->
@@ -97,8 +97,17 @@
                         -->                
                         <div class="controls">
                             <label class="control-label">Partito</label>
+                            <!--
+                            <select class="input-medium" name="mep_localParty" id="dep_party">
+                              <option value="">- Seleziona -</option>      
+                                <%
+                                var partiti = config.partiti;
+                                for (var key in partiti) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.faction) ? "selected=\"selected\"" : '' %> > <%= partiti[key] %> </option>
+                              <% } %>
+                            </select>
+                            -->
                             <input type="text" name="mep_localParty" id="dep_party" placeholder="Partito" class="input-medium search-query" value="<%= (req.query.mep_localParty ? req.query.mep_localParty : '') %>">
-                                <p class="help-block"></p>
                         </div>
 
                         <!--
