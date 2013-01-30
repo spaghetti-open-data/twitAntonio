@@ -33,6 +33,11 @@ BODY
 {
 	display: none;
 }
+/*## NO MEDIA QUERY SUPPORT*/
+.no-mediaqueries .container-fluid
+{
+	min-width: 980px;
+}
 /*### TOP NAVBAR*/
 .navbar-fixed-top .container-fluid H1
 {
@@ -69,6 +74,37 @@ BODY
 #left-sidebar .sidebar-nav .form-actions BUTTON
 {
 	margin: 5px 8px 5px 0px;
+}
+/*### TWEET FLOW*/
+#tweet-flow
+{
+	margin-bottom: 1em;
+}
+#tweet-flow > H3
+{
+	font-family: Telex, sans-serif;
+	font-weight: normal;
+	font-size: 1.4em;
+	line-height: 1.2;
+	margin: 1em 0 0;
+	color: inherit;
+}
+/*twitter wall widget */
+#twtr-widget-1 .twtr-bd .twtr-timeline
+{
+	height: 400px;
+}
+#twtr-widget-1 .twtr-tweet-wrap .twtr-avatar
+{
+	float: left;
+	height: auto;
+	width: auto;
+	margin-right: 5px;
+	margin-top: 3px;
+}
+#twtr-widget-1 .twtr-tweet-wrap .twtr-tweet-text
+{
+	margin-left: 0;
 }
 /*### CONTENT*/
 #content .candidate
@@ -240,4 +276,9 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 }
 #content .candidate .popover .popover-inner .popover-content
 {
+}
+/*### FOOTER*/
+FOOTER
+{
+	text-align: center;
 }

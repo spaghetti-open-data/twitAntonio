@@ -60,6 +60,15 @@
 
 }
 
+@media (max-width: 767px) {
+    /* MEDIA QUERY DEBUG */
+    /* body::after{ content: "Media query (<= 767) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
+    #twtr-widget-1 .twtr-bd .twtr-timeline
+    {
+        height: 300px;
+    }
+}
+
 @media (max-width: 480px) {
     /* MEDIA QUERY DEBUG */
     /* body::after{ content: "Media query (< 480) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; } /* */
