@@ -36,7 +36,11 @@ var config = {
     mep_userId : String,
     mep_additionalProperties : String,
     mep_twitterUserName: String,
-    parlamento: String
+    parlamento: String,
+    mep_follower_count: Number,
+    mep_last_tweet_time: Date,
+    mep_last_tweet : String,
+    mep_tweet_count: Number
   }, {
     autoIndex : true
   }),
