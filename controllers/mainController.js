@@ -22,7 +22,8 @@ module.exports = function() {
          'sort_attrib': 'mep_lastName',
          'sort_type': 'asc'
        };
-        
+      
+      
        // get request parameters
        name = (req.query.mep_name ? req.query.mep_name : '');
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');

@@ -1,20 +1,4 @@
-  /**  
-  "mep_country": "PT",
-    "mep_emailAddress": "ines.zuber@europarl.europa.eu",
-    "mep_epFotoUrl": "http://www.europarl.europa.eu/mepphoto/111589.jpg",
-    "mep_epPageUrl": "",
-    "mep_facebookId": "",
-    "mep_facebookPageUrl": "",
-    "mep_faction": "UL",
-    "mep_firstName": "Inês Cristina",
-    "mep_lastName": "Zuber",
-    "mep_localParty": "Partido Comunista Português",
-    "mep_personalWebsite": "",
-    "mep_twitterUrl": "",
-    "mep_userId": "23132",
-    "mep_additionalProperties": "[{\"Member\":\"European Parliament\"},{\"Vice-Chair\":\"Committee on Employment and Social Affairs\"},{\"Substitute\":\"Committee on Industry, Research and Energy\"}]",
-    "mep_itemCount": 0
-  */
+
 
 var mepModel = function() {
   var mongoose = require('mongoose');
@@ -34,11 +18,12 @@ var mepModel = function() {
 
 
   /* Execute search */
-  this.search = function(op, options, callback) {
+  this.search = function(op, filters, options, callback) {
+	
     var sort = {};
     sort[options.sort_attrib] = options.sort_type;
     var Mongo = this.getModel();
-    var q = Mongo.find(op)
+    var q = Mongo.find(op, filters)
                  .skip(options.offset)
                  .limit(options.limit)
                  .sort(sort);
@@ -66,12 +51,12 @@ var mepModel = function() {
   /* ricerca in base a criteri multipli .
    * TODO: sostituire i parametri con un oggetto options modificato solo nei campi interessati...
    */
-  this.findByCriteria = function(search, options, callback) {
+  this.findByCriteria = function(search, filters, options, callback) {
     var op = {
-	    mep_fullName:  { $regex: search.name, $options: 'i' },
+	  mep_fullName:  { $regex: search.name, $options: 'i' },
       // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
-//      mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
-      mep_country: { $elemMatch :  { "indexTokens": {$regex : search.country, $options : 'i'} } },
+      mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
+//      mep_country: { $elemMatch :  { "indexTokens": {$regex : search.country, $options : 'i'} } },
       mep_localParty: { $regex: search.localParty, $options: 'i' },
       parlamento:  { $regex: search.parlamento, $options: 'i' },
 	    mep_twitterUrl: { $ne : ""},
@@ -79,7 +64,8 @@ var mepModel = function() {
     if (search.faction) {
        op['mep_faction'] = search.faction;
     }
-    this.search(op, options, callback);
+    this.search(op, filters, options, callback);
+    
   };
 }
 
