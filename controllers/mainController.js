@@ -28,7 +28,18 @@ module.exports = function() {
        localParty = (req.query.mep_localParty ? req.query.mep_localParty : '');
        country = (req.query.mep_country ? req.query.mep_country : '');
        faction = (req.query.faction ? req.query.faction : '');
-
+       
+       
+       var filters_names = (req.query.filters ? req.query.filters : '');
+       var filters = { _id: 0 };
+       if(filters_names !=''){
+    	   filters_names = filters_names.split(',');
+           for(f in filters_names) {
+        	   filters[filters_names[f]] = 1;
+           };
+       }
+       
+       
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
 
@@ -41,7 +52,7 @@ module.exports = function() {
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       meps = model.findByCriteria(search, options, function(meps) {
+       meps = model.findByCriteria(search, filters, options, function(meps) {
          meps = render.formatAdditional(meps);
          callback(meps);
        });
