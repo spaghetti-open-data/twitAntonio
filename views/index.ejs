@@ -138,6 +138,25 @@
                               <% } %>
                             </select>
                         </div>
+                        <!--
+                          Order by
+                        -->                
+                        <div class="controls">
+                            <label for="sorting" class="control-label">Ordina per:</label>
+                            <select class="input-medium" name="sorting" id="sorting">
+                              <option value="">- Non ordinato -</option>
+                             <%
+                                var sorting = config.sorting;
+                                for (var key in sorting) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.sorting) ? "selected=\"selected\"" : '' %> > <%= sorting[key] %> </option>
+                              <% } %>
+                            </select>
+                        </div>
+                        <div class="controls">
+                            <label class="checkbox">
+                                Ricerca inversa<input name="sort_type" type="checkbox">
+                            </label>
+                        </div>
                     </div>
                 
                     <div class="control-group">
@@ -256,9 +275,10 @@
                         </a>                    
                     </div>
 
-                    <!--
-                    <div class="tweet-count"><a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a></div> 
-                    -->
+                    <div class="tweet-count">
+                        <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Seguito da <%= meps[i].mep_follower_count ?  meps[i].mep_follower_count : 0  %> follower "><%= meps[i].mep_follower_count ? meps[i].mep_follower_count : 0 %></a>
+                        <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati <%= meps[i].mep_tweet_count ?  meps[i].mep_tweet_count : 0  %> tweet con #twitantonio"><%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count : 0 %></a>
+                    </div> 
                     
                     <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twitantonio" class="btn btn-success">Tweet
                     </a> 

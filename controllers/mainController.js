@@ -32,12 +32,31 @@ module.exports = function() {
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
 
+       // sorting methods:
+       sorting = (req.query.sorting ? req.query.sorting : '');
+       sorting_order = (req.query.sorting_order ? req.query.sorting_order : '');
+       // update options object to match the sort type:
+       if ( req.query.sort_type == "on" ) options['sort_type'] = 'desc';
+       if( sorting == 'name' ) options['sort_attrib'] = 'mep_lastName' ;
+       else if( sorting == 'party' ) options['sort_attrib'] = 'mep_localParty' ;
+       else if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
+       else if( sorting == 'tweets' ) options['sort_attrib'] = 'mep_tweet_count' ;
+       else if( sorting == 'followers' ) options['sort_attrib'] = 'mep_follower_count' ;
+       else if( sorting == 'lastTweet' ) options['sort_attrib'] = 'mep_last_tweet' ;
+       else{
+         var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
+         var idx = Math.floor( Math.random() * ( rndMethods.length ) );
+         var ascdesc = !! Math.round(Math.random() * 1);
+         options['sort_attrib'] = rndMethods[idx];
+         options['sort_type'] = (ascdesc?'asc':'desc');
+       }
+
        // search object
        var search = {'name': name, 
                      'localParty': localParty, 
                      'country': country, 
                      'parlamento': parlamento,
-                     'faction': faction
+                     'faction': faction,
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
