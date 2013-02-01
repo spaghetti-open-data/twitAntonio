@@ -36,9 +36,17 @@ module.exports = function() {
        sorting = (req.query.sorting ? req.query.sorting : '');
        sorting_order = (req.query.sorting_order ? req.query.sorting_order : '');
        // update options object to match the sort type:
+       if ( req.query.sort_type == "on" ) options['sort_type'] = 'desc';
        if( sorting == 'name' ) options['sort_attrib'] = 'mep_lastName' ;
-       if( sorting == 'faction' ) options['sort_attrib'] = 'mep_localParty' ;
-       if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
+       else if( sorting == 'party' ) options['sort_attrib'] = 'mep_localParty' ;
+       else if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
+       else{
+         var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
+         var idx = Math.floor( Math.random() * ( rndMethods.length ) );
+         var ascdesc = !! Math.round(Math.random() * 1);
+         options['sort_attrib'] = rndMethods[idx];
+         options['sort_type'] = (ascdesc?'asc':'desc');
+       }
 
        // search object
        var search = {'name': name, 
@@ -47,15 +55,10 @@ module.exports = function() {
                      'parlamento': parlamento,
                      'faction': faction,
                      };
-        // we want random elements by default...
-        var sort = false;
-        // ...unless search terms are not-empy.
-        if ( sorting != "" ) sort = true;
-        console.log( "sorting: "+sorting + " - " + sort );
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
        meps = model.findByCriteria(search, options, function(meps) {
-         meps = render.formatAdditional(meps,sort);
+         meps = render.formatAdditional(meps);
          callback(meps);
        });
     }
