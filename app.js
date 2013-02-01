@@ -56,6 +56,7 @@ app.get('/mappa', controllers.mainController().mapAction);
 app.get('/cos_e', controllers.mainController().cos_eAction);
 app.get('/credits', controllers.mainController().creditsAction);
 app.get('/help', controllers.mainController().helpAction);
+app.get('/video', controllers.mainController().videoAction);
 
 
 // API

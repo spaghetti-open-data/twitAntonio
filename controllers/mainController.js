@@ -104,7 +104,10 @@ module.exports = function() {
 
     helpAction: function (req, res) {
       res.render('help', { config: config, req: req});
-    }
+    },
+    videoAction: function (req, res) {
+      res.render('video', { config: config, req: req});
+    },
   };
   return self;
 }
