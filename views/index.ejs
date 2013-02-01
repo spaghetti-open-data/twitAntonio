@@ -23,7 +23,7 @@
                     <!-- <li><a href="<%= config.base_path %>mappa">Mappa</a></li> -->
 					<li><a href="<%= config.base_path %>cos_e">Info</a></li>
 					<li><a href="<%= config.base_path %>credits">Applausi</a></li>
-                    <li><a href="<%= config.base_path %>help">Sei candidato? Aggiunti il tuo nome!</a></li>
+                    <li><a href="<%= config.base_path %>help">Sei candidato? Aggiungi il tuo nome!</a></li>
                 </ul>
 
             <% if (config.twitter_auth) { %>
@@ -72,7 +72,7 @@
                     <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
-                    <div>In questo momento sono presenti <strong style="color: #7bb33d;"><%= meps.length %> candidati</strong></div>
+                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= meps.length %> </strong> candidati su <strong style="color: #FF0000;"> 3221 </strong> verificati</div>
                     <legend>Cerca il tuo candidato</legend>
                     <div class="control-group">
                         <!-- Search input-->
@@ -170,7 +170,7 @@
                 </form>
 
                 <div class="img-wr">
-                    <img src="<%= config.base_path %>images/votantonio.jpg" />
+                    <img src="<%= config.base_path %>images/votantonio_new.jpg" />
                 </div>
                 
                 <div id="tweet-flow">
@@ -178,7 +178,7 @@
                     <small>
                       <p>
                        <a href="https://twitter.com/search?q=%23twitantonio">#twitantonio</a>
-                       <a href="https://twitter.com/search?q=%23twpol13">#twpol13</a>
+                       <a href="https://twitter.com/search?q=%23twpol13">#elezioni2013</a>
                       </p>
                     </small>
                     <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
@@ -186,7 +186,7 @@
                     new TWTR.Widget({
                       version: 2,
                       type: 'search',
-                      search: '#twitantonio OR #twpol13',
+                      search: '#twitantonio OR #elezioni2013',
                       interval: 30000,
                       title: '',
                       subject: '',
