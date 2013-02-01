@@ -138,6 +138,20 @@
                               <% } %>
                             </select>
                         </div>
+                        <!--
+                          Order by
+                        -->                
+                        <div class="controls">
+                            <label for="sorting" class="control-label">Ordina per:</label>
+                            <select class="input-medium" name="sorting" id="sorting">
+                              <option value="">- Non ordinato -</option>
+                             <%
+                                var sorting = config.sorting;
+                                for (var key in sorting) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.sorting) ? "selected=\"selected\"" : '' %> > <%= sorting[key] %> </option>
+                              <% } %>
+                            </select>
+                        </div>
                     </div>
                 
                     <div class="control-group">

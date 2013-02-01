@@ -32,17 +32,26 @@ module.exports = function() {
        // specific for #twitantonio
        parlamento = (req.query.parlamento ? req.query.parlamento : '');
 
+       // sorting methods:
+       sorting = (req.query.sorting ? req.query.sorting : '');
+       sorting_order = (req.query.sorting_order ? req.query.sorting_order : '');
+       // update options object to match the sort type:
+       if( sorting == 'name' ) options['sort_attrib'] = 'mep_lastName' ;
+       if( sorting == 'faction' ) options['sort_attrib'] = 'mep_localParty' ;
+       if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
+
        // search object
        var search = {'name': name, 
                      'localParty': localParty, 
                      'country': country, 
                      'parlamento': parlamento,
-                     'faction': faction
+                     'faction': faction,
                      };
         // we want random elements by default...
         var sort = false;
         // ...unless search terms are not-empy.
-        Object.keys(search).forEach( function(k) { if ( search[k] != "" ) sort = true; } );
+        if ( sorting != "" ) sort = true;
+        console.log( "sorting: "+sorting + " - " + sort );
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
        meps = model.findByCriteria(search, options, function(meps) {
