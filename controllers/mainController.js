@@ -40,6 +40,9 @@ module.exports = function() {
        if( sorting == 'name' ) options['sort_attrib'] = 'mep_lastName' ;
        else if( sorting == 'party' ) options['sort_attrib'] = 'mep_localParty' ;
        else if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
+       else if( sorting == 'tweets' ) options['sort_attrib'] = 'mep_tweet_count' ;
+       else if( sorting == 'followers' ) options['sort_attrib'] = 'mep_follower_count' ;
+       else if( sorting == 'lastTweet' ) options['sort_attrib'] = 'mep_last_tweet' ;
        else{
          var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
          var idx = Math.floor( Math.random() * ( rndMethods.length ) );
