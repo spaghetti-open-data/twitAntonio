@@ -181,6 +181,11 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 {
 	margin-right: 4px;
 }
+
+#content .candidate .top-content .user_counters {
+	font-size: small;
+}
+
 #content .candidate .top-content .counter
 {
 	float: right;
@@ -190,6 +195,7 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 	cursor: help;
 	text-decoration: none;
 }
+
 #content .candidate .top-content .counter SPAN
 {
 	background: transparent url(../images/everything-spritev2.png) no-repeat -17px 0px;
@@ -253,10 +259,16 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 #content .candidate .bottom-content .more > A
 {
 }
+
+#content .candidate .bottom-content .tweet-count ul {
+	list-style: none;
+	font-size: small;
+}
+
 #content .candidate .bottom-content .tweet-count
 {
 	position: absolute;
-	top: 7px;
+	top: -5px;
 	right: 85px;
 	font-weight: bold;
 }
@@ -277,6 +289,8 @@ transform: scale(1.1) rotate(0deg) translateX(0px) translateY(0px) skewX(0deg) s
 #content .candidate .popover .popover-inner .popover-content
 {
 }
+
+
 /*### FOOTER*/
 FOOTER
 {

@@ -103,7 +103,7 @@ var config = {
             "country":"Circoscrizione",
             "tweets":"N°Tweet",
             "followers":"N°follower",
-            "lastTweet":"Data Ultimo Tweet"
+            //"lastTweet":"Data Ultimo Tweet"
           }
 }
 module.exports = config;

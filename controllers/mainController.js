@@ -36,20 +36,38 @@ module.exports = function() {
        sorting = (req.query.sorting ? req.query.sorting : '');
        sorting_order = (req.query.sorting_order ? req.query.sorting_order : '');
 
-       // update options object to match the sort type:
-       if ( req.query.sort_type == "on" ) options['sort_type'] = 'desc';
-       if( sorting == 'name' ) options['sort_attrib'] = 'mep_lastName' ;
-       else if( sorting == 'party' ) options['sort_attrib'] = 'mep_localParty' ;
-       else if( sorting == 'country' ) options['sort_attrib'] = 'mep_country' ;
-       else if( sorting == 'tweets' ) options['sort_attrib'] = 'mep_tweet_count' ;
-       else if( sorting == 'followers' ) options['sort_attrib'] = 'mep_follower_count' ;
-       else if( sorting == 'lastTweet' ) options['sort_attrib'] = 'mep_last_tweet' ;
-       else {
+       // update options object to match the sort type (use defaults values)
+       switch (sorting) {
+        case 'name': 
+          options['sort_attrib'] = 'mep_lastName';
+          options['sort_type'] = 'asc';
+          break;
+        case 'party': 
+          options['sort_attrib'] = 'mep_localParty';
+          options['sort_type'] = 'asc';
+          break;
+        case 'country':
+          options['sort_attrib'] = 'mep_country';
+          options['sort_type'] = 'asc';
+          break;
+        case 'tweets': 
+          options['sort_attrib'] = 'mep_tweet_count';
+          options['sort_type'] = 'desc';
+          break;
+        case 'followers': 
+          options['sort_attrib'] = 'mep_follower_count';
+          options['sort_type'] = 'desc';
+          break;
+        case 'lastTweet': 
+          options['sort_attrib'] = 'mep_last_tweet';
+          options['sort_type'] = 'desc';
+          break;
+        default: 
          var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
          var idx = Math.floor( Math.random() * ( rndMethods.length ) );
          var ascdesc = !! Math.round(Math.random() * 1);
          options['sort_attrib'] = rndMethods[idx];
-         options['sort_type'] = (ascdesc?'asc':'desc');
+         options['sort_type'] = (ascdesc ? 'asc' : 'desc');
        }
 
        // search object
