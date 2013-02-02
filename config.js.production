@@ -95,7 +95,7 @@ var config = {
             "fli": "FLI",
             "Centro Democratico": "Centro Democratico",
           }
-
+  ,
   
   sorting: {
             "name":"Nome",
