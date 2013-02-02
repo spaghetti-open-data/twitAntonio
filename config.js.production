@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var config = {
   db_host: 'localhost',
   db_name: 'twitAntonio',
-  db_collection: 'db14',
+  db_collection: 'db15',
   db_collection_users: 'users',
   db_collection_twitter: 'tweets',
   db_debug: 0,
@@ -98,12 +98,12 @@ var config = {
   ,
   
   sorting: {
-            "name":"Nome",
-            "party":"Partito",
-            "country":"Circoscrizione",
-            "tweets":"N°Tweet",
-            "followers":"N°follower",
-            //"lastTweet":"Data Ultimo Tweet"
+            "name": "Nome",
+            "party": "Partito",
+            "country": "Circoscrizione",
+            "tweets": "Numero di Tweet",
+            "followers": "Numero di Follower",
+            //"lastTweet": "Data Ultimo Tweet"
           }
 }
 module.exports = config;
