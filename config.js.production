@@ -95,5 +95,15 @@ var config = {
             "fli": "FLI",
             "Centro Democratico": "Centro Democratico",
           }
+
+  
+  sorting: {
+            "name":"Nome",
+            "party":"Partito",
+            "country":"Circoscrizione",
+            "tweets":"N°Tweet",
+            "followers":"N°follower",
+            "lastTweet":"Data Ultimo Tweet"
+          }
 }
 module.exports = config;
