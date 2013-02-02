@@ -177,3 +177,8 @@ db.once('open', function() {
       });
     });
 });
+
+// force disconnect to avoid infinit loop
+ setTimeout( function () {
+     mongoose.disconnect();
+  }, 5000);
