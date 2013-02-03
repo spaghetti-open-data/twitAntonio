@@ -149,7 +149,8 @@ db.once('open', function() {
 		      mep_twitterUrls = new Array();
 	        var url = "https://api.twitter.com/1.1/users/lookup.json";
 
-	        t.get(url, params, function(err, data) {
+        	counterRequest++;
+        	t.get(url, params, function(err, data) {
 	        	counterResponse++;
 	            if (err) {
 	                console.log(err);
