@@ -6,6 +6,7 @@ var config = {
   db_collection: 'db15',
   db_collection_users: 'users',
   db_collection_twitter: 'tweets',
+  db_collection_twitter11: 'tweet11_1',
   db_debug: 0,
   api_url: 'http://www.spaghettiopendata.org/convertCsvtoJson.php',
   app_title:       'TwitAntonio',
@@ -71,7 +72,7 @@ var config = {
   // Twitter Harvester Schema API 1.1
   tw_harvest_schema_1_1: {
     contributors : mongoose.Schema.Types.Mixed,
-  coordinates: mongoose.Schema.Types.Mixed,
+    coordinates: mongoose.Schema.Types.Mixed,
     created_at: Date,
     current_user_retweet : mongoose.Schema.Types.Mixed,
     entities: mongoose.Schema.Types.Mixed,

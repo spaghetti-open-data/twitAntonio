@@ -18,7 +18,7 @@ var db = mongoose.createConnection(config.db_host, config.db_name);
 db.on('error', console.error.bind(console, 'connection error:'));
 
 // Tweet Model object
-var TweetElement = db.model(config.db_collection_twitter, twschema);
+var TweetElement = db.model(config.db_collection_twitter11, twschema);
 
 // Twitter object
 var Twit = {
