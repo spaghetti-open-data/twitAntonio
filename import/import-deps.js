@@ -108,7 +108,7 @@ db.once('open', function() {
   // save/update handler
   function saveUpdate(remote_mep) {
     // udpate save the user
-    MepModel.findOne({mep_userId: remote_mep.mep_userId}, function(err, user) {
+    MepModel.findOne({mep_twitterUserName: remote_mep.mep_twitterUserName}, function(err, user) {
       if (err) { 
         console.error('Find users problems, please check mongodb connection.');
         process.exit(0);
@@ -121,7 +121,7 @@ db.once('open', function() {
       // existing user
       else {
         for (attr in remote_mep) {
-          if (attr != 'mep_userId') {
+          if (attr != 'mep_twitterUserName') {
             user.attr = remote_mep[attr];
           }
         }

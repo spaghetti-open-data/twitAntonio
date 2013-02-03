@@ -15,7 +15,8 @@
     "phpjs": "*",
     "everyauth": "git://github.com/bnoguchi/everyauth.git#express3",
     "mongoose-auth": "*",
-    "async": "*"
+    "async": "*",
+    "ntwitter": "*"
   },
   "subdomain": "paolomainardi.tweetyourmep",
   "engines": {
