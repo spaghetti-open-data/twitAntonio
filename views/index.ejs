@@ -73,7 +73,7 @@
                     <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
-                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= meps.length %> </strong> candidati su <strong style="color: #FF0000;"> 2841 </strong> verificati</div>
+                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= meps.length %> </strong> candidati su <strong style="color: #FF0000;"> 3221 </strong> verificati</div>
                     <legend>Cerca il tuo candidato</legend>
                     <div class="control-group">
                         <!-- Search input-->
@@ -139,6 +139,32 @@
                               <% } %>
                             </select>
                         </div>
+                        <!--
+                          Order by
+                        -->                
+                        <div class="controls">
+                            <label for="sorting" class="control-label">Ordina per:</label>
+                            <select class="input-medium" name="sorting" id="sorting">
+                              <option value="">- Non ordinato -</option>
+                             <%
+                                var sorting = config.sorting;
+                                for (var key in sorting) { %>
+                                  <option value="<%= key %>" <%= (key === req.query.sorting) ? "selected=\"selected\"" : '' %> > <%= sorting[key] %> </option>
+                              <% } %>
+                            </select>
+                        </div>
+                      
+                      <!-- 
+                       <div class="controls">
+                            <label for="sorting" class="control-label">Tipo ordinamento:</label>
+                            <select class="input-medium" name="sort_type" id="sort_type">
+                              <option value="">- Seleziona -</option>
+                              <option value="asc">  Crescente </option>
+                              <option value="desc">  Decrescente </option>
+                            </select>
+                        </div>
+                      -->
+                    
                     </div>
                 
                     <div class="control-group">
@@ -152,7 +178,7 @@
                 </form>
 
                 <div class="img-wr">
-                    <img src="<%= config.base_path %>images/votantonio.jpg" />
+                    <img src="<%= config.base_path %>images/votantonio_new.jpg" />
                 </div>
                 
                 <div id="tweet-flow">
@@ -160,7 +186,7 @@
                     <small>
                       <p>
                        <a href="https://twitter.com/search?q=%23twitantonio">#twitantonio</a>
-                       <a href="https://twitter.com/search?q=%23twpol13">#twpol13</a>
+                       <a href="https://twitter.com/search?q=%23twpol13">#elezioni2013</a>
                       </p>
                     </small>
                     <script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
@@ -168,7 +194,7 @@
                     new TWTR.Widget({
                       version: 2,
                       type: 'search',
-                      search: '#twitantonio OR #twpol13',
+                      search: '#twitantonio OR #elezioni2013',
                       interval: 30000,
                       title: '',
                       subject: '',
@@ -210,12 +236,24 @@
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
                         <img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>
                     </a>
-                    <!--
+                    
+                    <div class="user_counters">
+                       <a class="counter" href="javascript:void(0)" rel="tooltip" data-placement="top" title="<%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %> followers">
+                        <i class="icon-twitter"></i> <%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %>
+                      </a>
+                      <a class="counter" href="javascript:void(0)" rel="tooltip" data-placement="top" title="<%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %> tweet">
+                        <i class="icon-comments"></i> <%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %>
+                      </a>
+                    </div>
+
+                    <!-- Original implementation -->
+                     <!--
                     <a class="counter reply" href="javascript:void(0)" rel="tooltip" data-placement="top" title="5 risposte ricevute"><span></span>5</a>
                     -->
                     <!--
                     <a class="counter retweet" href="javascript:void(0)" rel="tooltip" data-placement="top" title="3 retweet ricevuti"><span></span>3</a>
                     -->
+                  
                 </div>
                 <div class="middle-content">
                     <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
@@ -257,8 +295,18 @@
                         </a>                    
                     </div>
 
+                    
                     <!--
-                    <div class="tweet-count"><a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Inviati 10 tweet con #twitantonio">10</a></div> 
+                    <div class="tweet-count">
+                      <ul>
+                        <li>
+                          <i class="icon-twitter"></i> <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Seguito da <%= meps[i].mep_follower_count ?  meps[i].mep_follower_count_format : 0  %> follower "><%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %></a> 
+                        </li>
+                        <li> 
+                          <i class="icon-comments"></i> <a href="javascript:void(0)" rel="tooltip" data-placement="top" title="Numero di tweet inviati <%= meps[i].mep_tweet_count ?  meps[i].mep_tweet_count_format : 0  %>"><%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %></a>
+                        </li>
+                      </ul>
+                    </div> 
                     -->
                     
                     <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twitantonio" class="btn btn-success">Tweet
