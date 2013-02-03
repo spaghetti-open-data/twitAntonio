@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Twittantonio widget</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+<link href="http://www.twitantonio.it/bootstrap/css/bootstrap-cerulean.min.css" rel="stylesheet">
+<link href="http://www.twitantonio.it/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<style type="text/css">
+/* TODO STILI */
+
+form[id='widget_sod'] fieldset legend {
+	font-variant:small-caps; font-size: 1.2em; line-height: 1em;
+	text-align: left;
+}
+form * {
+	margin: 4px 0px;
+}
+.selected_deps {
+	font-variant:small-caps; font-size: 0.7em; line-height: 1em;
+}
+
+.ui-autocomplete {
+	position: absolute; cursor: default; z-index:30 !important;
+}
+/*
+
+*/
+.ui-autocomplete {
+	max-width: 180px;
+	max-height: 100px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.ui-autocomplete-category {
+	font-weight: bold;
+	padding: .2em .4em;
+    margin: 0px 0px;
+    line-height: 0.8em;
+}
+		
+</style>
+
+<script>
+
+/* 
+ * TODO:
+ * - rifattorizzare il widget in un file a parte e gestendo bene options, extends, prototype (se serve), etc
+ * - correzione bug: resta selezionato l'ultimo item trovato, invece di quello appena selezionato
+ * - correzione bug: selezionare il campo opportuno quando avviene la selezione
+ * - aggiunta invio tweet multiplo: basterò un ciclo for sugli items, e poi chiamare le intents (in caso vedi OLD/widget oppure homepage)
+ * - sistemare CSS qui e lì
+ */ 
+$(function() {
+	
+	$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		
+		
+		options: {
+			url: "/api/meps/",
+			delay: 400,
+			view: "twitter",
+			source : function(request, response) {
+				
+				var self = this;
+				
+				var field_name = this.element.attr('id');
+	            				
+				$.ajax({
+					url : self.options.url,
+					type: "GET",
+					datatype : "json",
+					data : {
+						mep_name : $('#candidato').val(),
+						mep_country : $('#regione').val(),
+						mep_localParty : $('#lista').val(),
+						filters : 'mep_twitterUserName,mep_country,mep_fullName,mep_localParty',
+					},
+					success : function(data) {
+						
+						response($.map(data, function(item) {
+							
+							$('#candidato_twitter').val(item.mep_twitterUserName);
+
+							return {
+								label: item.mep_fullName,
+								value: item.mep_fullName,
+								party: item.mep_localParty,
+								twitter: item.mep_twitterUserName
+							}
+
+						}));
+						
+					},
+					
+					select: function(){
+						$('#candidato_twitter').val('NO!');
+					}
+				})
+			}
+		},
+		
+		_renderMenu: function( ul, items ) {
+			
+			var self = this;
+			var currentCategory = "";
+			$.each( items, function( index, item ) {
+				if ( item.party != currentCategory ) {
+					ul.append( "<li class='ui-autocomplete-category'>" + item.party + "</li>" );
+					currentCategory = item.party;
+				}
+				self._renderItemData( ul, item );
+			});
+		}
+	});
+	
+	
+	
+	//TODO: cache dei risultati (item) già recuperati
+	$('#candidato').catcomplete({
+		url: "http://localhost:3000/api/meps/",
+	});
+	$('#regione').catcomplete({
+		url: "http://localhost:3000/api/meps/",
+	});
+
+});
+		
+	
+</script>
+
+</head>
+<body>
+
+	
+<div id="widget-sidebar" class="well span3">
+
+         
+	<form id="widget_sod" class="ui-widget form-vertical control-group">
+	    
+	    <fieldset class="controls">
+	    	<legend>twittantonio</legend>
+	    	<input type="text" id="candidato_twitter" name="candidato_twitter" class="input-medium search-query"  />
+	    	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
+	    	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
+	    	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
+	    	
+	    	<input type="text" id="hashtag" name="hashtag" placeholder="#twittantonio" disabled="disabled" class="input-medium search-query" value="" />
+	    	<input type="text" id="campagna" name="campagna" placeholder="#OPENDATA" class="input-medium search-query" value="" />
+			<a id="twitAntonio-send" href="http://twitter.com/intent/tweet/?text=&hashtags=twitantonio" class="btn btn-primary" target="_blank">tweet</a>
+	
+			<input type="submit" id="reset" class="btn btn-inverse" value="reset" />
+	
+	    </fieldset>
+	    
+	</form>
+
+</div>
+
+<!-- https://twitter.com/intent/tweet/?text=@seralf&hashtags=tweetyourmep,prova&original_referer=http://apps.spaghettiopendata.org/tweetyourmep	 -->
+	
+	
+</body>
+</html>

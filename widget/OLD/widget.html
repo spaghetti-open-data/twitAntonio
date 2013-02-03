@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Twittantonio widget</title>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+<link href="http://www.twitantonio.it/bootstrap/css/bootstrap-cerulean.min.css" rel="stylesheet">
+<link href="http://www.twitantonio.it/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+<style type="text/css">
+/* TODO STILI */
+
+form[id='widget_sod'] fieldset legend {
+	font-variant:small-caps; font-size: 1.2em; line-height: 1em;
+	text-align: left;
+}
+form * {
+	margin: 4px 0px;
+}
+.selected_deps {
+	font-variant:small-caps; font-size: 0.7em; line-height: 1em;
+}
+
+.ui-autocomplete {
+	position: absolute; cursor: default; z-index:30 !important;
+}
+		
+</style>
+
+<script>
+	$(function() {
+
+		$('#reset').click(fillForm({
+			mep_fullName: '',
+			mep_country: '',
+			mep_localParty: '',
+			mepTwitterUserName: '',
+			campagna: ''
+		}));
+		
+		var selected_items = new Array();
+		
+		$('#twitAntonio-send').click(function(){
+			var href = $(this).attr('href');
+			var href_new = href.substr(0, href.indexOf('?'));
+			var candidato = $('#candidato_twitter').val();
+			var campagna = $('#campagna').val();
+			
+			href_new = href_new + '?';			
+			if(candidato != undefined && candidato != "") href_new = href_new + '&text=@' + candidato;
+			href_new = href_new + '&hashtags=twitantonio';
+			if(campagna !== undefined && campagna != "") href_new = href_new + ', ' + campagna;
+			
+			$('#twitAntonio-send').attr('href', href_new);
+		});
+		
+		function fillForm(item){
+			$('#candidato').val(item.mep_fullName);
+			$('#regione').val(item.mep_country);
+			$('#lista').val(item.mep_localParty);
+			$('#candidato_twitter').val(item.mep_twitterUserName);
+		}
+		
+		$('#candidato, #regione, #lista').autocomplete({
+			
+			source : function(request, response) {
+				
+				var self = $(this);
+				
+				$.ajax({
+					url : "http://www.twitantonio.it/api/meps/",
+					datatype : "json",
+					data : {
+						mep_fullName : $('#candidato').val(),
+						mep_country : $('#regione').val(),
+						mep_localParty : $('#lista').val(),
+						campagna : $('#campagna').val()
+					},
+					success : function(data) {
+						
+						response($.map(data, function(item) {
+							console.debug(item);
+							return {
+								label: item.mep_fullName + ' ['+item.mep_country+'] ' + item.mep_localParty,
+								value: fillForm(item)
+							}
+						}));
+						
+					}
+				})
+			},
+			minLength: 3,
+			select : function(event, ui) {
+				// TODO this.close;
+			},
+			open: function(data) {
+				// TODO this.close;
+			},
+			close: function(data) {
+				// TODO this.close;
+			},
+			change: function(event, ui) {
+				// TODO this.close;
+			}
+		});
+
+	});
+		
+	
+</script>
+
+</head>
+<body>
+
+	
+<div id="widget-sidebar" class="well span3">
+
+         
+	<form id="widget_sod" class="ui-widget form-vertical control-group">
+	    
+	    <fieldset class="controls">
+	    	<legend>twittantonio</legend>
+	    	<input type="hidden" id="candidato_twitter" name="candidato_twitter" />
+	    	<input type="text" id="candidato" name="candidato" placeholder="Nome" class="input-medium search-query" value="" />
+	    	<input type="text" id="regione" name="regione" placeholder="(es: Lazio)" class="input-medium search-query" value="" />
+	    	<input type="text" id="lista" name="lista" placeholder="Lista" class="input-medium search-query" value="" />
+	    	
+	    	<input type="text" id="hashtag" name="hashtag" placeholder="#twittantonio" disabled="disabled" class="input-medium search-query" value="" />
+	    	<input type="text" id="campagna" name="campagna" placeholder="#campagna" class="input-medium search-query" value="" />
+			<a id="twitAntonio-send" href="http://twitter.com/intent/tweet/?text=&hashtags=twitantonio" class="btn btn-primary" target="_blank">tweet</a>
+	
+			<button id="reset" class="btn btn-inverse">reset</button>
+	
+	    </fieldset>
+	    
+	</form>
+
+</div>
+
+<!-- https://twitter.com/intent/tweet/?text=@seralf&hashtags=tweetyourmep,prova&original_referer=http://apps.spaghettiopendata.org/tweetyourmep	 -->
+	
+	
+</body>
+</html>
