@@ -126,16 +126,23 @@ db.once('open', function() {
     var counter = 0;
     var counterInGroup = 0;
     var group = 0;
-    var counterResponse = 0;
+    var counterResponseItems = 0;
     var countResponseDiff = 0;
-    MepModel.find({/*"mep_follower_count" :  { $ne: "" }*/}, function(err, meps) { 
+    var counterResponse = 0;
+    var counterRequest = 0;
+    var option = {};
+    if(process.argv.length == 3){
+    	option = {"mep_follower_count" : {$not : {$gt : -1}}};
+    }
+    
+    MepModel.find(option, function(err, meps) { 
       count = meps.length;
       mep_twitterUrls = new Array();
       meps.forEach(function(i) {
-    	mep_twitterUrls[group] = i.mep_twitterUrl;
+      	mep_twitterUrls[group] = i.mep_twitterUserName;
       	group++;
     	counterInGroup++;
-		if(group == 99 || meps.length-counterInGroup == 0){
+		if(group == 100 || meps.length-counterInGroup == 0){
 			console.log("group: " + group);
 			console.log("remains: " + (meps.length-counterInGroup));
 	    	var params = {screen_name : mep_twitterUrls.join(',')};
@@ -143,15 +150,21 @@ db.once('open', function() {
 	        var url = "https://api.twitter.com/1.1/users/lookup.json";
 
 	        t.get(url, params, function(err, data) {
+	        	counterResponse++;
 	            if (err) {
 	                console.log(err);
 		            counter = counter+100; 
+    	            if (counter == meps.length || counterRequest == counterResponse) {
+	    	              console.log('Imported: ' + counterResponseItems + ' extra info.');
+	    	              mongoose.disconnect(); 
+	    	              process.exit();
+	    	            }
 	              }
 	            else{
-            		counterResponse += data.length;
-            		countResponseDiff = countResponseDiff+(group-data.length);
+	            	counterResponseItems += data.length;
+	            	countResponseDiff = countResponseDiff+(group-data.length);
 	            	data.forEach(function(user) {
-	    	              MepModel.findOneAndUpdate({"mep_twitterUrl" :  user.screen_name }, {
+	    	              MepModel.findOneAndUpdate({"mep_twitterUserName" :  { $regex : "^" + user.screen_name + "$", $options: 'i' }}, {
 	 	            		   "mep_follower_count" : user.followers_count,
 	 	           		       "mep_last_tweet_time" : (typeof(user.status) != "undefined" && typeof(user.status.created_at) !== "undefined") ? user.status.created_at : null,
 	 	        		       "mep_last_tweet" : (typeof(user.status) != "undefined" && typeof(user.status.text) !== "undefined") ? user.status.text : null,
@@ -159,10 +172,10 @@ db.once('open', function() {
 	 	            		},
 	 	            		function(err) {
 			    	            counter++; 
-			    	            if (counter == meps.length || meps.length-counterResponse-countResponseDiff == 0) {
-			    	              console.log('Imported: ' + counterResponse + ' extra info.');
-			    	              mongoose.disconnect(); 
-			    	              process.exit();
+			    	            if (counter == meps.length || counterRequest == counterResponse) {
+				    	              console.log('Imported: ' + counterResponseItems + ' extra info.');
+				    	              mongoose.disconnect(); 
+				    	              process.exit();
 			    	            }
 			    	          });
 	 	            		}
