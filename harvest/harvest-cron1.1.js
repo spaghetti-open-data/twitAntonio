@@ -4,7 +4,7 @@ var credentials = require('../config_twitter.js');
 var config = require('../config.js');
 
 // mapped 1-1 to Twitter object
-var twschema = new mongoose.Schema(config.tw_harvest_schema, {autoindex: true});
+var twschema = new mongoose.Schema(config.tw_harvest_schema_1_1, {autoindex: true});
 
 var t = new twitter({
     consumer_key: credentials.twit_consumer_key,
