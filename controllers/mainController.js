@@ -17,7 +17,7 @@ module.exports = function() {
        } 
 
       options = { 
-         'limit': (req.query.limit ? req.query.limit : 2000),
+         'limit': (req.query.limit ? req.query.limit : 15),
          'offset': (req.query.offset ? req.query.offset : 0),
          'sort_attrib': 'mep_lastName',
          'sort_type': 'asc'
