@@ -17,7 +17,7 @@ module.exports = function() {
        } 
 
       options = { 
-         'limit': (req.query.limit ? req.query.limit : 15),
+         'limit': (req.query.limit ? req.query.limit : 30),
          'offset': (req.query.offset ? req.query.offset : 0),
          'sort_attrib': 'mep_lastName',
          'sort_type': 'asc'
@@ -124,7 +124,6 @@ module.exports = function() {
         }
       }
       internal.filter(req, res, function(meps, count) {
-        console.log(count);
         res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
       });
     },
