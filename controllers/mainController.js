@@ -79,9 +79,9 @@ module.exports = function() {
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       meps = model.findByCriteria(search, options, function(meps) {
+       meps = model.findByCriteria(search, options, function(meps, count) {
          meps = render.formatAdditional(meps);
-         callback(meps);
+         callback(meps, count);
        });
     }
   }
@@ -123,8 +123,9 @@ module.exports = function() {
           user = req.user.twit;
         }
       }
-      internal.filter(req, res, function(meps) {
-        res.render('index', { config: config, meps: meps, req: req, user: user});
+      internal.filter(req, res, function(meps, count) {
+        console.log(count);
+        res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
       });
     },
 

@@ -35,6 +35,7 @@ var mepModel = function() {
 
   /* Execute search */
   this.search = function(op, options, callback) {
+    var that = this; // proxy
     var sort = {};
     sort[options.sort_attrib] = options.sort_type;
     var Mongo = this.getModel();
@@ -49,7 +50,21 @@ var mepModel = function() {
         console.err('Fatal error, try again.').
         process.exit(0);
       }
-      callback(mep);
+      // get all counter
+      that.countAll(mep, callback);
+    });
+  }
+
+  this.countAll = function(mep, callback) {
+    var Mongo = this.getModel();
+    var q = Mongo.find();
+    q.count(function(err, count) {
+      if (err) {
+        //@todo we urgently need a robust error handlers
+        console.err('Fatal error, try again.').
+        process.exit(0);
+      }
+      callback(mep, count);
     });
   }
 
