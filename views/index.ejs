@@ -262,7 +262,8 @@
                 </div>
                 <div class="middle-content">
                     <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
-                        <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
+                        <!-- <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" /> -->
+                        <img width="73" height="73" src="<%= meps[i].mep_epFotoUrl %>" class="photo img-rounded" />
                     </a>
                     <noscript>
                         <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">

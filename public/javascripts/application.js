@@ -21,10 +21,12 @@
         });
 
         // Lazy load images
+        /*
         $("img.lazy").show().lazyload({
             effect : "fadeIn",
             threshold : 500
         });
+        */
     
         // Reset button
         $("button.btn-reset").click(function() {
@@ -83,12 +85,15 @@
             navSelector  : "div.navigation", // selector for the paged navigation (it will be hidden)
             nextSelector : "div.navigation a", // selector for the NEXT link (to page 2)
             itemSelector : "#content article.candidate", // selector for all items you'll retrieve
-            path: getNextUrl
+            path: getNextUrl,
+            bufferPX: 20,
+            loading: {
+              msgText: '<i class="icon-spinner icon-spin icon-2x pull-left"></i>',
+              finishedMsg: 'Caricamento finito',
+              img: base + "images/grey.gif",
+            }
         }, function() {
-          $(this).show().lazyload({
-            effect : "fadeIn",
-            threshold : 500
-          });
+         //callback if needed
         });
 
     })
