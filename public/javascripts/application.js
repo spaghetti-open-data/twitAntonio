@@ -84,6 +84,11 @@
             nextSelector : "div.navigation a", // selector for the NEXT link (to page 2)
             itemSelector : "#content article.candidate", // selector for all items you'll retrieve
             path: getNextUrl
+        }, function() {
+          $("img.lazy").show().lazyload({
+            effect : "fadeIn",
+            threshold : 500
+          });
         });
 
     })
