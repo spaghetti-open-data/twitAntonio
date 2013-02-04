@@ -64,7 +64,8 @@
         // infinite scroll
         var count = 0;
         function getNextUrl(){
-            var baseurl = location.href.slice(location.origin.length);
+            var origin = window.location.protocol + "//" + window.location.host;
+            var baseurl = location.href.slice(origin.length);
             var patt = /\?offset=(\d+)/;
             var offset = patt.exec( baseurl )
             if (!offset) { 
