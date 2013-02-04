@@ -66,16 +66,17 @@
     })
 }(window.jQuery)
 
-var count = 1;
+var count = 0;
 function getNextUrl(){
     var baseurl = location.href.slice(location.origin.length);
     var patt = /\?offset=(\d+)/;
     var offset = patt.exec( baseurl )
-    var ret = "";
-    if(! offset ) ret = baseurl+"&offset=" + (15*count);
-    else ret = baseurl.replace( patt, "&offset="+(offset+15*count));
+    if(! offset ){ 
+        baseurl = (baseurl!="/"?baseurl+"&":"?")+ "offset=" + (15*count);
+    } else 
+        baseurl = baseurl.replace( patt, "&offset="+(offset+15*count));
     count ++;
-    return ret;
+    return baseurl;
 }
 
 $(document).ready( function(){
@@ -85,9 +86,6 @@ $(document).ready( function(){
         navSelector  : "div.navigation", // selector for the paged navigation (it will be hidden)
         nextSelector : "div.navigation a", // selector for the NEXT link (to page 2)
         itemSelector : "#content article.candidate", // selector for all items you'll retrieve
-        debug: true,
         path: getNextUrl
-    },function(){ 
-         $("div.navigation a:first").attr('href',getNextUrl());
     });
 });
