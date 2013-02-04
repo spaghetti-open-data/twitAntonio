@@ -79,7 +79,6 @@ module.exports = function() {
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       console.log(search,options);
        meps = model.findByCriteria(search, options, function(meps) {
          meps = render.formatAdditional(meps);
          callback(meps);
