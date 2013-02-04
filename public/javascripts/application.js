@@ -71,8 +71,10 @@ function getNextUrl(){
     var baseurl = location.href.slice(location.origin.length);
     var patt = /\?offset=(\d+)/;
     var offset = patt.exec( baseurl )
-    if(! offset ) baseurl = baseurl+"&offset=" + (15*count);
-    else baseurl = baseurl.replace( patt, "&offset="+(offset+15*count));
+    if(! offset ){ 
+        baseurl = (baseurl!="/"?baseurl+"&":"?")+ "offset=" + (15*count);
+    } else 
+        baseurl = baseurl.replace( patt, "&offset="+(offset+15*count));
     count ++;
     return baseurl;
 }
