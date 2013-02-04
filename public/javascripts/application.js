@@ -85,7 +85,7 @@
             itemSelector : "#content article.candidate", // selector for all items you'll retrieve
             path: getNextUrl
         }, function() {
-          $("img.lazy").show().lazyload({
+          $(this).show().lazyload({
             effect : "fadeIn",
             threshold : 500
           });
