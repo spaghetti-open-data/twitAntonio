@@ -37,10 +37,14 @@ TweetElement.find({},function(err, tweets) {
 		console.log('No tweet duplicated founded');
 		process.exit(1);
 	}
+	if(process.argv.length == 3 && process.argv[2] == "count"){
+		console.log(totaltweetsDuplicatedLength + ' tweet duplicated founded');
+		process.exit(1);
+	}
 	for(var idtweet in totaltweets){
 		if(totaltweets[idtweet] > 1){
 			console.log(idtweet + " : " + totaltweets[idtweet]);
-			/*
+			
 			TweetElement.findOneAndRemove({id : idtweet},{},function(err,items){
 				totalRemoved++;
 				if(totalRemoved+total == totaltweetsLength){
@@ -48,7 +52,7 @@ TweetElement.find({},function(err, tweets) {
 					process.exit(1);
 				}
 			});
-			*/
+			
 		}
 		else{
 			total++
