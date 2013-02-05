@@ -11,14 +11,17 @@
         });
     
         // Bootstrap popover behaviour
-        $('a[rel=popover]').popover({
-            content: function() { 
-                var idx = $(this).parents('article').index();
-                return $('#popover-' + idx).html(); 
-            }
-        }).click(function(e) {
-            e.preventDefault();
-        });
+        this.popup = function() {
+          $('a[rel=popover]').popover({
+              content: function() { 
+                  var idx = $(this).parents('article').index();
+                  return $('#popover-' + idx).html(); 
+              }
+          }).click(function(e) {
+              e.preventDefault();
+          });
+        }
+        this.popup();
 
         // Lazy load images
         /*
@@ -65,6 +68,7 @@
 
         // infinite scroll
         var count = 0;
+        var that = this;
         function getNextUrl(){
             var origin = window.location.protocol + "//" + window.location.host;
             var baseurl = location.href.slice(origin.length);
@@ -93,7 +97,8 @@
               img: base + "images/grey.gif",
             }
         }, function() {
-         //callback if needed
+          // callback
+          that.popup();
         });
 
     })
