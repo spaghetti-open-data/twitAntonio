@@ -18,7 +18,7 @@ var db = mongoose.createConnection(config.db_host, config.db_name);
 db.on('error', console.error.bind(console, 'connection error:'));
 
 // Tweet Model object
-var TweetElement = db.model(config.db_collection_twitter, twschema);
+var TweetElement = db.model(config.db_collection_twitter_1_1, twschema);
 
 // Twitter object
 var Twit = {
@@ -48,11 +48,15 @@ var TwitStore = {
   },
   'save' : function(remote_tweet, callback) {
 
-	  TweetElement.findOne({id: remote_tweet.id}, function(err, tweet) {
+	  TweetElement.findOneAndUpdate({id: remote_tweet.id},remote_tweet,{upsert : true}, function(err, tweet) {
 	        if (err) { 
-	          console.error('Find users problems, please check mongodb connection.');
+	          console.error('Find tweets problems, please check mongodb connection.');
 	          process.exit(0);
 	        }
+	        else{
+	              callback(err, tweet);
+	        }
+	        /*
 	        // new tweet
 	        if (!tweet) {
 	        	tweet = new TweetElement(remote_tweet);
@@ -69,6 +73,7 @@ var TwitStore = {
 	              callback(err, type);
 	            });
 	        }
+	        */
 	      });
 	  
   },
