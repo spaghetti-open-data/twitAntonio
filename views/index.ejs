@@ -236,6 +236,10 @@
           <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
             <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
+                <div class="popover-content" style="display: none"> 
+                  <%- meps[i].formatted_properties %>
+                </div>
+
                 <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
                 <div class="top-content">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
@@ -330,11 +334,4 @@
             <p>&copy; Spaghetti Open Data </p>
         </footer>
 </div><!--/.fluid-container-->
-<div  class="popovers-content" style="display: none">
-<% for (var i = 0; i < meps.length; i++) { %>
-   <div id="popover-<%= i %>"> 
-      <%- meps[i].formatted_properties %>
-   </div>
-<% } %> 
-</div>
 <% include includes/footer %>

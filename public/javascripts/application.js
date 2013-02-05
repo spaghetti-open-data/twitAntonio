@@ -14,8 +14,9 @@
         this.popup = function() {
           $('a[rel=popover]').popover({
               content: function() { 
-                  var idx = $(this).parents('article').index();
-                  return $('#popover-' + idx).html(); 
+                  var html = $(this).parents('article').find('div.popover-content').html();
+                  return html;
+                  //return $('#popover-' + idx).html(); 
               }
           }).click(function(e) {
               e.preventDefault();
