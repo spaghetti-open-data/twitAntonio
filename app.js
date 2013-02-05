@@ -32,7 +32,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser(config.app_secret));
-  app.use(express.session());
+  app.use(express.session({store: express.session.MemoryStore()}));
 
   // user mongooseAuth middleware if twitter_auth is active
   if (config.twitter_auth) {

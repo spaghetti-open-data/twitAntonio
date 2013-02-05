@@ -12,8 +12,8 @@ module.exports = function() {
     filter: function(req, res, callback) {
        if (config.app_debug){
          console.log("-------------------------------------------------------")
-         console.log(req.query)
-         console.log("-------------------------------------------------------")          
+         console.log(req.query);
+         console.log("-------------------------------------------------------")
        } 
 
       options = { 
@@ -63,11 +63,22 @@ module.exports = function() {
           options['sort_type'] = 'desc';
           break;
         default: 
-         var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
-         var idx = Math.floor( Math.random() * ( rndMethods.length ) );
-         var ascdesc = !! Math.round(Math.random() * 1);
-         options['sort_attrib'] = rndMethods[idx];
-         options['sort_type'] = (ascdesc ? 'asc' : 'desc');
+          // if empty req, then randomize, use it and remember it.
+          if( !Object.keys(req.query).length ){
+            console.log("query empty randomize");
+            var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
+            var idx = Math.floor( Math.random() * ( rndMethods.length ) );
+            var ascdesc = !! Math.round(Math.random() * 1);
+            options['sort_attrib'] = rndMethods[idx];
+            options['sort_type'] = (ascdesc ? 'asc' : 'desc');
+            req.session.search = {attrib:options['sort_attrib'],type:options['sort_type']};
+          }
+          else {
+            console.log("query not empty");
+            // already got a search, retrieve it
+            options['sort_attrib'] = req.session.search.attrib;
+            options['sort_type'] = req.session.search.type;
+          }
        }
 
        // search object
