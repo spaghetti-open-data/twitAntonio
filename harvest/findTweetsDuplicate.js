@@ -11,7 +11,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 
 //Tweet Model object
-var TweetElement = db.model(config.db_collection_twitter_1_1, twschema);
+var TweetElement = db.model(config.db_collection_twitter11, twschema);
 var totaltweets = new Array();
 var total = 0;
 var totalRemoved = 0;
