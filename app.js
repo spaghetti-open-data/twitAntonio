@@ -8,7 +8,8 @@ var express = require('express')
   , user = require('./controllers/user')
   , http = require('http')
   , path = require('path')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , mongoStore = require('connect-mongo')(express);
 
 // bootstrap the app!
 var app = express();
@@ -32,7 +33,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser(config.app_secret));
-  app.use(express.session());
+  app.use(express.session({store: new mongoStore({db:config.db_name})}));
 
   // user mongooseAuth middleware if twitter_auth is active
   if (config.twitter_auth) {
