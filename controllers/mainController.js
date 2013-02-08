@@ -64,20 +64,26 @@ module.exports = function() {
           break;
         default: 
           // if empty req, then randomize, use it and remember it.
-          if( !Object.keys(req.query).length ){
-            console.log("query empty randomize");
-            var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
+          if( !Object.keys(req.query).length ) {
+            var rndMethods = ['mep_lastName', 'mep_firstName', 'mep_localParty', 'mep_country', 'mep_tweet_count', 'mep_follower_count'];
             var idx = Math.floor( Math.random() * ( rndMethods.length ) );
             var ascdesc = !! Math.round(Math.random() * 1);
             options['sort_attrib'] = rndMethods[idx];
             options['sort_type'] = (ascdesc ? 'asc' : 'desc');
-            req.session.search = {attrib:options['sort_attrib'],type:options['sort_type']};
+            req.session.search = {attrib:options['sort_attrib'], type:options['sort_type']};
+            if (config.app_debug) {
+              console.log("query empty randomize");
+              console.log(options);
+            }
           }
           else {
-            console.log("query not empty");
             // already got a search, retrieve it
             options['sort_attrib'] = req.session.search.attrib;
             options['sort_type'] = req.session.search.type;
+            if (config.app_debug) {
+              console.log("query not empty");
+              console.log(options);
+            }
           }
        }
 
