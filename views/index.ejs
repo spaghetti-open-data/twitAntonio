@@ -74,7 +74,7 @@
                     <strong>Cerca #twitantonio</strong>
                 </a>
                 <form class="form-vertical">
-                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= meps.length %> </strong> candidati su <strong style="color: #FF0000;"> 3221 </strong> verificati</div>
+                    <div>In questo momento sono presenti gli account twitter di <strong style="color: #FF0000;"><%= count %> </strong> candidati su <strong style="color: #FF0000;"> 3590 </strong> verificati (a mano)</div>
                     <legend>Cerca il tuo candidato</legend>
                     <div class="control-group">
                         <!-- Search input-->
@@ -228,10 +228,18 @@
             </div>
         </div> <!--/sidebar -->
 
+        <!-- this div is handled by jquery-infinite-scroll - do not touch by hand :P -->
+        <div class="navigation">
+          <a id="nextPage" href="/?limit=20"></a> 
+        </div>
         <section id="content" class="span9">  
           <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
             <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
+                <div class="popover-content" style="display: none"> 
+                  <%- meps[i].formatted_properties %>
+                </div>
+
                 <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
                 <div class="top-content">
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
@@ -258,7 +266,8 @@
                 </div>
                 <div class="middle-content">
                     <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
-                        <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" />
+                        <!-- <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" /> -->
+                        <img width="73" height="73" src="<%= meps[i].mep_epFotoUrl %>" class="photo img-rounded" />
                     </a>
                     <noscript>
                         <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">
@@ -325,11 +334,4 @@
             <p>&copy; Spaghetti Open Data </p>
         </footer>
 </div><!--/.fluid-container-->
-<div  class="popovers-content" style="display: none">
-<% for (var i = 0; i < meps.length; i++) { %>
-   <div id="popover-<%= i %>"> 
-      <%- meps[i].formatted_properties %>
-   </div>
-<% } %> 
-</div>
 <% include includes/footer %>

@@ -12,12 +12,12 @@ module.exports = function() {
     filter: function(req, res, callback) {
        if (config.app_debug){
          console.log("-------------------------------------------------------")
-         console.log(req.query)
-         console.log("-------------------------------------------------------")          
+         console.log(req.query);
+         console.log("-------------------------------------------------------")
        } 
 
       options = { 
-         'limit': (req.query.limit ? req.query.limit : 2000),
+         'limit': (req.query.limit ? req.query.limit : 15),
          'offset': (req.query.offset ? req.query.offset : 0),
          'sort_attrib': 'mep_lastName',
          'sort_type': 'asc'
@@ -75,11 +75,28 @@ module.exports = function() {
           options['sort_type'] = 'desc';
           break;
         default: 
-         var rndMethods = ['mep_lastName','mep_firstName','mep_localParty','mep_country'];
-         var idx = Math.floor( Math.random() * ( rndMethods.length ) );
-         var ascdesc = !! Math.round(Math.random() * 1);
-         options['sort_attrib'] = rndMethods[idx];
-         options['sort_type'] = (ascdesc ? 'asc' : 'desc');
+          // if empty req, then randomize, use it and remember it.
+          if( !Object.keys(req.query).length ) {
+            var rndMethods = ['mep_lastName', 'mep_firstName', 'mep_localParty', 'mep_country', 'mep_tweet_count', 'mep_follower_count'];
+            var idx = Math.floor( Math.random() * ( rndMethods.length ) );
+            var ascdesc = !! Math.round(Math.random() * 1);
+            options['sort_attrib'] = rndMethods[idx];
+            options['sort_type'] = (ascdesc ? 'asc' : 'desc');
+            req.session.search = {attrib:options['sort_attrib'], type:options['sort_type']};
+            if (config.app_debug) {
+              console.log("query empty randomize");
+              console.log(options);
+            }
+          }
+          else {
+            // already got a search, retrieve it
+            options['sort_attrib'] = req.session.search.attrib;
+            options['sort_type'] = req.session.search.type;
+            if (config.app_debug) {
+              console.log("query not empty");
+              console.log(options);
+            }
+          }
        }
 
        // search object
@@ -91,9 +108,9 @@ module.exports = function() {
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
-       meps = model.findByCriteria(search, filters, options, function(meps) {
+       	 meps = model.findByCriteria(search, filters, options, function(meps) {
          meps = render.formatAdditional(meps);
-         callback(meps);
+         callback(meps, count);
        });
     }
   }
@@ -135,8 +152,8 @@ module.exports = function() {
           user = req.user.twit;
         }
       }
-      internal.filter(req, res, function(meps) {
-        res.render('index', { config: config, meps: meps, req: req, user: user});
+      internal.filter(req, res, function(meps, count) {
+        res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
       });
     },
 
