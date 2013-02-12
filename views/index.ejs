@@ -235,7 +235,7 @@
         <section id="content" class="span9">  
           <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
-            <article id="candidate-<%= i %>" class="candidate thumbnail"><!-- thumbnail is a bootstrap class -->
+            <article id="candidate-<%= i %>" class="candidate thumbnail <% if (meps[i].riparte) { %>riparte<% } %>"><!-- thumbnail is a bootstrap class -->
                 <div class="popover-content" style="display: none"> 
                   <%- meps[i].formatted_properties %>
                 </div>
@@ -319,7 +319,7 @@
                     </div> 
                     -->
                     <% if (meps[i].riparte) { %>
-                      <a target="_blank" href="<%= meps[i].riparte %>"> <img src="http://www.riparteilfuturo.it/banner/aderisco/banner_88x31.png" /></a>
+                      <a target="_blank" href="<%= meps[i].riparte %>"> <img class="riparte_img" src="http://www.riparteilfuturo.it/banner/aderisco/banner_88x31.png" /></a>
                     <% } %>
                     <a href="http://twitter.com/intent/tweet/?text=@<%= meps[i].mep_twitterUserName %>&hashtags=twitantonio" class="btn btn-success">Tweet
                     </a> 

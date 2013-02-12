@@ -107,6 +107,14 @@ BODY
 	margin-left: 0;
 }
 /*### CONTENT*/
+
+#content .candidate.riparte {
+	border: 1px solid #7bb33d;
+}
+#content img.riparte_img {
+	border-radius: 5px;
+}
+
 #content .candidate
 {
 	position: relative;
