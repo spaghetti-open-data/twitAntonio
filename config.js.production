@@ -42,7 +42,8 @@ var config = {
     mep_follower_count: Number,
     mep_last_tweet_time: Date,
     mep_last_tweet : String,
-    mep_tweet_count: Number
+    mep_tweet_count: Number,
+    RiparteUrl: String
   }, {
     autoIndex : true
   }),
