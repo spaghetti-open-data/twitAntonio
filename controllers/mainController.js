@@ -163,6 +163,12 @@ module.exports = function() {
     videoAction: function (req, res) {
       res.render('video', { config: config, req: req});
     },
+    landingAction: function (req, res) {
+      res.render('landing/landing', { config: config, req: req});
+    },
+    videoLandingAction: function (req, res) {
+      res.render('landing/video_landing', { config: config, req: req});
+    },
   };
   return self;
 }

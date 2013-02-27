@@ -18,6 +18,8 @@ var config = {
   base_path: '/',
   twitter_auth: false,
   twitter_harvest_search: '#twitantonio',
+  landing: false,
+
 
     // Define Mep model
   schema: new mongoose.Schema({

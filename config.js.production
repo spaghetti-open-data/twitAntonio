@@ -18,6 +18,7 @@ var config = {
   base_path: '/',
   twitter_auth: false,
   twitter_harvest_search: '#twitantonio',
+  landing: true,
 
 
     // Define Mep model
