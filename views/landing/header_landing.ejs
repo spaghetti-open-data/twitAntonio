@@ -1,0 +1,77 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>On. <%= config.app_title %></title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="<%= config.app_description %>">
+      <!-- <meta name="author" content="https://github.com/spaghetti-open-data/tweetyourmep/graphs/contributors"> -->
+ 
+      <!--sharable-->
+      <meta property="og:site_name" content="Twitantonio" />
+      <meta property="og:title" content="Fai sentire la tua voce nella campagna elettorale più veloce di sempre. 140 caratteri alla volta." />
+      <meta property="og:description" content="Quindi, non essere timid@: mano alla tastiera. Aiuterai i candidati a mantenersi vicini ai cittadini visti come individui, non solo come corpo elettorale. Qualche volta bastano 140 caratteri per irrobustire una democrazia." />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="http://www.twitantonio.it" />
+      <meta property="og:image" content="http://www.twitantonio.it/images/votantonio_new.jpg" />
+      <meta name="twitter:url" content="http://www.twitantonio.it" />
+      <meta name="twitter:title" content="Fai sentire la tua voce nella campagna elettorale più veloce di sempre. 140 caratteri alla volta" />
+      <meta name="twitter:description" content="Quindi, non essere timid@: mano alla tastiera. Aiuterai i candidati a mantenersi vicini ai cittadini visti come individui, non solo come corpo elettorale. Qualche volta bastano 140 caratteri per irrobustire una democrazia." />
+      <meta name="twitter:image" content="http://www.twitantonio.it/images/votantonio_new.jpg" />
+      
+      <!-- Le styles -->
+      <link href="<%= config.base_path %>bootstrap/css/bootstrap-cerulean.min.css" rel="stylesheet" />
+      <link href="<%= config.base_path %>bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+
+      <!-- jquery ui css -->
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/redmond/jquery-ui.css" />
+
+      <link href="<%= config.base_path %>stylesheets/application.css" rel="stylesheet" />
+      <link href="<%= config.base_path %>stylesheets/application-responsive.css" rel="stylesheet" />
+
+      <!-- Le header scripts -->
+      <script type="text/javascript" src="<%= config.base_path %>javascripts/modernizr.min.js"></script>
+      <link rel="stylesheet" href="<%= config.base_path %>stylesheets/font-awesome/css/font-awesome.min.css" />
+      <!--[if IE 7]>
+        <link rel="stylesheet" href="<%= config.base_path %>stylesheets/font-awesome/css/font-awesome-ie7.min.css">
+      <![endif]-->
+      <script type="text/javascript" src="http://konami-js.googlecode.com/svn/trunk/konami.js"></script>
+      <script type="text/javascript">
+        konami = new Konami();
+        konami.load("https://www.youtube.com/watch?v=rSYf7exDuj0&feature=youtube_gdata_player");
+      </script>
+
+      <!-- Twitter Web intents API -->
+      <script type="text/javascript" charset="utf-8">
+        window.twttr = (function (d,s,id) {
+          var t, js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+          js.src="//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+          return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+        }(document, "script", "twitter-wjs"));
+      </script>
+      <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+      <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+
+      <!-- Le fav and touch icons 
+      <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+      <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+      -->
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-35090580-2']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+    </head>
+    <body>
