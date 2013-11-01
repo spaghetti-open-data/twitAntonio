@@ -10,7 +10,7 @@
     "ejs": "*",
     "stylus": "*",
     "mongojs": "*",
-    "mongoose": "*",
+    "mongoose": "3.1.2",
     "request": "*",
     "phpjs": "*",
     "everyauth": "git://github.com/bnoguchi/everyauth.git#express3",
