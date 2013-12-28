@@ -54,12 +54,12 @@ app.configure('development', function(){
   
 // landing page active
 if (!config.landing) {
-  app.get('/', controllers.mainController().indexAction);
   app.get('/mappa', controllers.mainController().mapAction);
   app.get('/cos_e', controllers.mainController().cos_eAction);
   app.get('/credits', controllers.mainController().creditsAction);
   app.get('/help', controllers.mainController().helpAction);
   app.get('/video', controllers.mainController().videoAction);
+  app.get('/:twit?', controllers.mainController().indexAction);
 }
 else {
   app.get('/', controllers.mainController().landingAction);
