@@ -59,6 +59,7 @@ if (!config.landing) {
   app.get('/credits', controllers.mainController().creditsAction);
   app.get('/help', controllers.mainController().helpAction);
   app.get('/video', controllers.mainController().videoAction);
+  app.get('/search', controllers.mainController().indexAction);
   app.get('/:twit?', controllers.mainController().indexAction);
 }
 else {

@@ -149,7 +149,7 @@ module.exports = function() {
     indexAction : function (req, res) {
       if (req.params.twit) {
         internal.single(req, res, function(meps, count) {
-          res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
+          res.render('single', { config: config, meps: meps, req: req, user: user, count: count});
         });
       }
       else{
@@ -165,6 +165,20 @@ module.exports = function() {
           res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
         });
       }
+    },
+    // general requests
+    searchAction : function (req, res) {
+      var user = false;
+      // check if twitter auth is active, if active pass the entire user object (if present)
+      if (config.twitter_auth) {
+        var loggedIn = req.loggedIn;
+        if (loggedIn) {
+          user = req.user.twit;
+        }
+      }
+      internal.filter(req, res, function(meps, count) {
+        res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
+      });
     },
 
     mapAction: function (req, res) {
