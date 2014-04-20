@@ -235,26 +235,36 @@
         <section id="content" class="span9">  
           <!-- loop through meps -->
           <% for (var i = 0; i < meps.length; i++) { %>
-            <article id="candidate-<%= i %>" class="candidate thumbnail <% if (meps[i].riparte) { %>riparte<% } %>"><!-- thumbnail is a bootstrap class -->
-                <div class="popover-content" style="display: none"> 
-                  <%- meps[i].formatted_properties %>
-                </div>
+            <article id="candidate-<%= i %>" class="thumbnail <% if (meps[i].riparte) { %>riparte<% } %>"><!-- thumbnail is a bootstrap class -->
 
-                <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
-                <div class="top-content">
+                <div class="jumbotron">
+                    <div class="popover-content" style="display: none"> 
+                      <%- meps[i].formatted_properties %>
+                    </div>
+
+                    <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
+                        <!-- <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" /> -->
+                        <img width="73" height="73" src="<%= meps[i].mep_epFotoUrl %>" class="photo img-rounded" style="float:left;" />
+                    </a>
+                    <h2><%= meps[i].mep_firstName + ' ' + meps[i].mep_lastName %></h2>
+
+                    <div style="clear:both;"></div>
+                    
+                </div>
+                <div class="middle-content">
+
                     <a class="twitter" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
-                      <i class="fa fa-twitter" style="color:#55acee;"></i><%= meps[i].mep_twitterUserName %>
-                        <!--<img style="width: 16px; height: auto" src="https://dev.twitter.com/sites/default/files/images_documentation/bird_blue_32.png" /><%= meps[i].mep_twitterUserName %>-->
+                         <i class="fa fa-twitter" style="color:#55acee;"></i><%= meps[i].mep_twitterUserName %>
                     </a>
                     
-                    <div class="user_counters">
+                    <span class="user_counters">
                        <a class="counter" href="javascript:void(0)" rel="tooltip" data-placement="top" title="<%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %> followers">
-                        <i class="fa fa-twitter"></i> <%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %>
+                        <i class="fa fa-fw fa-twitter"></i>followers: <%= meps[i].mep_follower_count ? meps[i].mep_follower_count_format : 0 %>
                       </a>
                       <a class="counter" href="javascript:void(0)" rel="tooltip" data-placement="top" title="<%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %> tweet">
-                        <i class="fa fa-comments"></i> <%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %>
+                        <i class="fa fa-fw fa-comments"></i>comments: <%= meps[i].mep_tweet_count ? meps[i].mep_tweet_count_format : 0 %>
                       </a>
-                    </div>
+                    </span>
 
                     <!-- Original implementation -->
                      <!--
@@ -266,37 +276,25 @@
                   
                 </div>
                 <div class="middle-content">
-                    <a class="avatar-wr" href="https://twitter.com/intent/user?screen_name=<%= meps[i].mep_twitterUserName %>">
-                        <!-- <img width="73" height="73" data-original="<%= meps[i].mep_epFotoUrl %>" src="<%= config.base_path %>images/grey.gif" class="photo img-rounded lazy" /> -->
-                        <img width="73" height="73" src="<%= meps[i].mep_epFotoUrl %>" class="photo img-rounded" />
-                    </a>
-                    <noscript>
-                        <img src="<%= meps[i].mep_epFotoUrl %>" class="img-rounded lazy">
-                    </noscript>
+                    
 
                     <ul>
-                      <!--
-                        <li class="country">
-                            <a href="<%= config.base_path %>?mep_localParty=&mep_name=&mep_country=<%= meps[i].mep_country %>&mep_faction=" rel="tooltip" data-placement="top" title="Circoscrizione: <%= meps[i].mep_country %>">
-                                <i class="fa fa-globe"></i> <%= meps[i].mep_country %>
-                            </a>
-                        </li>
-                      -->
                         <li class="local-party">
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=<%= meps[i].mep_localParty %>" rel="tooltip" data-placement="top" title="<%= meps[i].mep_localParty %>">
-                                <i class="fa fa-flag"></i> <%= meps[i].mep_localParty %>
+                                <i class="fa fa-flag"></i> Partito: <%= meps[i].mep_localParty %>
                             </a>
                         </li>
                         <li class="local-position" style="text-transform: capitalize;">                            
                             <a href="<%= config.base_path %>?mep_name=&mep_country=&mep_localParty=&parlamento=<%= meps[i].parlamento %>" rel="tooltip" data-placement="top" title="<%= meps[i].parlamento %>">
-                                <i class="fa fa-home"></i> <%= meps[i].parlamento %> 
+                                <i class="fa fa-home"></i> Camera: <%= meps[i].parlamento %> 
                             </a>
                         </li>
                          <li class="local-faction" style="text-transform: capitalize;">                            
                             <a href="<%= config.base_path %>?&faction=<%= meps[i].mep_faction %>" title="<%= config.factionNames[meps[i].mep_faction] %>">
-                                <i class="fa fa-group"></i> <%= config.factionNames[meps[i].mep_faction] %> 
+                                <i class="fa fa-group"></i> Area: <%= config.factionNames[meps[i].mep_faction] %> 
                             </a>
                         </li>
+                        
                     </ul>
                 </div>
                 <div class="bottom-content pagination-right">

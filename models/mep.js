@@ -82,17 +82,24 @@ var mepModel = function() {
    * TODO: sostituire i parametri con un oggetto options modificato solo nei campi interessati...
    */
   this.findByCriteria = function(search, options, callback) {
-    var op = {
-	    mep_fullName:  { $regex: search.name, $options: 'i' },
-      // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
-      mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
-      mep_localParty: { $regex: search.localParty, $options: 'i' },
-      parlamento:  { $regex: search.parlamento, $options: 'i' },
-	    mep_twitterUrl: { $ne : ""},
-    };
-    if (search.faction) {
-       op['mep_faction'] = search.faction;
+    console.log(search);
+    var op = {};
+    if (search.twit){
+      op = {'mep_twitterUrl':search.twit};
+    } else {
+      op = {
+  	    mep_fullName:  { $regex: search.name, $options: 'i' },
+        // thanks: http://stackoverflow.com/questions/10700921/case-insensitive-search-with-in
+        mep_country: { $elemMatch :  { $regex : search.country, $options : 'i' } },
+        mep_localParty: { $regex: search.localParty, $options: 'i' },
+        parlamento:  { $regex: search.parlamento, $options: 'i' },
+  	    mep_twitterUrl: { $ne : ""},
+      };
+      if (search.faction) {
+         op['mep_faction'] = search.faction;
+      }
     }
+    console.log(op);
     this.search(op, options, callback);
   };
 }

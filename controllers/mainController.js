@@ -9,6 +9,21 @@ module.exports = function() {
 
   // internal request handler
   var internal = {
+    single: function(req, res, callback) {
+      search_criteria = {
+        'twit':req.params.twit
+      };
+      options = { 
+         'limit': 1,
+         'offset': 0,
+         'sort_attrib': 'mep_lastName',
+         'sort_type': 'asc'
+       };
+      meps = model.findByCriteria(search_criteria, options, function(meps, count) {
+        meps = render.formatAdditional(meps);
+        callback([meps], count);
+      });
+    },
     filter: function(req, res, callback) {
        if (config.app_debug){
          console.log("-------------------------------------------------------")
@@ -92,7 +107,7 @@ module.exports = function() {
                      'localParty': localParty, 
                      'country': country, 
                      'parlamento': parlamento,
-                     'faction': faction,
+                     'faction': faction
                      };
        
        // TODO: sostituire i parametri con un oggetto options modificato solo sui valori interessati
@@ -132,6 +147,27 @@ module.exports = function() {
 
     // general requests
     indexAction : function (req, res) {
+      if (req.params.twit) {
+        internal.single(req, res, function(meps, count) {
+          res.render('single', { config: config, meps: meps, req: req, user: user, count: count});
+        });
+      }
+      else{
+        var user = false;
+        // check if twitter auth is active, if active pass the entire user object (if present)
+        if (config.twitter_auth) {
+          var loggedIn = req.loggedIn;
+          if (loggedIn) {
+            user = req.user.twit;
+          }
+        }
+        internal.filter(req, res, function(meps, count) {
+          res.render('index', { config: config, meps: meps, req: req, user: user, count: count});
+        });
+      }
+    },
+    // general requests
+    searchAction : function (req, res) {
       var user = false;
       // check if twitter auth is active, if active pass the entire user object (if present)
       if (config.twitter_auth) {
