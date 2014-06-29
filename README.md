@@ -22,3 +22,7 @@ Successivamente, i seguenti comandi:
     $ cp config.js.development config.js
     $ ./import.sh
     $ node app
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/spaghetti-open-data/twitantonio/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
